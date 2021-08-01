@@ -24,43 +24,34 @@ public class MainBoardServiceImp implements MainBoardService {
 
 	@Override
 	public ArrayList<MainBoardVO> getRecentBoard() {
+		System.out.println("최신트롤러 서비스임플");
+		System.out.println(mainBoardMapper.getRecentBoard());
 		return mainBoardMapper.getRecentBoard();
 	}
 
 	@Override
 	public ArrayList<MainBoardVO> getBestBoard() {
-		
+		System.out.println("베스트롤러 서비스임플");
+		System.out.println(mainBoardMapper.getBestBoard());
 		return mainBoardMapper.getBestBoard();
 	}
 
 	@Override
 	public ArrayList<MainBoardVO> getNearBoard(UsersVO vo) {
-		System.out.println("!@#!@#sdasad!@#!@#!");
+		System.out.println("니어컨트롤러 서비스임플");
 		System.out.println(mainBoardMapper.getNearBoard(vo));
-		System.out.println("!@#!@#sdasad!@#!@#!");
-		
 		return mainBoardMapper.getNearBoard(vo);
 	}
 
 	@Override
 	public ArrayList<CategoryBoardVO> nearCategory(CategoryBoardVO vo) {
 		// TODO Auto-generated method stub
-		System.out.println("@@@@@@@");
-		System.out.println(vo.getBigCategory());
-		System.out.println(vo.getMiddleCategory());
-		System.out.println(vo.getSmallCategory());
-		System.out.println("@@@@@@@");
-		System.out.println(mainBoardMapper.nearCategory(vo));
-		System.out.println("@@@@@@@");
 		return mainBoardMapper.nearCategory(vo);
 	}
 
 	@Override
 	public ArrayList<CategoryBoardVO> getCategoryCode(CategoryBoardVO vo) {
 		// TODO Auto-generated method stub
-		System.out.println("겟카코");
-		System.out.println(mainBoardMapper.getCategoryCode(vo));
-		System.out.println("겟카코");
 		return mainBoardMapper.getCategoryCode(vo);
 	}
 

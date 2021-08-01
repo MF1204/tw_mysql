@@ -22,6 +22,7 @@ public class JoinServiceImpl implements JoinService {
 	public int idCheck1(UsersVO vo) {
 		
 		System.out.println(vo);
+		System.out.println(joinMapper.idCheck1(vo));
 		return joinMapper.idCheck1(vo);
 	}
 

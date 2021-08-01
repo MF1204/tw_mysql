@@ -8,8 +8,8 @@
 <mapper namespace="com.tigerWhale.mainBoard.mapper.MainBoardMapper">
 	<select id="getPopularPage" resultType="MainBoardVO">
 		select ma.*
-		from mainBoard ma
-		inner join mentorBoard me
+		from MAINBOARD ma
+		inner join MENTOBOARD me
 		on ma.user_id = me.user_id
 		order by me.sellscore_avg desc
 	</select>
@@ -26,12 +26,12 @@
 		from
 		(
 		    select ma.* 
-		    from V_R_Board vr
-		    inner join mainBoard ma
+		    from V_R_BOARD vr
+		    inner join MAINBOARD ma
 		    on vr.bno = ma.bno
 		    order by viewNum desc ,recomendNum desc
 		)a
-		inner join imgBoard b
+		inner join IMGBOARD b
 		on a.bno = b.bno
 	</select>
 	
@@ -52,10 +52,6 @@
 		<result property="bno" column ="BNO_1"/>
 		<result property="img" column ="IMG"/>
 	</resultMap>
-	
-	
-	
-	
 	
 	
 	
@@ -121,57 +117,59 @@
 			
 				SELECT *
 				FROM
-				(	
+				(
 					SELECT *
 					FROM (
-					SELECT ( 6371 
-					            * acos(
-					                        cos( radians(#{la} ) ) --유저 la
-					                        * cos( radians(LA) ) --조회테이블 칼럼 ma
-					                        * cos( radians( #{ma} ) - radians(MA) ) --유저 ma  -조회테이블ma
-					                        +
-					                        sin( radians(127.030713517605) ) --유저la
-					                        * sin( radians(#{la}) ) -- 조회테이블 ma
-					                     ) 
-					        ) AS distance , us.*
-					FROM userBoard us
-					) usb
-					INNER JOIN mainBoard ma
-					on ma.user_id = usb.user_id<![CDATA[
-					WHERE distance < 300 and distance != 0 ]]>
+					SELECT ( 6371
+								* acos(
+										cos( radians( 37.4097995 ) )
+										* cos( radians( la) )
+										* cos( radians( ma)- radians(127.128697) )
+										+
+										sin( radians(37.4097995) )
+										* sin( radians(la) )
+										)
+							) AS distance, us.*
+					FROM USERBOARD AS us
+					) DATA
+				    INNER JOIN MAINBOARD ma
+				    on ma.user_ID = DATA.user_ID<![CDATA[
+					WHERE DATA.distance < 50 and DATA.distance != 0 ]]>
 					order by distance asc
-		        )a
-		        INNER JOIN imgBoard b
+				) a
+				INNER JOIN IMGBOARD b
 				on a.bno = b.bno
 				where c_code = #{c_code}
 			
 			</when>
 			
 			<when test ="c_code == 0">
+				
+			SELECT *
+			FROM
+			(
 				SELECT *
-				FROM
-				(	
-					SELECT *
-					FROM (
-					SELECT ( 6371 
-					            * acos(
-					                        cos( radians(#{la} ) ) --유저 la
-					                        * cos( radians(LA) ) --조회테이블 칼럼 ma
-					                        * cos( radians( #{ma} ) - radians(MA) ) --유저 ma  -조회테이블ma
-					                        +
-					                        sin( radians(127.030713517605) ) --유저la
-					                        * sin( radians(#{la}) ) -- 조회테이블 ma
-					                     ) 
-					        ) AS distance , us.*
-					FROM userBoard us
-					) usb
-					INNER JOIN mainBoard ma
-					on ma.user_id = usb.user_id<![CDATA[
-					WHERE distance < 300 and distance != 0 ]]>
-					order by distance asc
-		        )a
-		        INNER JOIN imgBoard b
-				on a.bno = b.bno
+				FROM (
+				SELECT ( 6371
+							* acos(
+									cos( radians( 37.4097995 ) )
+									* cos( radians( la) )
+									* cos( radians( ma)- radians(127.128697) )
+									+
+									sin( radians(37.4097995) )
+									* sin( radians(la) )
+									)
+						) AS distance, us.*
+				FROM USERBOARD AS us
+				) DATA
+			    INNER JOIN MAINBOARD ma
+			    on ma.user_ID = DATA.user_ID<![CDATA[
+				WHERE DATA.distance < 50 and DATA.distance != 0 ]]>
+				order by distance asc
+			) a
+			INNER JOIN IMGBOARD b
+			on a.bno = b.bno
+
 			</when>
 		
 		</choose>		

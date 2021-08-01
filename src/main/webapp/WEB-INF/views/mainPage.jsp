@@ -223,9 +223,6 @@
 		var middleCategory = document.querySelector(".nearMiddleCategory");
 		var smallCategory = document.querySelector(".nearSmallCategory");
 		var categoryCode = null;
-		console.log("카테");
-		console.log(categoryCode);
-		console.log("카테");
 		
 		var categoryBtn = document.querySelector(".categoryBtn");
 		var categoryBtnText = document.querySelector(".categoryBtnText");
@@ -238,7 +235,6 @@
 			{
 				if(bigCategory.value == '대분류 선택' && !(middleCategory.classList.contains("hidden")))
 				{
-					console.log("ccc번째");
 					middleCategory.classList.toggle('hidden');
 					middleCategory.value = "";
 					if(!(smallCategory.classList.contains("hidden")))
@@ -249,7 +245,6 @@
 				}
 				else if(bigCategory.value != '' && middleCategory.classList.contains("hidden"))
 				{
-					console.log("a번쨰");
 					middleCategory.classList.toggle('hidden');
 				}
 				else
@@ -257,7 +252,6 @@
 					middleCategory.value = "";
 					if(!(smallCategory.classList.contains("hidden")))
 					{
-						console.log("bb번째");
 						smallCategory.classList.toggle('hidden');
 						smallCategory.value = "";
 					}
@@ -275,19 +269,16 @@
 				console.log(middleCategory.value == '중분류 선택' && !(smallCategory.classList.contains("hidden")))
 				if(middleCategory.value == '중분류 선택' && !(smallCategory.classList.contains("hidden")))
 				{
-					console.log("@@@@@!!@");
 					smallCategory.classList.toggle('hidden');
 					smallCategory.value = "";
 				}
 				else if(middleCategory.value != '' && smallCategory.classList.contains("hidden"))
 				{
-					console.log("2번쨰");
 					smallCategory.classList.toggle('hidden');
 					smallCategory.value = "";
 				}
 				else
 				{
-					console.log("3번쨰");
 					smallCategory.value = "";
 				}
 				
@@ -296,7 +287,6 @@
 			
 			smallCategory.onchange = function()
 			{
-				console.log("쏴리질러어어어어어엉어엉");
 				nearCategory();
 			}
 			
@@ -596,7 +586,6 @@
 	
 					},
 					error : function(status,error){
-						alert("등록 실패입니다. 잠시후에 시도하세요");
 						console.log(error);
 					}
 				});
@@ -659,7 +648,7 @@
 		                
 					},
 					error : function(status,error){
-						alert("v팝퓰라실패");
+						console.log("최신게시글 실패");
 						console.log(error);
 					}
 				});
@@ -795,7 +784,7 @@
 	        			}
 	        		},
 	        		error : function(status,error){
-						alert("베스트글 컨트롤러 실패");
+						console.log("베스트 컨트롤러 실패");
 						console.log(error);
 					}
 	        		

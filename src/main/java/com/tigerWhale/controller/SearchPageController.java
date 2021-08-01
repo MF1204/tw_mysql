@@ -6,14 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tigerWhale.command.MainBoardVO;
 import com.tigerWhale.command.ThumbnailBoardVO;
 import com.tigerWhale.command.CategoryBoardVO;
-import com.tigerWhale.command.IMGBoardVO;
 import com.tigerWhale.searchPage.service.SearchPageService;
 import com.tigerWhale.util.SearchPageCriteria;
 import com.tigerWhale.util.SearchPagePageVO;
