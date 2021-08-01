@@ -24,7 +24,7 @@
                             <span class="ico_comm"></span>
                             <a class="link_info">권리침해신고</a>
                             <span class="ico_comm"></span>
-                            <a class="link_info">다음웹툰 고객센터</a>
+                            <a class="link_info">ManToMan 고객센터</a>
                             <span class="ico_comm"></span>
                             <a class="link_info">유료서비스 약관</a>
                         </div>

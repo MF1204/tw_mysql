@@ -126,7 +126,11 @@
 	IMP.init("imp39889735"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
 
 	function requestPay() {
-
+		
+		if($("#chk11").is(":checked") == false){
+			alert("개인정보이용란에 동의하셔야합니다");
+			return;
+		}
 		
 		console.log($("#PhoneNumber").val()); //폰번호
 		console.log("${ymBoardVO.money}");//결제 금액
