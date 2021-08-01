@@ -222,15 +222,15 @@ CREATE TABLE V_R_BOARD
 CREATE TABLE Y_M_BOARD
 (
     bno INT(20) NOT NULL,
-    rno INT(20) unique NOT NULL AUTO_INCREMENT,
+    rno INT(20) unique NOT NULL ,
     M_time1 INT(20), ## 00:00 중 첫번째값 입력받음
     M_time2 INT(20), ## 00::00중 두번째값 입력받음
     
     Money INT(20), ## 돈
     addrBasic VARCHAR(4000),
     addrDetail VARCHAR(4000),
-    day1 INT(20), ## 허용기간이 시작되는 년도를 입력받음
-    day2 INT(20),
+    day1 VARCHAR(800), ## 허용기간이 시작되는 년도를 입력받음
+    day2 VARCHAR(800),
     
     exText VARCHAR(4000),
     entX VARCHAR(4000),
@@ -322,5 +322,26 @@ create table FAQBOARD(
 );
 
 ##-----------------------------------------------------------------------------
+##--------------------------Y_MBoard , Mainboar용 bno , rno-----순서대로 진행하면됨----------------------------------------
+/* seq_mysql 테이블 생성 */
+CREATE TABLE seq_mysql(
+id INT NOT NULL,
+seq_name VARCHAR(50) NOT NULL
+);
 
+/* 만약 같은 이름으로 생성된 펑션 있으면, 펑션 삭제 */
+DROP FUNCTION IF EXISTS get_seq;
+
+/* Auto_increment 적용 *
+DELIMITER $$
+CREATE FUNCTION get_seq (p_seq_name VARCHAR(45))
+RETURNS INT READS SQL DATA
+BEGIN
+DECLARE RESULT_ID INT;
+UPDATE seq_mysql SET id = LAST_INSERT_ID(id+1)
+WHERE seq_name = p_seq_name;
+SET RESULT_ID = (SELECT LAST_INSERT_ID());
+RETURN RESULT_ID;
+END $$
+DELIMITER ;
 
