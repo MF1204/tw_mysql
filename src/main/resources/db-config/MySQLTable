@@ -209,12 +209,11 @@ CREATE TABLE REPLYBOARD
 (
     user_ID VARCHAR(20) NOT NULL, ## 댓글 작성자 아이디
     bno INT(10) NOT NULL, ## 댓글달린 게시글의 번호
-    orderNum INT(10) NOT NULL, ## 거래내역의 고유번호 (댓글과 거래내역 테이블의 외래키 역할을 합니다)
+    orderNum INT(10) PRIMARY KEY AUTO_INCREMENT, ## 거래내역의 고유번호 (댓글과 거래내역 테이블의 외래키 역할을 합니다)
     reply VARCHAR(200) NOT NULL, ## 답글 내용
     R_replyDate DATETIME DEFAULT CURRENT_TIMESTAMP, ## 답글생성 시간
     R_updateDate DATETIME DEFAULT CURRENT_TIMESTAMP ## 답글수정 시간
 );
-
 ##------------------------ 12.CATEGORYBOARD ----------------------------------
 ##카테고리의 대분류 중분류 소분류를 하나의 번호로 저장하는 테이블
 
