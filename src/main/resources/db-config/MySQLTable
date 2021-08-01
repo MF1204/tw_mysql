@@ -14,63 +14,6 @@ grant all privileges on project.* to 'project';
 
 ##-----------------------------------------
 
-##-------------- RADIANS 함수 생성------------
-##-----workbench에서 project데이터베이스 하위항목 'function' 선택후 create 실행해서 입력-------
-
-CREATE DEFINER=`project`@`%` FUNCTION `RADIANS`(nDegrees DOUBLE) RETURNS double
-    DETERMINISTIC
-BEGIN
-
-RETURN nDegrees / 57.29577951308232087679815481410517033235;
-END
-
-
-##== 생성시 발동트리거문--------------------------------------
-
-DELIMITER $$
-
-create DEFINER = project@'%' trigger TRIGGER_BACKUP_MAINBOARD
-    after insert
-    on MAINBOARD
-    FOR EACH ROW
-BEGIN
-
-    INSERT INTO 
-                V_R_BOARD(
-                            BNO,
-                            USER_ID,
-                            C_CODE,
-                            BOARDTYPE,
-                            TITLE,
-                            TEXT,
-                            PRICE,
-                            M_REGISTDATE,
-                            M_UPDATEDATE
-                          ) 
-        VALUES( 
-                NEW.BNO,
-                NEW.USER_ID,
-                NEW.C_CODE,
-                NEW.BOARDTYPE,
-                NEW.TITLE,
-                NEW.TEXT,
-                NEW.PRICE,
-                NEW.M_REGISTDATE,
-                NEW.M_UPDATEDATE
-               );
-end $$
-
-create DEFINER = project@'%' trigger TRIGGER_DELETE_MAINBOARD
-    after delete
-    on MAINBOARD
-    FOR EACH ROW
-BEGIN
-    delete from V_R_BOARD where BNO = OLD.BNO;
-end $$
-
-DELIMITER ;
-
-##=========================================================
 
 
 
@@ -94,7 +37,7 @@ DELIMITER ;
 ## 13. IMGBOARD -- CONFIRM
 ## 14. TEXTBOARD -- CONFIRM
 ## 15. FAQBOARD -- CONFIRM
-
+## 16. SEQ_MYSQL -- CONFIRM
  
 
 ##--------------------1. USERBOARD----------------------------------
@@ -179,7 +122,7 @@ CREATE TABLE INTERESTBOARD
 
 CREATE TABLE MAINBOARD
 (
-    bno INT(10) PRIMARY KEY AUTO_INCREMENT, ## 게시글 번호
+    bno INT(10) PRIMARY KEY, ## 게시글 번호
     user_ID VARCHAR(4000) NOT NULL, ## 게시글 작성자 아이디
     c_code INT(5) NOT NULL, ## 게시글의 카테고리 유형 (해당카테고리 번호를통해 대분류 중분류 소분류 의 값이 무엇인지 알수 있습니다)
     boardType VARCHAR(4000) NOT NULL, ## 게시글의 종류를 확인함 입력값은'구매','판매' 
@@ -222,20 +165,20 @@ CREATE TABLE V_R_BOARD
 CREATE TABLE Y_M_BOARD
 (
     bno INT(20) NOT NULL,
-    rno INT(20) unique NOT NULL AUTO_INCREMENT,
+    rno INT(20) unique NOT NULL ,
     M_time1 INT(20), ## 00:00 중 첫번째값 입력받음
     M_time2 INT(20), ## 00::00중 두번째값 입력받음
-    
+
     Money INT(20), ## 돈
     addrBasic VARCHAR(4000),
     addrDetail VARCHAR(4000),
-    day1 INT(20), ## 허용기간이 시작되는 년도를 입력받음
-    day2 INT(20),
-    
+    day1 VARCHAR(800), ## 허용기간이 시작되는 년도를 입력받음
+    day2 VARCHAR(800),
+
     exText VARCHAR(4000),
     entX VARCHAR(4000),
     entY VARCHAR(4000)
-    
+
 );
 
 ##------------------------ 9. D_T_BOARD -------------------------------------
@@ -323,4 +266,90 @@ create table FAQBOARD(
 
 ##-----------------------------------------------------------------------------
 
+##----------------------------16. 시퀀스 테이블------------------------
+
+CREATE TABLE SEQ_MYSQL(
+	id INT NOT NULL,
+	seq_name VARCHAR(50) NOT NULL
+);
+
+
+INSERT INTO SEQ_MYSQL
+VALUES (0, 'bno');
+
+INSERT INTO SEQ_MYSQL
+VALUES (0, 'rno');
+
+
+##---------------MAINBOARD, Y_M_BOARD사용 시퀀스-----------
+##----workbench에서 project데이터베이스 하위항목 'function' 선택후 create 실행------------
+
+CREATE DEFINER=`project`@`%` FUNCTION GET_SEQ (p_seq_name VARCHAR(45))
+RETURNS INT READS SQL DATA
+BEGIN
+DECLARE RESULT_ID INT;
+UPDATE SEQ_MYSQL SET id = LAST_INSERT_ID(id+1)
+WHERE seq_name = p_seq_name;
+SET RESULT_ID = (SELECT LAST_INSERT_ID());
+RETURN RESULT_ID;
+END;
+##----------------------------------------------------------------------
+
+##-------------- RADIANS 함수 생성------------
+##-----workbench에서 project데이터베이스 하위항목 'function' 선택후 create 실행해서 입력-------
+
+CREATE DEFINER=`project`@`%` FUNCTION `RADIANS`(nDegrees DOUBLE) RETURNS double
+    DETERMINISTIC
+BEGIN
+
+RETURN nDegrees / 57.29577951308232087679815481410517033235;
+END
+
+
+##== 생성시 발동트리거문--------------------------------------
+
+DELIMITER $$
+
+create DEFINER = project@'%' trigger TRIGGER_BACKUP_MAINBOARD
+    after insert
+    on MAINBOARD
+    FOR EACH ROW
+BEGIN
+
+    INSERT INTO 
+                V_R_BOARD(
+                            BNO,
+                            USER_ID,
+                            C_CODE,
+                            BOARDTYPE,
+                            TITLE,
+                            TEXT,
+                            PRICE,
+                            M_REGISTDATE,
+                            M_UPDATEDATE
+                          ) 
+        VALUES( 
+                NEW.BNO,
+                NEW.USER_ID,
+                NEW.C_CODE,
+                NEW.BOARDTYPE,
+                NEW.TITLE,
+                NEW.TEXT,
+                NEW.PRICE,
+                NEW.M_REGISTDATE,
+                NEW.M_UPDATEDATE
+               );
+end $$
+
+create DEFINER = project@'%' trigger TRIGGER_DELETE_MAINBOARD
+    after delete
+    on MAINBOARD
+    FOR EACH ROW
+BEGIN
+    delete from V_R_BOARD where BNO = OLD.BNO;
+end $$
+
+DELIMITER ;
+
+##=========================================================
 
