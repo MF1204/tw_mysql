@@ -1,0 +1,339 @@
+/* ############################################################### */
+
+
+#editor {
+    min-height: 180px;
+    
+}
+
+
+
+
+
+
+
+.article-content{
+	border: 1px;
+	padding: 0 20px;
+}
+
+.article-header{
+	
+	font-size: large;
+	font-weight: 600;
+	margin: 10px auto;
+}
+
+/* faqModify */
+.article-wrapper{
+	 align: left;
+	 margin: 40px auto;
+	 font-weight: 900;
+	 font-size: xxx-large;
+}
+
+.title-toolbar{
+	margin-bottom: 60px;
+	border-top: 2px solid rgb(43 130 245);
+	background-color:#464646;
+/* 	background-color:rgb(85,115,154); */ 
+	padding: 2px 8px;
+	height: 30px;
+}
+
+.title-toolbar-left{
+	color: #FFF;
+	margin-right: 15px;
+	font-size: 15px;
+	font-weight: 300;
+	float: left;
+}
+
+.title-toolbar-right{
+	color: #FFF;
+	font-size: 15px;
+	font-weight: 300;
+	float: right; 
+	display: inline-block;
+	height: auto;
+	
+}
+
+
+
+
+
+
+
+
+
+/* FAQ버튼 관련 */
+.faq-buttons {
+	text-align: center;
+}
+
+.faq-buttons > button{
+	background-color: #464646;
+	color: #FFF;
+	border-radius: 1px;
+}
+
+.faq-buttons > button:hover{
+	background-color: #000000;
+	color: #FFF;
+	border-radius: 1px;
+}
+
+
+
+
+
+
+
+
+
+
+/* FAQ리스트 중앙그림부분 */
+#faqlist-top > .faqlist-bg{ 
+	background-color:rgba(0, 0, 0, 0.5); 	/*살짝 투명한 검정으로 배경색*/ 
+	width:100%; 
+	height:550px; 
+	position: absolute; /*다른 요소들 위로 겹쳐질 수 있게함*/ 
+	top:60px;
+}
+#faqlist-top > section{ 
+	background-image: linear-gradient(to right,#11070f ,transparent 100%), url("../../resources/img/image/weekly-online.png");
+	background-size:cover;
+	display:block; 
+	width:100%; 
+	height:200px; 
+	color:#ffffff; 
+	text-align: center; 
+	padding-top:60px; 
+} 
+#faqlist-top > section h1{ 
+	font-size: 2.5em;
+	position: relative; 
+	z-index:1000; /*맨 앞으로 나오도록 함*/ 
+	margin-left: 555px;
+} 
+
+
+
+
+
+
+.t-control .t-title {
+	width: 100px;
+	min-width: 100px; /*화면줄었을때 최소크기*/
+	vertical-align: middle; /*테이블에서 세로 가운대정렬*/
+}
+
+/*input 요소의 넓이만 선택*/
+.t-control input {
+	width: 200px;
+	display: inline; /*인라인요소로 변경한다*/
+}
+
+/*개발자 도구에서 input-sm의 정렬을 푼다*/
+.t-control .input-sm {
+	height: auto;
+	line-height: normal;
+}
+/*td의 아래만 밑줄*/
+.t-control td {
+	border-bottom: 1px solid #E1E1E1;
+}
+
+.titlefoot {
+	text-align: center;
+	margin: 30px auto; /*박스의 가운데정렬*/
+	width: 50%; /*크기 50%*/
+}
+/* ############################################################### */
+
+/* ############################################################### */
+/* faqDEtail */
+.titlebox {
+	width: 250px;
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	margin: 70px auto;
+	border-top: 1px solid #E1E1E1;
+	border-bottom: 1px solid #E1E1E1;
+}
+
+.t-control .t-title {
+	width: 100px;
+	min-width: 100px; /*화면줄었을때 최소크기*/
+	vertical-align: middle; /*테이블에서 세로 가운대정렬*/
+}
+
+/*input 요소의 넓이만 선택*/
+.t-control input {
+	width: 200px;
+	display: inline; /*인라인요소로 변경한다*/
+}
+
+/*개발자 도구에서 input-sm의 정렬을 푼다*/
+.t-control .input-sm {
+	height: auto;
+	line-height: normal;
+}
+/*td의 아래만 밑줄*/
+.t-control td {
+	border-bottom: 1px solid #E1E1E1;
+}
+
+.titlefoot {
+	text-align: center;
+	margin: 30px auto; /*박스의 가운데정렬*/
+	width: 50%; /*크기 50%*/
+}
+/*==========자게 상세보기==========*/
+.write-wrap {
+	margin: 0 auto;
+	/*가운대 정렬방법 하지만 적용되지 않는다. 이유는 col클래스들이 float:left를 들고 있기 때문*/
+	float: none; /*플롯을 해제한다. 가운대정렬이 들어간다*/
+}
+/* ############################################################### */
+
+/* ############################################################### */
+/* faqList */
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    /* text-decoration: none; */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    list-style: none;
+}
+
+
+
+/*자게 그리드*/
+.board-table {
+    float: none;
+    /*col의 플로팅 해제 */
+    margin: 0 auto;
+}
+
+/*---검색버튼--- */
+.search-wrap {
+    overflow: hidden;
+    /*부모요소에 히든 */
+    margin-bottom: 20px;
+}
+
+.search-btn,
+.search-input,
+.search-select {
+    float: right;
+    /*우측 플로팅 */
+}
+
+.search-input {
+    width: 140px;
+}
+
+.search-select {
+    width: 80px;
+}
+
+/*제목에 클래스를 줘서 강제로 크기 고정*/
+.board-title {
+    width: 300px;
+}
+
+/*th의 순차적 접근 색상변경 */
+.table-bordered>thead>tr>th {
+    background-color: #E1E1E1;
+    color: #003366;
+}
+
+/*테이블 안에 a태그에 순차적 접근 */
+.table-bordered>tbody>tr>td>a,
+.table-bordered>tbody>tr>td>a:hover {
+    color: black;
+}
+
+.pagination {
+    margin: 0;
+    /*페이지 네이션의 기본 마진 0*/
+}
+
+.text-center .btn {
+    float: right;
+    /*오른쪽으로 쌓아서 우측정렬 시킨다*/
+    border: 0;
+    /*border스타일 해제*/
+    border-radius: 0;
+    /*윤곽 0*/
+    padding: 5px 10px;
+    /*버튼 패딩을 페이지네이션과 맞춘다*/
+}
+
+.titleBoxtitle {
+    text-align: center;
+    height: 80px;
+    line-height: 80px;
+    margin: 70px auto;
+    font-size: xx-large;
+    border-top: 1px solid #E1E1E1;
+    border-bottom: 1px solid #E1E1E1;
+    background-color: #003366;
+    color: white;
+}
+/* ############################################################### */
+
+
+/* ############################################################### */
+/* faqRegist */
+		/*==========자게 글쓰기==========*/
+        .titlebox {
+            width: 250px;
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            margin: 70px auto;
+            border-top: 1px solid #E1E1E1;
+            border-bottom: 1px solid #E1E1E1;
+        }
+        
+        .t-control .t-title {
+            width: 100px;
+            min-width: 100px; /*화면줄었을때 최소크기*/
+            vertical-align: middle; /*테이블에서 세로 가운대정렬*/
+        }
+        
+        /*input 요소의 넓이만 선택*/
+        .t-control input {
+            width: 200px;
+            display: inline; /*인라인요소로 변경한다*/
+        }
+        
+        /*개발자 도구에서 input-sm의 정렬을 푼다*/
+        .t-control .input-sm {
+            height: auto;
+            line-height: normal;
+        }
+        /*td의 아래만 밑줄*/
+        .t-control td {
+            border-bottom: 1px solid #E1E1E1;
+        }
+        
+        .titlefoot {
+            text-align: center;
+            margin: 30px auto; /*박스의 가운데정렬*/
+            width: 50%; /*크기 50%*/
+        }
+/* ############################################################### */

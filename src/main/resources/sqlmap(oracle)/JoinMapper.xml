@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.tigerWhale.join.mapper.JoinMapper">
+  	<select id="idCheck1" resultType="int">
+  		select count(*) as count
+  		from USERBOARD where user_ID = #{user_ID}
+  	</select>
+
+	<insert id="join">
+		INSERT INTO USERBOARD (
+	        USER_ID,
+	        USER_PW,
+	        USERADRESS,
+	        USERPHONENUMBER,
+	        USEREMAIL1,
+	        USEREMAIL2,
+	        USERGENDER,
+	        BUYSCORE_AVG,
+	        la,
+	        ma
+	    ) VALUES (
+	        #{user_ID},
+	        #{user_PW},
+	        #{userAdress},
+	        #{userPhoneNumber},
+	        #{userEmail1},
+	        #{userEmail2},
+	        #{userGender},
+	        0,
+	        #{la},
+	        #{ma}
+	    )
+	</insert>
+
+	<select id="login" resultType="UsersVO">
+		select * from users where user_ID=
+		#{user_ID} and user_PW= #{user_PW}
+	</select>
+	
+  </mapper>

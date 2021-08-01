@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tigerWhale.searchPage.mapper.SearchPageMapper">
+
+<!-- 카테고리 조회용 -->
+	<!-- 카테고리바 타이틀 조회 -->
+	<select id="getCategory" resultType="CategoryBoardVO">
+		select * from CATEGORYBOARD where middleCategory = #{middleCategory}
+	</select>
+	<select id="getBig" resultType="CategoryBoardVO">
+		select * from CATEGORYBOARD where c_code = #{c_code}
+	</select>
+	
+	<!-- 타이틀에 속한 미들카테고리 리스트 조회 -->
+	<select id="getMiddleList" resultType="CategoryBoardVO">
+		select middleCategory from CATEGORYBOARD where bigCategory = #{bigCategory} group by middleCategory
+	</select>
+	
+	<!-- 미들카테고리에 속하는 스몰카테고리 리스트 조회 -->
+	<select id="getSmallList" resultType="CategoryBoardVO">
+		select * from CATEGORYBOARD where bigCategory = #{bigCategory}
+	</select>
+
+<!-- 헤더에서 검색 -->
+	<select id="keywordSearch" resultType="ThumbnailBoardVO">
+		<![CDATA[
+		select * 
+			from (select @rownum := @rownum + 1 rn,
+					 	c.* 
+			  			from ( select * from( select * from (
+                            				select b.*, a.img 
+                            				from (IMGBOARD a right outer join MAINBOARD b on a.bno = b.bno) x group by b.bno, b.user_id, b.c_code, b.boardtype, b.title, b.text, b.price, b.m_registdate, b.m_updatedate, a.bno, a.img
+                            				) a 
+                            inner join CATEGORYBOARD b on a.c_code = b.c_code
+                            where 1 = 1
+					  				) y
+			  		where
+		]]>
+					<if test="searchName == null or searchName == ''">1 = 1</if>
+					<if test="searchName != null ">text like '%' || #{searchName} || '%' or title like '%'||#{searchName}|| '%' or user_ID like '%'||#{searchName}||'%'</if>
+		<![CDATA[
+			  		order by bno desc) c ) z, (select @rownum := 0) q
+		where rn > (#{pageNum} - 1) * #{amount} and rn <= #{pageNum} * #{amount}
+		]]>
+	</select>
+	
+	<select id="searchTotal" resultType="int">
+		<![CDATA[
+		select count(*) as total from MAINBOARD a inner join CATEGORYBOARD b on a.c_code = b.c_code where
+		]]>
+		<if test="searchName == null or searchName == ''">1 = 1</if>
+		<if test="searchName != null ">text like '%'||#{searchName}||'%' or title like '%'||#{searchName}||'%' or user_ID like '%'||#{searchName}||'%'</if>
+	</select>
+	
+<!-- 게시판에서 검색 -->
+	
+	<select id="thumbnailList" resultType="ThumbnailBoardVO">
+		<![CDATA[
+		select * 
+			from (select @rownum := @rownum + 1 rn,
+					 	c.* 
+			  			from ( select * from( select * from (
+                            				select b.*, a.img 
+                            				from (IMGBOARD a right outer join MAINBOARD b on a.bno = b.bno) X group by b.bno, b.user_id, b.c_code, b.boardtype, b.title, b.text, b.price, b.m_registdate, b.m_updatedate, a.bno, a.img
+                            				) a 
+                            inner join CATEGORYBOARD b on a.c_code = b.c_code
+                            where
+		]]>
+					<if test="searchType == 'c_code'">a.c_code = #{c_code}</if>
+					<if test="searchType == 'bigCategory' "> bigCategory = #{typeValue}</if>
+					<if test="searchType == 'middleCategory' "> middleCategory = #{typeValue}</if>
+		<![CDATA[
+					  				) Y
+			  		where
+		]]>
+					<if test="searchType2 == null or searchType2 == ''">1 = 1</if>
+					<if test="searchType2 == 'title_content' ">text like '%' || #{searchName} || '%' or title like '%'||#{searchName}||'%'</if>
+                    <if test="searchType2 == 'title' ">title like '%'||#{searchName}||'%'</if>
+                    <if test="searchType2 == 'content' ">text like '%'||#{searchName}||'%'</if>
+                    <if test="searchType2 == 'user_id' ">user_ID like '%'||#{searchName}||'%'</if>
+		<![CDATA[
+			  		order by bno desc) c ) Z, (select @rownum := 0) q
+		where rn > (#{pageNum} - 1) * #{amount} and rn <= #{pageNum} * #{amount}
+		]]>
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		<![CDATA[
+		select count(*) as total from (select a.bno, a.user_ID, a.boardType, a.title, a.text, a.price, a.M_registDate, a.M_updateDate, b.c_code, b.bigCategory, b.middleCategory, b.smallCategory from MAINBOARD a inner join CATEGORYBOARD b on a.c_code = b.c_code where
+		]]>
+					<if test="searchType == 'c_code'">a.c_code = #{c_code}</if>
+					<if test="searchType == 'bigCategory' ">bigCategory = #{typeValue}</if>
+					<if test="searchType == 'middleCategory' ">middleCategory = #{typeValue}</if>
+		<![CDATA[
+			  		) X
+			  where
+		]]>
+		<if test="searchType2 == null or searchType2 == ''">1 = 1</if>
+		<if test="searchType2 == 'title_content' ">text like '%' || #{searchName} || '%' or title like '%'||#{searchName}||'%'</if>
+        <if test="searchType2 == 'title' ">title like '%'||#{searchName}||'%'</if>
+        <if test="searchType2 == 'content' ">text like '%'||#{searchName}||'%'</if>
+        <if test="searchType2 == 'user_id' ">user_ID like '%'||#{searchName}||'%'</if>
+	</select>
+
+
+</mapper>

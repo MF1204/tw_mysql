@@ -1,0 +1,138 @@
+/* .category-page {
+    padding: 20px;
+} */
+
+.visible {
+    margin-bottom: 10px;
+}
+.open-btn {
+    width: 200px;
+    height: 40px;
+    background-color: #fff;
+}
+.btn-icon {
+    margin-right: 10px;
+    color: rgb(135, 177, 232);
+}
+.btn-title {
+    font-weight: 700;
+    color: rgb(85, 115, 154);
+}
+.click-visible {
+    display: none;
+    width: 606px;
+    height: 404px;
+    z-index: 200;
+    overflow: hidden;
+}
+.category-block {
+    width: 606px;
+    height: 404px;
+    border: 2px solid rgb(135, 177, 232);
+    box-sizing: border-box;
+}
+.category-list {
+    position: relative;
+    width: 200px;
+    height: 400px;
+    z-index: 100;
+    background-color: rgb(135, 177, 232);
+    font-weight: 500;
+}
+
+.list-item {
+    display: block;
+    text-align: center;
+    border-bottom: 1px solid #fff;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.list-item > .link-1th-item {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+}
+
+
+
+.list-item a:hover {
+    color: rgb(135, 177, 232);
+    text-decoration: none;
+    background-color: #fff;
+}
+.list-item a:focus {
+    text-decoration: none;
+}
+
+
+.link-1th-item > span, .link-2th-item > span {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+}
+.box-2th-item {
+    display: block;
+    position: absolute;
+    left: 200px;
+    top: 0;
+    width: 200px;
+    height: 400px;
+    border-left: 1px solid rgb(135, 177, 232);
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.link-2th-item {
+    position: relative;
+    display: none;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    color: rgb(85, 115, 154);
+    font-size: 12px;
+    font-weight: 500;
+    z-index: 0;
+}
+.link-2th-item-active {
+    background-color: rgb(135, 177, 232);
+    color: #fff;
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 12px;
+    font-weight: 500;
+    z-index: 100;
+}
+.box-3rd-item {
+    display: block;
+    position: absolute;
+    left: 200px;
+    top: 0;
+    width: 200px;
+    height: 400px;
+    border-left: 1px solid rgb(85, 115, 154);
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.link-3rd-item {
+    display: none;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    color: rgb(85, 115, 154);
+    font-size: 12px;
+    font-weight: 500;
+}
+.link-3rd-item-active {
+    background-color: rgb(135, 177, 232);
+    color: #fff;
+}

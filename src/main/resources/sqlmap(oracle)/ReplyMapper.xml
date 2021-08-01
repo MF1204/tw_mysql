@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.tigerWhale.reply.mapper.ReplyMapper">
+  
+  	<insert id="regist">
+		insert into replyBoard(orderNum, bno,  user_ID, reply)
+		values (replyBoard_SEQ.nextval, #{bno}, #{user_ID}, #{reply})
+  	</insert>
+  	
+  	<select id="getList" resultType="ReplyBoardVO">
+  		<![CDATA[
+	select *
+		from (
+		    select rownum rn,
+		           a.*,
+		           case when gap <= 60 then '방금전'
+		                when gap <= 60 * 24 then trunc(gap / 60) || '시간전'
+		                else to_char(R_replyDate, 'YYYY-MM-DD')
+		           end as timegap
+		    from (
+		         select bno,
+		                orderNum,
+		                reply,
+		                user_ID,
+		                R_replyDate,
+		                R_updateDate,
+		                trunc( (sysdate - R_replyDate) * 24 * 60  ) as gap
+		         from replyboard where bno = #{bno} order by orderNum desc
+		    ) a
+		) where rn > (#{cri.pageNum} - 1) * #{cri.amount} and rn <= #{cri.pageNum} * #{cri.amount}
+		]]>
+  	</select>
+  	
+  	<select id="getTotal" resultType="int">
+  		select count(*) as total from replyBoard where bno = #{bno}
+  	</select>
+  	
+  	
+  	
+  	
+  	<select id="pwCheck" resultType="int">
+  		select count(*) as count 
+  		from replyBoard where orderNum = #{orderNum} and user_ID = #{user_ID}
+  	</select>
+  	
+  	<update id="update">
+  		update replyBoard
+  		set reply = #{reply},
+  			R_updateDate = sysdate
+  		where orderNum = #{orderNum}
+  	</update>
+  	
+  	<delete id="delete">
+        delete
+        from replyBoard
+	where orderNum = #{orderNum}
+    </delete>
+  	
+  	 <insert id="customer">
+		insert into CUSTOMERBOARD(rno, bno, user_ID, money)
+		values (#{rno}, #{bno}, #{user_ID}, #{money})
+  	</insert>
+  </mapper>

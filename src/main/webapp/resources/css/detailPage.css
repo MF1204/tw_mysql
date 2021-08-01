@@ -1,0 +1,486 @@
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    /* text-decoration: none; */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    list-style: none;
+}
+
+/* ############################################################ */
+.CCC {
+    /* background-color: rgb(85, 115, 154); */
+
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+/* ############################################################ */
+.GigDetailContainer .LeftModules {
+    padding-bottom: 500px;
+    width: 55%;
+    float: left;
+
+}
+
+.GigDetailContainer .RightModules {
+    width: 40%;
+    float: right;
+    border: 3px black solid;
+    background-color: white;
+    
+    padding: 20px;
+}
+
+.GigDetailContainer .RightButtomModules {
+    margin-top: 36px;
+    width: 40%;
+    float: right;
+    border: 3px black solid;
+    background-color: white;
+    padding: 20px;
+}
+
+/* ############################################################ */
+.GigBreadcrumb {
+    background-color: #000000;
+    margin-bottom: 15px;
+}
+
+.GigBreadcrumb span,
+.GigBreadcrumb a {
+    color: #ffffff;
+    padding-right: 3px;
+}
+
+.GigMainGallery {
+    position: relative;
+    margin-bottom: 36px;
+}
+
+.GigMainGallery img {
+    border: 10px solid black;
+    vertical-align: middle;
+}
+
+/* ############################################################ */
+
+.GigRate {
+    border: 3px black solid;
+    padding: 15px;
+    background-color: antiquewhite;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.GigRate__content {
+    display: flex;
+    padding: 0 16px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.GigRate .rate {
+    margin: 0 0 0 4px;
+    color: #303441;
+    font-size: 18px !important;
+    font-weight: 700;
+}
+
+.GigRate .count {
+    margin: 0 0 0 4px;
+    /* color: #9a9ba7; */
+    /* font-size: 14px !important; */
+}
+
+/* ############################################################ */
+.GigBookMarks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: brown; */
+}
+
+.GigBookMarks .GigDetailShare {
+    float: left;
+    /* background-color: antiquewhite; */
+    border: 1px solid black;
+}
+
+.GigBookMarks .GigHeart{
+    float: right;
+    border: 1px solid black;
+}
+
+.GigBookMarks .GigHeart button {
+    padding: 10px;
+}
+.GigBookMarks .share-btn img{
+    /* background-color: antiquewhite; */
+    width: 30px;
+    height: 30px;
+}
+
+
+/* ############################################################ */
+
+.GigTitle {
+    margin-top: 10px;
+}
+
+.GigTitle h1,
+.GigTitle h3 {
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.5;
+    color: #303441;
+}
+
+/* ############################################################ */
+.GigTitle .gig-detail-price {
+    margin-bottom: 20px;
+    text-align: right;
+    margin-top: 8px;
+}
+
+.GigTitle h1,
+.GigTitle h3 {
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.5;
+    color: #303441;
+}
+
+/* ############################################################ */
+.GigPackages {
+    margin-bottom: 20px;
+}
+
+.GigPackages .gig-detail-pacakage-panel {
+    border: 1px solid #9a9ba7;
+    padding-bottom: 12px;
+}
+
+
+.GigPackages .package-header {
+    cursor: pointer;
+    padding: 20px 30px;
+}
+
+.GigPackages .package-body {
+    padding: 0 30px;
+}
+
+.GigPackages .package-body .map{
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+.GigPackages .package-body .map .address span{
+    margin: 20px;
+}
+.GigPackages .package-body .map .mapinmap{
+
+}
+
+.GigPackages .package-direct-order {
+    margin-top: 30px;
+}
+
+.GigPackages .package-direct-order button {
+
+    color: white;
+    background: rgb(85, 115, 154);
+    font-size: 16px;
+    width: 100%;
+    font-weight: 500;
+}
+/* ############################################################ */
+
+.GigPackages .tab-content .package-body table tr td {
+    padding: 5px;
+    margin: 5px;
+    font-size: 40px;
+   
+}
+
+
+
+/* ############################################################ */
+.GigNavigator {
+    margin-bottom: 42px;
+    position: sticky; 
+    top: 0; 
+    background-color: white;
+    border:  1px solid black;
+}
+
+
+.GigNavigator .gig-navigation-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.GigNavigator .gig-navigation {
+
+    margin: 5px;
+    border: 2px solid black;
+    background: #fafafc;
+    text-align: center;
+    color: #9a9ba7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    flex: 1;
+    cursor: pointer;
+    position: relative;
+}
+
+.GigNavigator .gig-navigation.active {
+    background: #ffffff;
+    border: 2px solid black;
+    
+    border-bottom: 0;
+    color: #303441;
+    font-weight: 700;
+}
+
+/* ################################### */
+
+.GigDescription {
+    padding-bottom: 50px;
+    border-bottom: 1px solid #e4e5ed;
+    margin-bottom: 50px;
+}
+
+.GigDescription {
+    width: 100%;
+    display: inline-block;
+    background-color: #ffffff;
+}
+
+/* 888888888888888888888888888888888888888888888888888888888 */
+.RightButtomModules .host_name_wrap{
+    margin-top: 10px;
+    font-size: x-large;
+    font-weight: 700;
+}
+.RightButtomModules .host_info_title{
+    color: rgb(85, 115, 154);
+    font-weight: 700;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.RightButtomModules .host_mail{
+    margin-top: 10px;
+}
+.RightButtomModules .host_phone{
+    margin-bottom: 10px;
+}
+.RightButtomModules .host_intro{
+    border: 3px solid black;
+    padding: 10px;
+}
+
+.RightButtomModules .host_intro_2{
+    display: table-cell;
+vertical-align: middle;
+}
+
+
+
+
+
+/* 888888888888888888888888888888888888888888888888888888888 */
+/*=======댓글========*/
+.comment {
+    display: inline-block;
+    position: absolute;
+}
+.write-wrap{
+
+    margin-top: 20px;
+}
+.reply-wrap {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border: 1px solid #ddd;
+    position: relative;
+    /*부모에 relative*/
+}
+
+.reply-wrap .reply-image {
+    position: absolute;
+    /*자식에서 absolute로 부모요소 위치로 조정*/
+    left: 15px;
+    top: 15px;
+}
+
+.reply-wrap .reply-content {
+    padding-left: 60px;
+}
+
+/*부트스트랩의 form-control 조정 */
+.reply-content>.form-control {
+    resize: vertical;
+    /*세로로만 조정가능*/
+    width: 100%;
+    /*최대 100%*/
+    min-height: 80px;
+    /*최대 넓이*/
+    margin-bottom: 10px;
+}
+
+.reply-input>.form-control {
+    width: 200px;
+    margin-bottom: 5px;
+}
+
+.reply-group {
+    overflow: hidden;
+}
+
+.reply-input {
+    float: left;
+}
+
+.reply-group .right {
+    float: right;
+}
+
+/*댓글 영역*/
+.reply-group small {
+    margin-left: 10px;
+    height: 20px;
+    line-height: 20px;
+}
+
+.reply-group small,
+.reply-group strong {
+    float: left;
+}
+
+.reply-group a {
+    text-decoration: none;
+    color: #777;
+    float: right;
+}
+
+/*댓글창 포커스시 서서히 보이기 */
+.reply-content textarea {
+    height: 50px;
+    transition: height .4s ease-in-out;
+}
+
+.reply-content textarea:focus {
+    height: 150px;
+}
+
+.reply-wrap img {
+    height: 50px;
+    width: 50px;
+}
+/* ========================= */
+
+
+/* ============================= */
+@media(max-width: 767px)
+{      
+    .GigDetailContainer .LeftModules{
+        width: 100%;
+    }
+    .GigDetailContainer .RightModules{
+         float: left;
+         width: 100%;
+     }
+     .GigDetailContainer .RightButtomModules{
+        float: left;
+        width: 100%;
+     }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ .write-wrap .titlebox {
+                width: 250px;
+                text-align: center;
+                height: 40px;
+                line-height: 40px;
+                margin: 70px auto;
+                border-top: 1px solid #E1E1E1;
+                border-bottom: 1px solid #E1E1E1;
+            }
+            .t-control .t-title {
+                width: 100px;
+                min-width: 100px;
+                /*화면줄었을때 최소크기*/
+                vertical-align: middle;
+                /*테이블에서 세로 가운대정렬*/
+            }
+
+            /*input 요소의 넓이만 선택*/
+            .t-control input {
+                width: 200px;
+                display: inline;
+                /*인라인요소로 변경한다*/
+            }
+
+            /*개발자 도구에서 input-sm의 정렬을 푼다*/
+            .t-control .input-sm {
+                height: auto;
+                line-height: normal;
+            }
+
+            .input-group-addon {
+                background-color: white;
+                border: none;
+                vertical-align: middle;
+                padding-top: 0px;
+            }
+
+            /*td의 아래만 밑줄*/
+            .t-control td {
+                border-bottom: 1px solid #E1E1E1;
+            }
+
+            .titlefoot {
+                text-align: center;
+                margin: 30px auto;
+                /*박스의 가운데정렬*/
+                width: 50%;
+                /*크기 50%*/
+            }
+
+            .option,
+            .btn_option {
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid black;
+            }

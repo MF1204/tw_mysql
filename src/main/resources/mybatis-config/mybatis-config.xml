@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- 마이바티스 설정파일 type에 명시된 클래스를 함축이름으로 사용합니다. -->
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.tigerWhale.command.CategoryBoardVO" alias="CategoryBoardVO" />
+		<typeAlias type="com.tigerWhale.command.D_T_boardVO" alias="D_T_boardVO" />
+		<typeAlias type="com.tigerWhale.command.DetailBoardVO" alias="DetailBoardVO" />
+		<typeAlias type="com.tigerWhale.command.MainBoardVO" alias="MainBoardVO" />
+		<typeAlias type="com.tigerWhale.command.ReplyBoardVO" alias="ReplyBoardVO" />
+		<typeAlias type="com.tigerWhale.command.UsersVO" alias="UsersVO" />
+		<typeAlias type="com.tigerWhale.command.Y_M_boardVO" alias="Y_M_boardVO" />
+		<typeAlias type="com.tigerWhale.command.IMGBoardVO" alias="IMGBoardVO" />
+		<typeAlias type="com.tigerWhale.command.FaqVO" alias="FaqVO" />
+		<typeAlias type="com.tigerWhale.command.TextBoardVO" alias="TextBoardVO" />
+		<typeAlias type="com.tigerWhale.command.PopularBoardVO" alias="PopularBoardVO" />
+		<typeAlias type="com.tigerWhale.command.ThumbnailBoardVO" alias="ThumbnailBoardVO" />
+	</typeAliases>
+	
+	<!-- DB/java간 long데이터 형태 호환성을 위함. FAQ보드에서 사진데이터를 LONG형으로 DB저장하기 위함. -->
+	<!-- 참고: Type Alias 보다 아래에 둘것 -->
+<!-- 	<typeHandlers>
+		<typeHandler handler="com.tigerWhale.util.LongHandler" javaType="java.lang.String" jdbcType="LONGVARCHAR"/>
+	</typeHandlers> -->
+	
+	
+</configuration>

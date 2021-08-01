@@ -1,0 +1,25 @@
+.form-group{
+    margin-bottom: 20px;
+}
+.edit_wrap{
+    padding: 20px;
+    border: 1px solid black;
+}
+.GigPackages .package-direct-order button{
+    width: 30%;
+}
+.package-direct-order .btn123 span{
+    
+    font-size: 48px;
+}
+
+.map .mapbox{
+    display: flex;
+    justify-content: center;
+
+}
+
+.map .mapbox .LazyLoad,  .map .mapbox .mapinmap{
+    border: 1px solid black;
+    margin: 30px;
+}

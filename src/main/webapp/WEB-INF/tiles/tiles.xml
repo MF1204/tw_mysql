@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+  
+ 
+<tiles-definitions>
+
+
+	<!--############마이페이지 탬플릿###########-->
+	<definition name="templateMypage" template="/WEB-INF/tiles/templateMypage.jsp">
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"  value="/WEB-INF/tiles/footer.jsp"/>
+	</definition>
+
+	<definition name="mypage/*" extends="templateMypage">
+		<put-attribute name="body" value="/WEB-INF/views/mypage/{1}.jsp" />
+	</definition>
+	<!--#################################-->
+	
+	
+	<!--############디테일보드 탬플릿###########-->
+	<definition name="templateDetailBoard" template="/WEB-INF/tiles/templateDetailBoard.jsp">
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"  value="/WEB-INF/tiles/footer.jsp"/>
+	</definition>
+	
+	<definition name="detailBoard/*" extends="templateDetailBoard">
+		<put-attribute name="body" value="/WEB-INF/views/detailBoard/{1}.jsp" />
+	</definition>
+	<!--#################################-->
+	
+	
+	<!-- ############fqa타일즈 테믈릿############ -->	
+	<definition name="templateFaqBoard" template="/WEB-INF/tiles/templateFaqBoard.jsp">
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"  value="/WEB-INF/tiles/footer.jsp"/>
+	</definition>
+	
+	<definition name="faqBoard/*" extends="templateFaqBoard">
+		<put-attribute name="body" value="/WEB-INF/views/faqBoard/{1}.jsp" />
+	</definition>
+		<!--#################################-->
+	
+	
+		<!-- ############users 타일즈 테믈릿############ -->	
+	<definition name="templateUsers" template="/WEB-INF/tiles/templateUsers.jsp">
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"  value="/WEB-INF/tiles/footer.jsp"/>
+	</definition>
+	
+	<definition name="users/*" extends="templateUsers">
+		<put-attribute name="body" value="/WEB-INF/views/users/{1}.jsp" />
+	</definition>
+	
+	
+	
+	 <!--  공통화면에 대한 정의 맵핑(메인 페이지 맵핑)-->
+	<definition name="templateBasic" template="/WEB-INF/tiles/templateBasic.jsp">
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"  value="/WEB-INF/tiles/footer.jsp"/>
+	</definition>
+	
+	<definition name="*" extends="templateBasic">
+		<put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
+	</definition>
+	
+	<definition name="*/*" extends="templateBasic">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />	
+	</definition>
+	
+	<definition name="*/*/*" extends="templateBasic">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
+	</definition> 
+</tiles-definitions>  
+
