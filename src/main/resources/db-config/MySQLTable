@@ -329,12 +329,19 @@ id INT NOT NULL,
 seq_name VARCHAR(50) NOT NULL
 );
 
+
+
+
 /* 만약 같은 이름으로 생성된 펑션 있으면, 펑션 삭제 */
 DROP FUNCTION IF EXISTS get_seq;
 
+
+
+
+
 /* Auto_increment 적용 *
 DELIMITER $$
-CREATE FUNCTION get_seq (p_seq_name VARCHAR(45))
+DEFINER=project@% FUNCTION get_seq (p_seq_name VARCHAR(45))
 RETURNS INT READS SQL DATA
 BEGIN
 DECLARE RESULT_ID INT;
@@ -344,4 +351,19 @@ SET RESULT_ID = (SELECT LAST_INSERT_ID());
 RETURN RESULT_ID;
 END $$
 DELIMITER ;
+
+
+
+
+/* bno 생성 */
+INSERT INTO seq_mysql
+VALUES (0, 'bno');
+
+
+
+/* rno 생성 */
+INSERT INTO seq_mysql
+VALUES (0, 'rno');
+
+
 
