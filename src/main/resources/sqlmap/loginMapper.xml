@@ -23,8 +23,7 @@
 	</select>
 	
 	<select id="getInfo" resultType="UsersVO">
-		select user_id,
-			user_ID,
+		select user_ID,
     		user_PW,
    			userAdress,
     		userPhoneNumber,
@@ -32,8 +31,8 @@
     		userEmail2,
     		userGender,
     		buyScore_AVG
-    	from userBoard u
-    	where u.user_id = #{user_ID}
+    	from USERBOARD u
+    	where u.user_ID = #{user_ID}
 	</select>
 	
 	<delete id="usersDelete">

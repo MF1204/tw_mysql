@@ -20,8 +20,7 @@
 	        USERGENDER,
 	        BUYSCORE_AVG,
 	        la,
-	        ma,
-	        user_IMG
+	        ma
 	    ) VALUES (
 	        #{user_ID},
 	        #{user_PW},
@@ -32,14 +31,12 @@
 	        #{userGender},
 	        0,
 	        #{la},
-	        #{ma},
-	        '1234'
+	        #{ma}
 	    )
 	</insert>
 
 	<select id="login" resultType="UsersVO">
-		select * from users where user_ID=
-		#{user_ID} and user_PW= #{user_PW}
+		select * from USERBOARD where user_ID = #{user_ID} and user_PW = #{user_PW}
 	</select>
 	
   </mapper>
