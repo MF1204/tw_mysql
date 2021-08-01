@@ -26,7 +26,7 @@
 			<mvc:mapping path="/mypage/mypageDelete"/>
 			<mvc:mapping path="/mypage/mypage-password"/>
 			<mvc:mapping path="/mypage/mypage-phone"/>
-			<mvc:mapping path="/detailBoard/detailWrite"/>
+			<mvc:mapping path="/detailBoard/detailselectWrite"/>
 			
 			<ref bean="MypageSessionHandler"/>
 		</mvc:interceptor>

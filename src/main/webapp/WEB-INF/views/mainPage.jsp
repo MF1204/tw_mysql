@@ -311,7 +311,6 @@
 					success : function(data)
 					{
 						categoryCode = data[0].c_code;
-						console.log("sadasdsdasdaasdasd");
 						
 						if(bigValue == "")
 						{
@@ -409,7 +408,6 @@
 							sessionStorage.setItem("recentIndex",recentIndex);
 							getRecentBoard();
 						}
-						console.log(recentIndex);
 					}
 					else if(e.target.classList.contains("bestBtn") )
 					{
@@ -447,8 +445,6 @@
 			/* 내지리 주변 강의 */
         	function getNearBoard()
 			{
-				console.log("asdd");
-				console.log(la);
 				$.ajax({
 					type: "post",
 					url : "getNearBoard",
@@ -457,10 +453,6 @@
 					data : JSON.stringify({"la":la , "ma":ma , "c_code":categoryCode}),
 					success : function(data)
 					{
-						
-						console.log("쏴리질러");
-						console.log(data);
-						console.log("쏴리질러");
 						
 						var nearIndex = sessionStorage.getItem("nearIndex");
 						sessionStorage.setItem("nearData" , data.length);	
@@ -561,7 +553,6 @@
 					contentType : "application/json; charset=UTF-8",
 					success: function(data){
 						
-						console.log(data);
 						
 						var popluarIndex = sessionStorage.getItem("popluarIndex");
 						sessionStorage.setItem("popluarData" , data.length);	
@@ -601,9 +592,7 @@
 					contentType : "application/json; charset=UTF-8",
 					data : JSON.stringify({"bno":"1"}),
 					success: function(data){
-						
-						console.log(data);
-						
+							
 						var recentIndex = sessionStorage.getItem("recentIndex");
 						sessionStorage.setItem("recentData" , data.length);	
 						
@@ -648,7 +637,6 @@
 		                
 					},
 					error : function(status,error){
-						console.log("최신게시글 실패");
 						console.log(error);
 					}
 				});
@@ -666,9 +654,6 @@
 	        		contentType: "application/json; charset=UTF-8",
 	        		success: function(data){
 	        			
-	        			console.log("!!!!!!!!!!!!!!");
-	        			console.log(data);
-	        			console.log("!!!!!!!!!!!!!!");
 	        			
 	        			var bestIndex = sessionStorage.getItem("bestIndex");
 						sessionStorage.setItem("bestData" , data.length);	
@@ -812,7 +797,7 @@
            	//게시글 업로드
             getBestBoard();
             getRecentBoard();
-            getPopularPage();
+            //getPopularPage();
             getNearBoard();
             
             //카테고리 업로드

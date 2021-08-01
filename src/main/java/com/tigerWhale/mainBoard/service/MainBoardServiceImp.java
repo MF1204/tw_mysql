@@ -24,22 +24,16 @@ public class MainBoardServiceImp implements MainBoardService {
 
 	@Override
 	public ArrayList<MainBoardVO> getRecentBoard() {
-		System.out.println("최신트롤러 서비스임플");
-		System.out.println(mainBoardMapper.getRecentBoard());
 		return mainBoardMapper.getRecentBoard();
 	}
 
 	@Override
 	public ArrayList<MainBoardVO> getBestBoard() {
-		System.out.println("베스트롤러 서비스임플");
-		System.out.println(mainBoardMapper.getBestBoard());
 		return mainBoardMapper.getBestBoard();
 	}
 
 	@Override
 	public ArrayList<MainBoardVO> getNearBoard(UsersVO vo) {
-		System.out.println("니어컨트롤러 서비스임플");
-		System.out.println(mainBoardMapper.getNearBoard(vo));
 		return mainBoardMapper.getNearBoard(vo);
 	}
 

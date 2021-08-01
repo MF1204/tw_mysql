@@ -115,61 +115,61 @@
 		
 			<when test="c_code != 0">
 			
-				SELECT *
+				
+				SELECT ma.*
 				FROM
 				(
-					SELECT *
-					FROM (
-					SELECT ( 6371
-								* acos(
-										cos( radians( 37.4097995 ) )
-										* cos( radians( la) )
-										* cos( radians( ma)- radians(127.128697) )
-										+
-										sin( radians(37.4097995) )
-										* sin( radians(la) )
-										)
-							) AS distance, us.*
-					FROM USERBOARD AS us
-					) DATA
-				    INNER JOIN MAINBOARD ma
-				    on ma.user_ID = DATA.user_ID<![CDATA[
-					WHERE DATA.distance < 50 and DATA.distance != 0 ]]>
-					order by distance asc
-				) a
-				INNER JOIN IMGBOARD b
-				on a.bno = b.bno
-				where c_code = #{c_code}
+					SELECT *,
+						(6371
+							*acos(
+									cos(radians(37.4097995))
+									*cos(radians(ma))
+									*cos(radians(la)-radians(127.128697))
+									+
+									sin(radians(37.4097995))
+									*sin(radians(ma))
+									)
+						)
+						AS distance
+					FROM userBoard<![CDATA[
+					HAVING distance <= 300 and distance != 0]]>
+					ORDER BY distance asc
+				) DATA
+				INNER JOIN mainboard ma
+				ON DATA.user_ID = ma.user_ID
+			    INNER JOIN imgboard im
+			    ON ma.bno = im.bno
+			    where c_code = #{c_code}
 			
 			</when>
 			
 			<when test ="c_code == 0">
 				
-			SELECT *
-			FROM
-			(
-				SELECT *
-				FROM (
-				SELECT ( 6371
-							* acos(
-									cos( radians( 37.4097995 ) )
-									* cos( radians( la) )
-									* cos( radians( ma)- radians(127.128697) )
+			
+				SELECT ma.*
+				FROM
+				(
+					SELECT *,
+						(6371
+							*acos(
+									cos(radians(37.4097995))
+									*cos(radians(ma))
+									*cos(radians(la)-radians(127.128697))
 									+
-									sin( radians(37.4097995) )
-									* sin( radians(la) )
+									sin(radians(37.4097995))
+									*sin(radians(ma))
 									)
-						) AS distance, us.*
-				FROM USERBOARD AS us
+						)
+						AS distance
+					FROM userBoard<![CDATA[
+					HAVING distance <= 300 and distance != 0]]>
+					ORDER BY distance asc
 				) DATA
-			    INNER JOIN MAINBOARD ma
-			    on ma.user_ID = DATA.user_ID<![CDATA[
-				WHERE DATA.distance < 50 and DATA.distance != 0 ]]>
-				order by distance asc
-			) a
-			INNER JOIN IMGBOARD b
-			on a.bno = b.bno
-
+				INNER JOIN mainboard ma
+				ON DATA.user_ID = ma.user_ID
+			    INNER JOIN imgboard im
+			    ON ma.bno = im.bno
+			    
 			</when>
 		
 		</choose>		
