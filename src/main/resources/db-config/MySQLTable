@@ -174,6 +174,7 @@ CREATE TABLE Y_M_BOARD
     addrDetail VARCHAR(4000),
     day1 VARCHAR(800), ## 허용기간이 시작되는 년도를 입력받음
     day2 VARCHAR(800),
+
     exText VARCHAR(4000),
     entX VARCHAR(4000),
     entY VARCHAR(4000)
@@ -272,21 +273,6 @@ CREATE TABLE SEQ_MYSQL(
 	seq_name VARCHAR(50) NOT NULL
 );
 
-<<<<<<< HEAD
-
-
-
-/* 만약 같은 이름으로 생성된 펑션 있으면, 펑션 삭제 */
-DROP FUNCTION IF EXISTS get_seq;
-
-
-
-
-
-/* Auto_increment 적용 *
-DELIMITER $$
-DEFINER=project@% FUNCTION get_seq (p_seq_name VARCHAR(45))
-=======
 
 INSERT INTO SEQ_MYSQL
 VALUES (0, 'bno');
@@ -298,9 +284,7 @@ VALUES (0, 'rno');
 ##---------------MAINBOARD, Y_M_BOARD사용 시퀀스-----------
 ##----workbench에서 project데이터베이스 하위항목 'function' 선택후 create 실행------------
 
-
 CREATE DEFINER=`project`@`%` FUNCTION GET_SEQ (p_seq_name VARCHAR(45))
->>>>>>> 482ad1fc600f4791b26cbe369c38e20c9d8ce659
 RETURNS INT READS SQL DATA
 BEGIN
 DECLARE RESULT_ID INT;
@@ -309,8 +293,6 @@ WHERE seq_name = p_seq_name;
 SET RESULT_ID = (SELECT LAST_INSERT_ID());
 RETURN RESULT_ID;
 END;
-
-
 ##----------------------------------------------------------------------
 
 ##-------------- RADIANS 함수 생성------------
@@ -369,20 +351,5 @@ end $$
 
 DELIMITER ;
 
-
-
-
-/* bno 생성 */
-INSERT INTO seq_mysql
-VALUES (0, 'bno');
-
-
-
-/* rno 생성 */
-INSERT INTO seq_mysql
-VALUES (0, 'rno');
-
-
-
-=======
 ##=========================================================
+
