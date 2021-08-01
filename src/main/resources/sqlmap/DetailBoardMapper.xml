@@ -6,33 +6,33 @@
 <mapper namespace="com.tigerWhale.detailBoard.mapper.DetailBoardMapper">
 
 	<select id="getCategory" resultType="CategoryBoardVO">
-		select * from categoryBoard where c_code = #{bno}
+		select * from CATEGORYBOARD where c_code = #{bno}
 	</select>
 	<select id="getD_T_board" resultType="D_T_boardVO">
-		select * from D_T_Board where bno = #{bno}
+		select * from D_T_BOARD where bno = #{bno}
 	</select>
 	<select id="getBoardDetail" resultType="DetailBoardVO">
-		select * from detailBoard where bno = #{bno}
+		select * from DETAILBOARD where bno = #{bno}
 	</select>
 	<select id="getMainDetail" resultType="MainBoardVO">
-		select * from mainboard where bno = #{bno}
+		select * from MAINBOARD where bno = #{bno}
 	</select>
 	<select id="getReplyBoard" resultType="ReplyBoardVO">
-		select * from replyBoard where bno = #{bno}
+		select * from REPLYBOARD where bno = #{bno}
 	</select>
 	<select id="getUserDetail" resultType="UsersVO">
-		select * from userboard where user_id like #{user_ID}
+		select * from USERBOARD where user_id like #{user_ID}
 	</select>
 	<select id="getY_M_board" resultType="Y_M_boardVO">
-		select * from Y_M_Board where bno = #{bno}
+		select * from Y_M_BOARD where bno = #{bno}
 	</select>
 
 	<select id="getIMGBoard" resultType="IMGBoardVO">
-		select * from IMGBoard where bno = #{bno}
+		select * from IMGBOARD where bno = #{bno}
 	</select>
 
 	<select id="getTextBoard" resultType="TextBoardVO">
-		select * from textBoard where bno = #{bno}
+		select * from TEXTBOARD where bno = #{bno}
 	</select>
 
 	<select id="getY_M_boardFisrt" resultType="Y_M_boardVO">
@@ -46,16 +46,16 @@
 
 
 	<select id="getY_M_One" resultType="Y_M_boardVO">
-		select * from Y_M_Board where
+		select * from Y_M_BOARD where
 		rno = #{rno}
 	</select>
 
 
 	<insert id="insertMainBoardVO" parameterType="map">
-		insert into mainBoard(
-		 bno, user_ID, C_code, boardType, title, text,price)
+		insert into MAINBOARD (
+		 bno , user_ID , c_code , boardType , title , text ,price)
 		values
-		(#{bno} ,  #{user_ID}, #{C_code}, #{boardType}, #{title}, #{text}, #{price})
+		(#{bno} ,  #{user_ID}, #{c_code} , #{boardType} , #{title} , #{text} , #{price} )
 	</insert>
 
 	<select id="findBno" resultType="int">
@@ -63,17 +63,17 @@
 	</select>
 
 	<insert id="insertText" parameterType="map">
-		insert into TextBoard ( bno , text1, text2, text3)
+		insert into TEXTBOARD ( bno , text1, text2, text3)
 		values(#{bno},#{text1},#{text2},#{text3})
 	</insert>
 
 	<select id="getCataGoryALL" resultType="CategoryBoardVO">
-		select distinct bigCategory from categoryBoard
+		select distinct bigCategory from CATEGORYBOARD
 	</select>
 
 
 	<insert id="insertY_M_boardVO" parameterType="map">
-		insert into Y_M_board(
+		insert into Y_M_BOARD(
 		bno, rno, day1 , day2 , exText, M_time1,M_time2,
 		Money ,  addrBasic,addrDetail, entX , entY)
 		values(
@@ -86,9 +86,9 @@
    		<![CDATA[ select distinct  ]]>
 		<choose>
 			<when test="middleCategory != null "> smallCategory from
-				categoryBoard where middleCategory like #{middleCategory}</when>
+			 CATEGORYBOARD where middleCategory like #{middleCategory}</when>
 			<when test="bigCategory != null "> middleCategory from
-				categoryBoard where bigCategory like #{bigCategory}</when>
+			 CATEGORYBOARD where bigCategory like #{bigCategory}</when>
 			<otherwise>1 = 1</otherwise>
 		</choose>
 	</select>
@@ -97,7 +97,7 @@
 
 
 	<insert id="insertIMGBoardVO" parameterType="map">
-		insert into IMGBoard ( bno , img)
+		insert into IMGBOARD( bno , img)
 		values(#{bno},#{img})
 	</insert>
 
@@ -107,7 +107,7 @@
 
 
 	<insert id="insertD_T_boardVO" parameterType="map">
-		insert into D_T_board (bno, rno , M_day)
+		insert into D_T_BOARD (bno, rno , M_day)
 		values(#{bno},#{rno},#{ M_day})
 	</insert>
 	
@@ -117,8 +117,8 @@
 	</select>
 	
 	
-		<select id="findC_code" resultType="int" parameterType="map">
-			select c_code from categoryBoard where 
+	<select id="findC_code" resultType="int" parameterType="map">
+			select c_code from CATEGORYBOARD where 
 			smallCategory Like #{smallCategory} and  
 			middleCategory Like #{middleCategory} and
 			bigCategory Like #{bigCategory}
@@ -129,6 +129,6 @@
 	</select>
 	
 	  <delete id="mainBoarddelete">
-        delete from mainboard where bno = #{bno}
+        delete from MAINBOARD where bno = #{bno}
     </delete>
 </mapper>

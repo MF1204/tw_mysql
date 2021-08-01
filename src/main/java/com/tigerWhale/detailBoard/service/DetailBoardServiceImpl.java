@@ -81,10 +81,10 @@ public class DetailBoardServiceImpl implements DetailBoardService {
 	}
 
 	@Override
-	public int insertMainBoardVO(int bno, String user_ID, int C_code, String boardType, String title, String text, int price) {
+	public int insertMainBoardVO(int bno, String user_ID, int c_code, String boardType, String title, String text, int price) {
 		System.out.println(user_ID);
 		System.out.println("여 기까지 성공");
-		return detailBoardMapper.insertMainBoardVO(bno, user_ID, C_code, boardType, title, text, price);
+		return detailBoardMapper.insertMainBoardVO(bno, user_ID, c_code, boardType, title, text, price);
 	}
 
 	@Override

@@ -174,6 +174,7 @@ CREATE TABLE Y_M_BOARD
     addrDetail VARCHAR(4000),
     day1 VARCHAR(800), ## 허용기간이 시작되는 년도를 입력받음
     day2 VARCHAR(800),
+
     exText VARCHAR(4000),
     entX VARCHAR(4000),
     entY VARCHAR(4000)
@@ -283,7 +284,6 @@ VALUES (0, 'rno');
 ##---------------MAINBOARD, Y_M_BOARD사용 시퀀스-----------
 ##----workbench에서 project데이터베이스 하위항목 'function' 선택후 create 실행------------
 
-
 CREATE DEFINER=`project`@`%` FUNCTION GET_SEQ (p_seq_name VARCHAR(45))
 RETURNS INT READS SQL DATA
 BEGIN
@@ -293,8 +293,6 @@ WHERE seq_name = p_seq_name;
 SET RESULT_ID = (SELECT LAST_INSERT_ID());
 RETURN RESULT_ID;
 END;
-
-
 ##----------------------------------------------------------------------
 
 ##-------------- RADIANS 함수 생성------------
@@ -354,3 +352,4 @@ end $$
 DELIMITER ;
 
 ##=========================================================
+

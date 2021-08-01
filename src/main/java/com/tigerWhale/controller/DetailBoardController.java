@@ -283,10 +283,12 @@ public class DetailBoardController {
 		System.out.println("===================");
 		
 		System.out.println("===================");
-		int C_code = detailBoardService.findC_code(smallCategory, middleCategory, bigCategory);
+		int c_code = detailBoardService.findC_code(smallCategory, middleCategory, bigCategory);
 		int bno = detailBoardService.findBno();
 		System.out.println("bno"+bno );
-		int result = detailBoardService.insertMainBoardVO(bno, user_ID, C_code, boardType, title, text, price);
+		System.out.println(c_code);
+		System.out.println("===================");
+		int result = detailBoardService.insertMainBoardVO(bno, user_ID, c_code, boardType, title, text, price);
 		System.out.println("result" + result);
 		int textinsert = detailBoardService.insertText(bno, text1, text2, text3);
 		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
@@ -344,7 +346,6 @@ public class DetailBoardController {
 				if(dt_list[k] != null)
 				{
 					int D_T_Result = detailBoardService.insertD_T_boardVO(bno , rno, dt_list[k]);
-					
 				}
 				}
 				

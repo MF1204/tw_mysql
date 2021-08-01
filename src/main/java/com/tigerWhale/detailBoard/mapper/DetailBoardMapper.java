@@ -35,7 +35,7 @@ public interface DetailBoardMapper {
 	public int insertMainBoardVO( 
 			@Param("bno") int bno,
 			@Param("user_ID") String user_ID, 
-			@Param("C_code") int C_code,
+			@Param("c_code") int c_code,
 			@Param("boardType")  String boardType, 
 			@Param("title") String title,
 			@Param("text")  String text,
