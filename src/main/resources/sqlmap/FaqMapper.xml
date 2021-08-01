@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.tigerWhale.faq.mapper.FaqMapper">
+  		
+  		
+  		
+  		
+   <update id="replyForm">
+   		UPDATE FAQBOARD 
+   		   SET
+   				 REPLY = #{reply},
+   				 REPLYDATE = SYSDATE
+   		 WHERE BNO = #{bno}
+   </update>
+   
+  		
+  		
+  	<insert id="regist">
+  		insert into FAQBOARD(bno, title, writer, content) 
+  		values(FAQBOARD_SEQ.nextval , #{title}, #{writer}, #{content} ) 
+  	</insert>
+   
+   <!-- CDATA안에 들어가는 sql문을 순수한 문자열의 형태로 인식되도록 처리  -->
+   <!-- if, choose는 jstl과 사용이 동일하고, test구문안에는 vo의 setter값이나 map의 key의 값이 들어갈 수 있습니다. -->
+   <select id="getList" resultType="FaqVO">
+   		<![CDATA[
+   		select *
+		from (select rownum rn,
+		             a.*     
+		      from (select *
+		            from FAQBOARD
+		            where
+		]]>
+					 
+					<if test="searchType == 'title' ">title like '%'||#{searchName}||'%'</if>
+					<if test="searchType == 'writer' ">writer like '%'||#{searchName}||'%'</if>
+			        <if test="searchType == 'content' ">content like '%'||#{searchName}||'%'</if>
+			        <if test="searchType == 'titcont' ">content like '%'||#{searchName}||'%' or title like '%'||#{searchName}||'%'</if>
+					<if test="searchType == null or searchType == '' ">1 = 1</if>
+					<!--
+					<choose>
+						<when test="searchType == 'title'">title like '%'||#{searchName}||'%'</when>
+						<when test="searchType == 'writer'">writer like '%'||#{searchName}||'%'</when>
+						<when test="searchType == 'content'">content like '%'||#{searchName}||'%'</when>
+						<when test="searchType == 'titcont'">content like '%'||#{searchName}||'%' or title like '%'||#{searchName}||'%'</when>
+						<otherwise>1 = 1</otherwise>
+					</choose>
+					 -->
+					
+		<![CDATA[            
+		            order by bno desc) a
+		)
+		where rn > (#{pageNum}-1) * #{amount} and rn <= #{pageNum} * #{amount}
+		]]>		
+   </select>
+   <!-- 전체게시글 수 -->
+   <select id="getTotal" resultType="int">
+   		select count(*) as total 
+   		from FAQBOARD
+   		where
+   		<if test="searchType == 'title' ">title like '%'||#{searchName}||'%'</if>
+		<if test="searchType == 'writer' ">writer like '%'||#{searchName}||'%'</if>
+		<if test="searchType == 'content' ">content like '%'||#{searchName}||'%'</if>
+		<if test="searchType == 'titcont' ">content like '%'||#{searchName}||'%' or title like '%'||#{searchName}||'%'</if>
+		<if test="searchType == null or searchType == '' ">1 = 1</if>
+   		
+   </select>
+   
+   
+   <select id="getDetail" resultType="FaqVO">
+   		select * from FAQBOARD where bno = #{bno}
+   </select>
+   
+   <update id="update">
+   		update FAQBOARD 
+   		set title = #{title},
+   			content = #{content},
+   			updatedate = sysdate
+   		where bno = #{bno}
+   </update>
+   
+   <delete id="delete">
+   		delete from FAQBOARD where bno = #{bno}
+   </delete>
+   
+   
+   
+  </mapper>
+  
+  
+  

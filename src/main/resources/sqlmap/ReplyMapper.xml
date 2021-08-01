@@ -6,8 +6,8 @@
   <mapper namespace="com.tigerWhale.reply.mapper.ReplyMapper">
   
   	<insert id="regist">
-		insert into replyBoard( bno,  user_ID, reply)
-		values ( #{bno}, #{user_ID}, #{reply})
+		insert into replyBoard(orderNum, bno,  user_ID, reply)
+		values (replyBoard_SEQ.nextval, #{bno}, #{user_ID}, #{reply})
   	</insert>
   	
   	<select id="getList" resultType="ReplyBoardVO">
@@ -17,8 +17,8 @@
 		    select @rownum := @rownum + 1 rn,
 		           a.*,
 		           case when gap <= 60 then '방금전'
-		                when gap <= 60 * 24 then concat(truncate(gap / 60, 0), '시간전')
-		                else date_format(replyDate, '%Y-%m-%d')
+		                when gap <= 60 * 24 then truncate(gap / 60) || '시간전'
+		                else to_char(replyDate, '%y-%m-%d')
 		           end as timegap
 		    from (
 		         select bno,
@@ -27,10 +27,10 @@
 		                replyId,
 		                replyDate,
 		                updateDate,
-		                truncate( (now() - replydate) / 60 , 0  ) as gap
+		                trunc( (now() - replydate)/ 60 ,0 ) as gap
 		         from replyBoard where bno = #{bno} order by rno desc
 		    ) a
-		) b , (select @rownum := 0 ) c
+		) b ,(select @rownum := 0) c 
 		where rn > (#{cri.pageNum} - 1) * #{cri.amount} and rn <= #{cri.pageNum} * #{cri.amount}
 		]]>
   	</select>
@@ -50,7 +50,7 @@
   	<update id="update">
   		update replyBoard
   		set reply = #{reply},
-  			R_updateDate = now()
+  			R_updateDate = sysdate
   		where orderNum = #{orderNum}
   	</update>
   	

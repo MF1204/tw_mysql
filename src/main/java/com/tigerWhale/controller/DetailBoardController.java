@@ -307,6 +307,8 @@ public class DetailBoardController {
 			{
 				int rno = detailBoardService.findRno();
 				System.out.println("===================");
+				System.out.println(rno);
+				System.out.println("===================");
 				System.out.println("===================");
 				String day1 = list.get(i).getDay1();
 				System.out.println(day1);
@@ -331,10 +333,10 @@ public class DetailBoardController {
 				
 				String entX = list.get(i).getEntX();
 				System.out.println("entX " + entX);
-				
+				System.out.println(bno);
 				String entY = list.get(i).getEntY();
 				System.out.println("entY " + entY);
-				
+				System.out.println("bno"+bno );
 				int Y_M_Result = detailBoardService.insertY_M_boardVO(bno, rno, day1, day2, exText, M_time1, M_time2, Money, addrBasic, addrDetail, entX, entY);
 				System.out.println("Y_M_Result" + Y_M_Result);
 				System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");

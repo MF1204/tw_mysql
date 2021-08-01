@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 마이바티스 설정파일 type에 명시된 클래스를 함축이름으로 사용합니다. -->
+
+<mapper namespace="com.tigerWhale.mainBoard.mapper.MainBoardMapper">
+	<select id="getPopularPage" resultType="MainBoardVO">
+		select ma.*
+		from mainBoard ma
+		inner join mentorBoard me
+		on ma.user_id = me.user_id
+		order by me.sellscore_avg desc
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	<select id="getBestBoard" resultMap="bestImgInfo">
+		select *
+		from
+		(
+		    select ma.* 
+		    from V_R_Board vr
+		    inner join mainBoard ma
+		    on vr.bno = ma.bno
+		    order by viewNum desc ,recomendNum desc
+		)a
+		inner join imgBoard b
+		on a.bno = b.bno
+	</select>
+	
+	<resultMap type="MainBoardVO" id="bestImgInfo">
+		<result property="bno" column="BNO"/>
+		<result property="user_ID" column="USER_ID"/>
+		<result property="c_code" column="C_CODE"/>
+		<result property="boardType" column="BOARDTYPE"/>
+		<result property="title" column="TITLE"/>
+		<result property="text" column="TEXT"/>
+		<result property="price" column="PRICE"/>
+		<result property="M_registDate" column="M_REGISTDATE"/>
+		<result property="M_updateDate" column="M_UPDATEDATE"/>
+		<collection property="imgBoardList" resultMap="bestImgList"></collection>
+	</resultMap>
+	
+	<resultMap type="IMGBoardVO" id="bestImgList">
+		<result property="bno" column ="BNO_1"/>
+		<result property="img" column ="IMG"/>
+	</resultMap>
+	
+	
+	
+	
+	
+	
+	
+	
+	<select id="getRecentBoard" resultMap="recentImgInfo">
+			select *
+			from
+			(
+			    select ma.* 
+			            from V_R_Board vr
+			            inner join mainBoard ma
+			            on vr.bno = ma.bno
+			            order by viewNum desc ,recomendNum desc
+			) a
+			inner join imgBoard b
+			on a.bno = b.bno
+	</select>
+	
+	<resultMap type="MainBoardVO" id="recentImgInfo">
+		<result property="bno" column="BNO"/>
+		<result property="user_ID" column="USER_ID"/>
+		<result property="c_code" column="C_CODE"/>
+		<result property="boardType" column="BOARDTYPE"/>
+		<result property="title" column="TITLE"/>
+		<result property="text" column="TEXT"/>
+		<result property="price" column="PRICE"/>
+		<result property="M_registDate" column="M_REGISTDATE"/>
+		<result property="M_updateDate" column="M_UPDATEDATE"/>
+		<collection property="imgBoardList" resultMap="recentImgList"></collection>
+	</resultMap>
+	
+	<resultMap type="IMGBoardVO" id="recentImgList">
+		<result property="bno" column ="BNO_1"/>
+		<result property="img" column ="IMG"/>
+	</resultMap>
+	
+	<select id="nearCategory" resultType="CategoryBoardVO">
+		select distinct 
+		<choose>
+			<when test="smallCategory != null "> 
+			smallCategory from	categoryBoard where middleCategory = #{smallCategory} 
+			</when>
+			<when test="middleCategory != null "> 
+			middleCategory from categoryBoard where bigCategory = #{middleCategory}
+			</when>
+			<when test="bigCategory != null ">
+				bigCategory from categoryBoard 
+			</when>
+		</choose>
+	</select>
+	
+	<select id="getCategoryCode" resultType="CategoryBoardVO">
+		select distinct smallCategory,c_code from categoryBoard where smallCategory = #{smallCategory}
+	</select>
+	
+	
+	
+	<select id="getNearBoard" resultMap="nearImgInfo">
+	
+		<choose>
+		
+			<when test="c_code != 0">
+			
+				SELECT *
+				FROM
+				(	
+					SELECT *
+					FROM (
+					SELECT ( 6371 
+					            * acos(
+					                        cos( radians(#{la} ) ) --유저 la
+					                        * cos( radians(LA) ) --조회테이블 칼럼 ma
+					                        * cos( radians( #{ma} ) - radians(MA) ) --유저 ma  -조회테이블ma
+					                        +
+					                        sin( radians(127.030713517605) ) --유저la
+					                        * sin( radians(#{la}) ) -- 조회테이블 ma
+					                     ) 
+					        ) AS distance , us.*
+					FROM userBoard us
+					) usb
+					INNER JOIN mainBoard ma
+					on ma.user_id = usb.user_id<![CDATA[
+					WHERE distance < 300 and distance != 0 ]]>
+					order by distance asc
+		        )a
+		        INNER JOIN imgBoard b
+				on a.bno = b.bno
+				where c_code = #{c_code}
+			
+			</when>
+			
+			<when test ="c_code == 0">
+				SELECT *
+				FROM
+				(	
+					SELECT *
+					FROM (
+					SELECT ( 6371 
+					            * acos(
+					                        cos( radians(#{la} ) ) --유저 la
+					                        * cos( radians(LA) ) --조회테이블 칼럼 ma
+					                        * cos( radians( #{ma} ) - radians(MA) ) --유저 ma  -조회테이블ma
+					                        +
+					                        sin( radians(127.030713517605) ) --유저la
+					                        * sin( radians(#{la}) ) -- 조회테이블 ma
+					                     ) 
+					        ) AS distance , us.*
+					FROM userBoard us
+					) usb
+					INNER JOIN mainBoard ma
+					on ma.user_id = usb.user_id<![CDATA[
+					WHERE distance < 300 and distance != 0 ]]>
+					order by distance asc
+		        )a
+		        INNER JOIN imgBoard b
+				on a.bno = b.bno
+			</when>
+		
+		</choose>		
+	</select>
+	
+	<resultMap type="MainBoardVO" id="nearImgInfo">
+		<result property="bno" column="BNO"/>
+		<result property="user_ID" column="USER_ID"/>
+		<result property="c_code" column="C_CODE"/>
+		<result property="boardType" column="BOARDTYPE"/>
+		<result property="title" column="TITLE"/>
+		<result property="text" column="TEXT"/>
+		<result property="price" column="PRICE"/>
+		<result property="M_registDate" column="M_REGISTDATE"/>
+		<result property="M_updateDate" column="M_UPDATEDATE"/>
+		<result property="la" column="la"/>
+		<result property="ma" column="ma"/>
+		<collection property="imgBoardList" resultMap="nearImgList"></collection>
+	</resultMap>
+	
+	<resultMap type="IMGBoardVO" id="nearImgList">
+		<result property="bno" column ="BNO_1"/>
+		<result property="img" column ="IMG"/>
+	</resultMap>
+</mapper>
