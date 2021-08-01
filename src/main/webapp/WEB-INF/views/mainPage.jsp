@@ -216,7 +216,7 @@
 	<script>
 		
 		document.querySelector(".writeBtn").onclick = function(){
-			location.href = "detailBoard/detailWrite";
+			location.href = "detailBoard/detailselectWrite";
 		}
 
 		var bigCategory = document.querySelector(".nearBigCategory");
