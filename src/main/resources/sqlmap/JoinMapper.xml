@@ -36,8 +36,7 @@
 	</insert>
 
 	<select id="login" resultType="UsersVO">
-		select * from USERBOARD where user_ID=
-		#{user_ID} and user_PW= #{user_PW}
+		select * from USERBOARD where user_ID = #{user_ID} and user_PW = #{user_PW}
 	</select>
 	
   </mapper>
