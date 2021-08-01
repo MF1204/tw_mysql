@@ -18,17 +18,17 @@
 		           a.*,
 		           case when gap <= 60 then '방금전'
 		                when gap <= 60 * 24 then concat(truncate(gap / 60, 0), '시간전')
-		                else date_format(replyDate, '%Y-%m-%d')
+		                else date_format(R_replyDate, '%Y-%m-%d')
 		           end as timegap
 		    from (
 		         select bno,
-		                rno,
+		                orderNum,
 		                reply,
-		                replyId,
-		                replyDate,
-		                updateDate,
-		                truncate( (now() - replydate) / 60 , 0  ) as gap
-		         from REPLYBOARD where bno = #{bno} order by rno desc
+		                user_ID,
+		                R_replyDate,
+		                R_updateDate,
+		                truncate( (now() - R_replyDate) / 60 , 0  ) as gap
+		         from REPLYBOARD where bno = #{bno} order by orderNum desc
 		    ) a
 		) b , (select @rownum := 0 ) c
 		where rn > (#{cri.pageNum} - 1) * #{cri.amount} and rn <= #{cri.pageNum} * #{cri.amount}

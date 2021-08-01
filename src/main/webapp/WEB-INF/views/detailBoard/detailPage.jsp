@@ -219,7 +219,20 @@
 									${mainBoardVO.text}<br />
 								</p>
 							</li>
-							<a href="../detailBoard/detailDelete?bno=${mainBoardVO.bno}">글삭제하기</a>
+
+
+							<c:choose>
+
+								<c:when test="${usersVO.user_ID == mainBoardVO.user_ID}">
+							<div style="margin: 30px">
+								<button type="button" class="btn btn-primary btn2" onclick="../detailBoard/detailDelete?bno=${mainBoardVO.bno}">글삭제하기</button>
+							</div>
+								</c:when>
+								<c:otherwise>
+								
+								</c:otherwise>
+
+							</c:choose>
 						</ul>
 					</div>
 				</div>
@@ -242,7 +255,6 @@
 							<div class="reply-input">
 								<input type="hidden" class="form-control" placeholder="이름" name="replyId" id="replyId" value="${userVO.user_ID}">
 							</div>
-
 							<button type="button" class="right btn btn-info" id="replyRegist">등록하기</button>
 						</div>
 
@@ -250,7 +262,7 @@
 				</form>
 
 				<!--여기에접근 반복-->
-				<div id="replyList">	</div>
+				<div id="replyList"></div>
 				<button type="button" class="btn btn-default btn-block" id="moreList">더보기</button>
 
 
@@ -277,8 +289,7 @@
 					<textarea class="form-control" rows="4" id="modalReply" placeholder="내용입력"></textarea>
 					<div class="reply-group">
 						<div class="reply-input">
-							<input type="hidden" id="modalRno"> 
-							<input type="password" class="form-control" value="123" id="modalPw" readonly="readonly">
+							<input type="hidden" id="modalRno"> <input type="password" class="form-control" value="123" id="modalPw" readonly="readonly">
 						</div>
 						<button class="right btn btn-info" id="modalModBtn">수정하기</button>
 						<button class="right btn btn-info" id="modalDelBtn">삭제하기</button>
@@ -337,8 +348,12 @@
 			var user_ID = "${userVO.user_ID}";
 			console.log(reply);
 			console.log(user_ID);
-			if(reply == '' ) {
-				alert("이름, 비밀번호, 내용은 필수입니다");
+			if ( user_ID == '') {
+				alert("로그인이 필요합니다");
+				return;
+			}
+			if(reply == '' || user_ID =='' ) {
+				alert("내용을 작성해주십쇼");
 				return; //함수종료
 			}
 			
@@ -473,9 +488,12 @@
 			var orderNum = $("#modalRno").val();
 			var reply = $("#modalReply").val();
 			var user_ID =  "${userVO.user_ID}";
-			
+			if ( user_ID == '') {
+				alert("자신이 쓴 글만을 수정할 수 있습니다");
+				return;
+			}
 			if(orderNum == '' || reply == '' || user_ID == '') {
-				alert("내용, 비밀번호는 필수 입니다");
+				alert("자신이 쓴 글만을 수정할 수 있습니다");
 				return;
 			}
 			$.ajax({
@@ -492,7 +510,7 @@
 						$("#replyModal").modal("hide"); //모달창 내리기
 						getList(1, true); //조회 메서드 호출
 					} else { //업데이트 실패
-						alert("비밀번호를 확인하세요");
+						alert("로그인이 필요합니다");
 						$("#modalPw").val("");
 					}
 					
@@ -519,9 +537,12 @@
 											 */
 											var orderNum = $("#modalRno").val();
 											var user_ID = "${userVO.user_ID}";
-
+											if ( user_ID == '') {
+												alert("자신이 쓴 글만을 삭제할 수 있습니다");
+												return;
+											}
 											if (orderNum == '' || user_ID == '') {
-												alert("비밀번호를 입력하세요");
+												alert("자신이 쓴 글만을 삭제할 수 있습니다");
 												return;
 											}
 											$
@@ -544,7 +565,7 @@
 																				"hide");
 																getList(1, true);
 															} else {
-																alert("비밀번호 오류");
+																alert("로그인이 필요합니다");
 															}
 														},
 														error : function(data) {

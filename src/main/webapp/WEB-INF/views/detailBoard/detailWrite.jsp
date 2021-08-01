@@ -289,11 +289,11 @@
 		strAdd += '</div>'
 
 		strAdd += '<div class="form-group">'
-		strAdd += '<input type="text" class="form-control" name="list[' + i + '].addrBasic" id="addrBasic" placeholder="기본주소">'
+		strAdd += '<input type="text" class="form-control" name="list[' + i + '].addrBasic" id="addrBasic" placeholder="기본주소" readonly="readonly">'
 		strAdd += '</div>'
 
 		strAdd += '<div class="form-group">'
-		strAdd += '<input type="text" class="form-control" name="list[' + i + '].addrDetail" id="addrDetail" placeholder="상세주소">'
+		strAdd += '<input type="text" class="form-control" name="list[' + i + '].addrDetail" id="addrDetail" placeholder="상세주소" readonly="readonly">'
 		strAdd += '</div>'
 
 		strAdd += '<div class="form-group">'
