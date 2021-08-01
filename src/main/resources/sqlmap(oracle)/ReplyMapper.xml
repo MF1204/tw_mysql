@@ -6,8 +6,8 @@
   <mapper namespace="com.tigerWhale.reply.mapper.ReplyMapper">
   
   	<insert id="regist">
-		insert into replyBoard( bno,  user_ID, reply)
-		values ( #{bno}, #{user_ID}, #{reply})
+		insert into replyBoard(orderNum, bno,  user_ID, reply)
+		values (#{orderNum}, #{bno}, #{user_ID}, #{reply})
   	</insert>
   	
   	<select id="getList" resultType="ReplyBoardVO">

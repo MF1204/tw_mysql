@@ -29,7 +29,7 @@ public interface DetailBoardService {
 //	==========================================================
 	public Y_M_boardVO getY_M_One(int bno);
 	
-	public int insertMainBoardVO(int bno ,String user_ID, int C_code, String boardType, String title, String text, int price);
+	public int insertMainBoardVO(int bno ,String user_ID, int c_code, String boardType, String title, String text, int price);
 	
 	
 	public int findBno();

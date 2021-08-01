@@ -272,6 +272,21 @@ CREATE TABLE SEQ_MYSQL(
 	seq_name VARCHAR(50) NOT NULL
 );
 
+<<<<<<< HEAD
+
+
+
+/* 만약 같은 이름으로 생성된 펑션 있으면, 펑션 삭제 */
+DROP FUNCTION IF EXISTS get_seq;
+
+
+
+
+
+/* Auto_increment 적용 *
+DELIMITER $$
+DEFINER=project@% FUNCTION get_seq (p_seq_name VARCHAR(45))
+=======
 
 INSERT INTO SEQ_MYSQL
 VALUES (0, 'bno');
@@ -285,6 +300,7 @@ VALUES (0, 'rno');
 
 
 CREATE DEFINER=`project`@`%` FUNCTION GET_SEQ (p_seq_name VARCHAR(45))
+>>>>>>> 482ad1fc600f4791b26cbe369c38e20c9d8ce659
 RETURNS INT READS SQL DATA
 BEGIN
 DECLARE RESULT_ID INT;
@@ -353,4 +369,20 @@ end $$
 
 DELIMITER ;
 
+
+
+
+/* bno 생성 */
+INSERT INTO seq_mysql
+VALUES (0, 'bno');
+
+
+
+/* rno 생성 */
+INSERT INTO seq_mysql
+VALUES (0, 'rno');
+
+
+
+=======
 ##=========================================================
