@@ -32,7 +32,7 @@
                                 </a>
                             </span>
                             <span>
-                                <a href="#">
+                                <a href="${pageContext.request.contextPath}/detailBoard/detailWhatIBuy">
                                     <i class="far fa-clone fa-3x"></i>
                                 </a>
                             </span>

@@ -124,7 +124,11 @@
 			bigCategory Like #{bigCategory}
 	</select>
 	
-	<select id="getCustomerBoard" resultType="int" parameterType="map">
+	<select id="getCustomerBoard" resultType="CustomerBoardVO" parameterType="map">
+			select * from CUSTOMERBOARD where user_ID = #{user_ID}  and  bno = #{bno}
+	</select>
+	
+		<select id="getMyCustomer" resultType="CustomerBoardVO" parameterType="map">
 			select * from CUSTOMERBOARD where user_ID = #{user_ID}  
 	</select>
 	

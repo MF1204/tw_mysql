@@ -18,6 +18,9 @@
 		<typeAlias type="com.tigerWhale.command.TextBoardVO" alias="TextBoardVO" />
 		<typeAlias type="com.tigerWhale.command.PopularBoardVO" alias="PopularBoardVO" />
 		<typeAlias type="com.tigerWhale.command.ThumbnailBoardVO" alias="ThumbnailBoardVO" />
+		<typeAlias type="com.tigerWhale.command.CustomerBoardVO" alias="CustomerBoardVO" />
+		
+		
 	</typeAliases>
 	
 	<!-- DB/java간 long데이터 형태 호환성을 위함. FAQ보드에서 사진데이터를 LONG형으로 DB저장하기 위함. -->

@@ -53,13 +53,12 @@
 													</div>
 												</div>
 												<div class="user_info">
-
 													<div class="form-group">
 														<label>이름</label> <input class="form-control" name='bno' value="${usersVO.user_ID}" readonly="readonly">
 													</div>
 
 													<div class="form-group">
-														<label>금액</label> <input class="form-control" name='bno' value="${ymBoardVO.money}" readonly>
+														<label>금액</label> <input class="form-control" name='bno' value="${ymBoardVO.money}"  readonly="readonly">
 													</div>
 													<div class="form-group" style="width: 40%; float: right;">
 														<label>전화번호</label> <input class="form-control" name='PhoneNumber' id="PhoneNumber"  value="${usersVO.userPhoneNumber}">
@@ -176,9 +175,9 @@
 					type : "post",
 					contentType : "application/json; charset=UTF-8",
 					data : JSON.stringify( {
-						"bno" : "${ymBoardVO.rno}",
-						"rno" : "${mainBoardVO.bno}",
-						"user_ID" : "${usersVO.userAdress}",
+						"bno" : "${mainBoardVO.bno}",
+						"rno" : "${ymBoardVO.rno}",
+						"user_ID" : "${usersVO.user_ID}",
 						"money" : rsp.paid_amount
 					}),
 					success : function(data) {

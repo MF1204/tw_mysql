@@ -137,13 +137,19 @@ public class DetailBoardServiceImpl implements DetailBoardService {
 	}
 
 	@Override
-	public CustomerBoardVO getCustomerBoard(String user_ID) {
-		return detailBoardMapper.getCustomerBoard(user_ID);
+	public CustomerBoardVO getCustomerBoard(String user_ID , int bno) {
+		return detailBoardMapper.getCustomerBoard(user_ID , bno);
 	}
 
 	@Override
 	public int mainBoarddelete(int bno) {
 		return detailBoardMapper.mainBoarddelete(bno);
+	}
+
+	@Override
+	public ArrayList<CustomerBoardVO> getMyCustomer(String user_ID) {
+		// TODO Auto-generated method stub
+		return detailBoardMapper.getMyCustomer(user_ID);
 	}
 
 

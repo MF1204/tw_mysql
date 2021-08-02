@@ -2,6 +2,8 @@ package com.tigerWhale.detailBoard.service;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.tigerWhale.command.D_T_boardVO;
 import com.tigerWhale.command.IMGBoardVO;
 import com.tigerWhale.command.MainBoardVO;
@@ -50,9 +52,10 @@ public interface DetailBoardService {
 	
 	public int findC_code(String smallCategory , String middleCategory , String bigCategory);
 	
-	public CustomerBoardVO getCustomerBoard(String user_ID);
+	public CustomerBoardVO getCustomerBoard(String user_ID , int bno);
 	
 	public int mainBoarddelete(int bno);
+	public ArrayList<CustomerBoardVO> getMyCustomer(String user_ID);
 	
 }
 

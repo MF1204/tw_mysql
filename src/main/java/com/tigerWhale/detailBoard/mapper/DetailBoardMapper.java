@@ -63,7 +63,8 @@ public interface DetailBoardMapper {
 	public int insertD_T_boardVO(@Param("bno") int bno, @Param("rno")int rno, @Param("M_day")  String M_day);
 	public int findRno();
 	public int findC_code(@Param("smallCategory") String smallCategory ,@Param("middleCategory") String middleCategory ,@Param("bigCategory")  String bigCategory);
-	public CustomerBoardVO getCustomerBoard(@Param("user_ID") String user_ID);
+	public CustomerBoardVO getCustomerBoard(@Param("user_ID") String user_ID , @Param("bno") int bno);
+	public ArrayList<CustomerBoardVO> getMyCustomer(@Param("user_ID") String user_ID);
 	public int mainBoarddelete(@Param("bno") int bno);
 
 }

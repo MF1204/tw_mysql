@@ -83,6 +83,28 @@ public class DetailBoardController {
 		
 	}
 	
+	@RequestMapping("/detailWhatIBuy")
+	public String detailWhatIBuy(HttpServletRequest request , Model model) {
+		
+		HttpSession session = request.getSession();
+		System.out.println(session.getAttribute("usersVO"));
+		
+		if(session.getAttribute("usersVO") != null)
+		{
+			model.addAttribute("usersVO", session.getAttribute("usersVO"));
+		}
+		UsersVO vo = (UsersVO)session.getAttribute("usersVO");
+		ArrayList<CustomerBoardVO> customerBoardVO = detailBoardService.getMyCustomer(vo.getUser_ID());
+		System.out.println("**************************************");
+		System.out.println(vo.getUser_ID());
+		System.out.println(customerBoardVO);
+		System.out.println("**************************************");
+		model.addAttribute("customerBoardVO", customerBoardVO);
+
+		return "detailBoard/detailWhatIBuy";
+		
+		
+	}
 	
 	
 	@RequestMapping("/detailWriteMentee")
@@ -183,7 +205,7 @@ public class DetailBoardController {
 		File folder = new File(APP_CONSTANT.UPLOAD_PATH +"\\detailPageImg");
 		String uploadPath = folder.getPath();
 		
-		CustomerBoardVO customerBoardVO = detailBoardService.getCustomerBoard(user_ID);
+		CustomerBoardVO customerBoardVO = detailBoardService.getCustomerBoard(user_ID , bno);
 		
 
 		
