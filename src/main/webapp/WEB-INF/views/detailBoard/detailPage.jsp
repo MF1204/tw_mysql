@@ -171,7 +171,7 @@
 														<div class="package-direct-order">
 															<c:choose>
 
-																<c:when test="${usersVO == null}">
+																<c:when test="${userVO == null}">
 																	<button type="button" class="btn">
 																		<span>로그인 후 이용해주세요</span>
 																	</button>
@@ -223,8 +223,8 @@
 
 							<c:choose>
 
-								<c:when test="${usersVO.user_ID == mainBoardVO.user_ID}">
-							<div style="margin: 30px">
+								<c:when test="${userVO.user_ID == mainBoardVO.user_ID}">
+							<div style="margin: 30px;">
 								<button type="button" class="btn btn-primary btn2" onclick="../detailBoard/detailDelete?bno=${mainBoardVO.bno}">글삭제하기</button>
 							</div>
 								</c:when>

@@ -129,9 +129,10 @@ public class DetailBoardController {
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		HttpSession session = request.getSession();
 		UsersVO userVO =  (UsersVO)session.getAttribute("usersVO");
+		System.out.println("userVO  " + userVO);
 		model.addAttribute("userVO", userVO);
 		//===============================================
-		
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		
 		//===============================================
 		ArrayList<DetailBoardVO> detaiBoardVO = detailBoardService.getBoardDetail(bno);

@@ -59,7 +59,7 @@
 													</div>
 
 													<div class="form-group">
-														<label>금액</label> <input class="form-control" name='bno' value="${vo.bno}" readonly>
+														<label>금액</label> <input class="form-control" name='bno' value="${ymBoardVO.money}" readonly>
 													</div>
 													<div class="form-group" style="width: 40%; float: right;">
 														<label>전화번호</label> <input class="form-control" name='PhoneNumber' id="PhoneNumber"  value="${usersVO.userPhoneNumber}">
