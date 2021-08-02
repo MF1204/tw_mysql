@@ -30,43 +30,73 @@ public class FaqServiceImpl implements FaqService {
 		return faqMapper.regist(vo);
 	}
 
+	
 	@Override
 	public ArrayList<FaqVO> getList(FaqCriteria cri) {
-
+		// faqList페이지에서만 사용이 가능하다.
 		// 퍼블릭은 그냥 퍼블릭이고 ArrayList은 타입형. Criteria()는
 		// Criteria cafe = new Criteria(); 이거랑 getList(Criteria cri)는 같은맥락이다
 		
 		Date now = new Date();
-		//SimpleDateFormat aa = new SimpleDateFormat(); 
 		ArrayList<FaqVO> dateToText = faqMapper.getList(cri); //리턴하고있던거 줏어옴..  Arraylist<String> asdf =
 		
-		for(FaqVO vo : dateToText){	//변수창 보면 name[0]번에 Value로 FaqVO가 들어있음. for(String i : asdf){}
-			
-			long calDate1 = now.getTime() - vo.getRegdate().getTime();
-			long calDate2 = now.getTime() - vo.getUpdatedate().getTime();
-			long min1 = calDate1 / 60000;
-			long min2 = calDate2 / 60000;
-			
-			if(min1 <= 60) {
-				vo.setTimetotext(String.valueOf(min1 + "분 전"));
-			} else if(min1 < 1440){
-				vo.setTimetotext(String.valueOf((min1 / 60) + "시간 전쯤"));
-			} else {
-				SimpleDateFormat handate = new SimpleDateFormat("yyyy.MM.dd");
-				handate.format(vo.getRegdate());
-				vo.setTimetotext(handate.format(vo.getRegdate() ).toString() );
+		
+			for(FaqVO vo : dateToText){	//변수창 보면 name[0]번에 Value로 FaqVO가 들어있음. for(String i : asdf){}
+				
+				long calDate1 = now.getTime() - vo.getRegdate().getTime();
+				long calDate2 = now.getTime() - vo.getUpdatedate().getTime();
+				long min1 = calDate1 / 60000;
+				long min2 = calDate2 / 60000;
+				
+				if(min1 <= 60) {
+					vo.setTimetotext(String.valueOf(min1 + "분 전"));
+				} else if(min1 < 1440){
+					vo.setTimetotext(String.valueOf((min1 / 60) + "시간 전쯤"));
+				} else {
+					SimpleDateFormat handate = new SimpleDateFormat("yyyy.MM.dd");
+					handate.format(vo.getRegdate());
+					vo.setTimetotext(handate.format(vo.getRegdate() ).toString() );
+				}
+				if(min2 <= 60) {
+					vo.setTimetotext2(String.valueOf(min2 + "분 전"));
+				} else if(min2 < 1440){
+					vo.setTimetotext2(String.valueOf((min2 / 60) + "시간 전쯤"));
+				} else {
+					SimpleDateFormat handate = new SimpleDateFormat("yyyy.MM.dd");
+					handate.format(vo.getUpdatedate());
+					vo.setTimetotext2(handate.format(vo.getUpdatedate() ).toString() );
+				}
+				
+				long calDate3 = now.getTime() - vo.getReplydate().getTime();
+				long min3 = calDate3 / 60000;
+				
+				if(min3 <= 60) { 
+					vo.setTimetotext3(String.valueOf(min3 + "분 전")); 
+				} 
+				else if(min3 < 1440){ 
+					vo.setTimetotext3(String.valueOf((min3 / 60) + "시간 전쯤")); 
+				}
+				else { 
+					SimpleDateFormat handate = new SimpleDateFormat("yyyy.MM.dd");
+					handate.format(vo.getReplydate());
+					vo.setTimetotext3(handate.format(vo.getReplydate() ).toString() ); 
+				}
+				
+				/*
+				 * if(vo.getReplydate() != null) { long calDate3 = now.getTime() -
+				 * vo.getReplydate().getTime(); long min3 = calDate3 / 60000;
+				 * 
+				 * if(min3 <= 60) { vo.setTimetotext3(String.valueOf(min3 + "분 전")); } else
+				 * if(min3 < 1440){ vo.setTimetotext3(String.valueOf((min3 / 60) + "시간 전쯤")); }
+				 * else { SimpleDateFormat handate = new SimpleDateFormat("yyyy.MM.dd");
+				 * handate.format(vo.getReplydate());
+				 * vo.setTimetotext3(handate.format(vo.getReplydate() ).toString() ); } }
+				 */				
+					
+					
+				
 			}
-			if(min2 <= 60) {
-				vo.setTimetotext2(String.valueOf(min2 + "분 전"));
-			} else if(min2 < 1440){
-				vo.setTimetotext2(String.valueOf((min2 / 60) + "시간 전쯤"));
-			} else {
-				SimpleDateFormat handate = new SimpleDateFormat("yyyy.MM.dd");
-				handate.format(vo.getUpdatedate());
-				vo.setTimetotext2(handate.format(vo.getUpdatedate() ).toString() );
-			}
 			
-		}
 		
 		
 		return dateToText; 

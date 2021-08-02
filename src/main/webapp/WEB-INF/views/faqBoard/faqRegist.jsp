@@ -6,9 +6,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 content-wrap">
-				<div class="titlebox">
-					<p>자유게시판</p>
-				</div>
+
 				<form action="registForm" method="post" id="registForm" name="registForm">
 					<input type="hidden" name="content" id="content">
 					<table class="table">
@@ -48,9 +46,9 @@
 
 
 
-					<div class="titlefoot">
-						<button type="button" class="btn" onclick="clickSubmit()">등록</button>
-						<button type="button" class="btn" onclick="location.href='faqList'">목록</button>
+					<div class="faq-buttons">
+						<button type="button" class="btn btn-dark" onclick="clickSubmit()">등록</button>
+						<button type="button" class="btn btn-dark" onclick="location.href='faqList'">목록</button>
 					</div>
 				</form>
 			</div>
@@ -62,74 +60,13 @@
 <script src="${pageContext.request.contextPath}/resources/js/ckeditor5.js"></script>
 <script>
 
-const form = new FormData($('#registForm')[0]);
-
-class UploadAdapter {
-	constructor(loader) {
-		this.loader = loader;
-	}
-
-	upload() {
-		return this.loader.file.then(file => new Promise(((resolve, reject) => {
-			this._initRequest();
-/* 			this._initListeners(resolve, reject, file);
-			this._sendRequest(file); */
-			this._sendRequest(file);
-		})))
-	}
-
-	
-	_initRequest() {
-		const xhr = this.xhr = new XMLHttpRequest();
-		xhr.open('POST', 'http://localhost:8787/project/faqBoard/upload', true);
-		//xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-		//xhr.setRequestHeader('Content-type', 'multipart/form-data');
-		xhr.responseType = 'json';
-	}
-
-	_initListeners(resolve, reject, file) {
-		const xhr = this.xhr;
-		const loader = this.loader;
-		const genericErrorText = '파일을 업로드 할 수 없습니다.'
-
-		xhr.addEventListener('error', () => { reject(genericErrorText) })
-		xhr.addEventListener('abort', () => reject())
-		xhr.addEventListener('load', () => {
-			const response = xhr.response
-			
-			/* if (!response || response.error) {
-				return reject(response && response.error ? response.error.message : genericErrorText);
-			} */
-
-			/* resolve({
-				default: response.url //업로드된 파일 주소
-			}) */
-		})
-	}
-
-	_sendRequest(file) {
-		const data = new FormData()
-		data.append('upload', file)
-		//this.xhr.send(data)
-		debugger;
-		for(var pair of data.entries()) {
-   		console.log(pair[0]+ ', '+ pair[1]);
-		}
-		
-		form.append('upload', file);
-	}
-}
-
-
-
-
 ClassicEditor.create( document.querySelector( '.ckeditor5' ), {
-		extraPlugins: [MyCustomUploadAdapterPlugin],
+		
 		toolbar: {
 			items: [
 				'undo',
 				'redo',
-				'imageUpload',
+				//'imageUpload',
 				'bold'
 			]
 		},
@@ -155,27 +92,14 @@ ClassicEditor.create( document.querySelector( '.ckeditor5' ), {
 	} 
 );
 
-function MyCustomUploadAdapterPlugin(editor) {
-    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-        return new UploadAdapter(loader)
-    }
-}
-
-
-
-
 function clickSubmit(){
 	
-	
-	
 	$('.ck-blurred').html()
-	
+
 	const contents = $('.ck-blurred').html();
 	$('#content').val(contents);
 	var aa = $('#registForm').submit();
 	console.log(aa);
 }
-
-
 
 </script>
