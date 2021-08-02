@@ -68,6 +68,7 @@ public class HomeController {
 	{
 		System.out.println("!@#!@#!@#!@#!");
 		System.out.println(vo.getC_code());
+		System.out.println(vo);
 		System.out.println("!@#!@#!@#!@#!");
 		ArrayList<MainBoardVO> vo2 = mainBoardService.getNearBoard(vo);
 		return vo2;
@@ -78,7 +79,6 @@ public class HomeController {
 	public ArrayList<CategoryBoardVO> nearCategory(@RequestBody  CategoryBoardVO vo)
 	{
 		
-
 		if( (vo.getBigCategory() != "" && vo.getSmallCategory() != "" ) && vo.getMiddleCategory() != "")
 		{
 			return mainBoardService.getCategoryCode(vo);
