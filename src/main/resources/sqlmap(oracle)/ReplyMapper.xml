@@ -22,7 +22,7 @@
 		           end as timegap
 		    from (
 		         select bno,
-		                rno,
+		                orderNum,
 		                reply,
 		                replyId,
 		                replyDate,
@@ -61,7 +61,7 @@
     </delete>
   	
   	 <insert id="customer">
-		insert into CUSTOMERBOARD(rno, bno, user_ID, money)
-		values (#{rno}, #{bno}, #{user_ID}, #{money})
+		insert into CUSTOMERBOARD(orderNum, bno, user_ID, money)
+		values (#{orderNum}, #{bno}, #{user_ID}, #{money})
   	</insert>
   </mapper>

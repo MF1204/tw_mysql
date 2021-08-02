@@ -109,14 +109,13 @@ public class DetailBoardController {
 	
 	@RequestMapping("/detailDelete")
 	public String detailDelete(@RequestParam(value="bno") int bno ) {
+		System.out.println("카무이!!!!!!!!!!!!!!!!!!!!!");
 		int delte = detailBoardService.mainBoarddelete(bno);
 
-		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-		return "mainPage";
+		return "redirect:/"; //홈
 		
 		
 	}
-	
 	
 	
 	@RequestMapping("/detailPage")
@@ -129,9 +128,10 @@ public class DetailBoardController {
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		HttpSession session = request.getSession();
 		UsersVO userVO =  (UsersVO)session.getAttribute("usersVO");
+		System.out.println("userVO  " + userVO);
 		model.addAttribute("userVO", userVO);
 		//===============================================
-		
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		
 		//===============================================
 		ArrayList<DetailBoardVO> detaiBoardVO = detailBoardService.getBoardDetail(bno);

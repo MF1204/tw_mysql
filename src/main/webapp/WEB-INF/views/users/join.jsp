@@ -1,73 +1,101 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-	<section>
-		<div class="container">
-			<div class="row">
-			<div class="col-lg-6 col-md-6 col-sm-8 join-form" style="float: none; margin:0 auto;">
-			<div class="titlebox"></div>
-			<form action="joinPage" id="joinPage" method="post">
-				<input type="hidden" id="userAdress" name="userAdress" value="주소">
-				<div class="form-group">
-				<label for="id">아이디</label>
-					<input type="text" class="form-control" placeholder="아이디는 영문(4~12글자)" name="user_ID" id="user_ID">
-						<button type="button" class="btn btn-primary" id="idCheck1">아이디중복체크</button>
-				</div>
-			<span id="msgId"></span>
-			<div class="form-group">
-				<input type="password" class="form-control" placeholder="비밀번호(영/대 소문자, 숫자조합 8~16)" name="user_PW" id="user_PW">
-				<span id="msgPw"></span>
-			</div>
-			
-			<div class="form-group">
-				<input type="password" class="form-control" placeholder="비밀번호를 확인하세요" name="pwConfirm"  id="pwConfirm">
-				<span id="msgPw-c"></span>
-			</div>
-			
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="이름을 입력하세요" name="userName" id="userName">
-			</div>
-			
-			<div class="form-group email-form">
-				<label for="email">이메일</label><br>
-				<input type="text" class="form-control" id="userEmail1" name="userEmail1" placeholder="이메일">
-				<select class="form-control" id="userEmail2"  name="userEmail2">
-					<option>@naver.com</option>
-					<option>@daum.net</option>
-					<option>@gmail.com</option>
-					<option>@hanmail.com</option>
-					<option>@yahoo.co.kr</option>
-				</select>
-			</div>
-			<!--readonly 속성 추가시 자동으로 블락-->
-			<div class="form-group">
-				<div class="input-group btn-rs">
-					<input type="text" class="form-control" name="addrZipNum" id="addrZipNum" placeholder="우편번호" readonly>
-					
-						<button type="button" class="btn btn-primary" onclick="goPopup()">주소찾기</button>
-					
-				</div>
-			</div>
-			
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-8 join-form" style="float: none; margin: 0 auto;">
+				<div class="titlebox"></div>
+				<form action="joinPage" id="joinPage" method="post">
+					<input type="hidden" id="userAdress" name="userAdress" value="주소">
+
+
+
+					<c:choose>
+						<c:when test="${kakao_ID != null}">
+								<div class="form-group">
+									<label for="id">아이디</label> <input type="password" class="form-control" value="${kakao_ID}" name="user_ID" id="user_ID" readonly="readonly">
+									<button type="button" class="btn btn-primary" id="idCheck1">아이디중복체크</button>
+								</div>
+	
+	
+								<span id="msgId"></span>
+								<div class="form-group">
+									<input type="password" class="form-control" value="${kakao_ID}" name="user_PW" id="user_PW" readonly="readonly"> <span id="msgPw"></span>
+								</div>
+	
+								<div class="form-group">
+									<input type="password" class="form-control" value="${kakao_ID}" name="pwConfirm" id="pwConfirm" readonly="readonly"> <span id="msgPw-c"></span>
+								</div>
+						</c:when>
+						<c:otherwise>
+								<div class="form-group">
+									<label for="id">아이디</label> <input type="text" class="form-control" placeholder="아이디는 영문(4~12글자)" name="user_ID" id="user_ID">
+									<button type="button" class="btn btn-primary" id="idCheck1">아이디중복체크</button>
+								</div>
+	
+	
+								<span id="msgId"></span>
+								<div class="form-group">
+									<input type="password" class="form-control" placeholder="비밀번호(영/대 소문자, 숫자조합 8~16)" name="user_PW" id="user_PW"> <span id="msgPw"></span>
+								</div>
+	
+								<div class="form-group">
+									<input type="password" class="form-control" placeholder="비밀번호를 확인하세요" name="pwConfirm" id="pwConfirm"> <span id="msgPw-c"></span>
+								</div>
+						</c:otherwise>
+
+					</c:choose>
+
+
+
+
+
+
+
+
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="이름을 입력하세요" name="userName" id="userName">
+					</div>
+
+					<div class="form-group email-form">
+						<label for="email">이메일</label><br> <input type="text" class="form-control" id="userEmail1" name="userEmail1" placeholder="이메일"> <select class="form-control" id="userEmail2" name="userEmail2">
+							<option>@naver.com</option>
+							<option>@daum.net</option>
+							<option>@gmail.com</option>
+							<option>@hanmail.com</option>
+							<option>@yahoo.co.kr</option>
+						</select>
+					</div>
+					<!--readonly 속성 추가시 자동으로 블락-->
+					<div class="form-group">
+						<div class="input-group btn-rs">
+							<input type="text" class="form-control" name="addrZipNum" id="addrZipNum" placeholder="우편번호" readonly>
+
+							<button type="button" class="btn btn-primary" onclick="goPopup()">주소찾기</button>
+
+						</div>
+					</div>
+
 					<div class="form-group">
 						<input type="text" class="form-control" name="addrBasic" id="addrBasic" placeholder="기본주소">
 					</div>
 					<div class="form-group">
 						<input type="text" class="form-control" name="addrDetail" id="addrDetail" placeholder="상세주소">
 					</div>
-					 
-					 
-		            <div class="from-group">
 
-		               	<input type="radio" name="userGender" id="userGender" value="man" >남
-		               	<input type="radio" name="userGender" id="userGender" value="woman" >여
 
-		            </div>
+					<div class="from-group">
 
-		            <div class="from-group">
-		               	<input type="text" class="form-control" placeholder="번호를 입력하세요" name="userPhoneNumber" id="userPhoneNumber" >
-		            </div>
-                        <!--input2탭의 input-addon을 가져온다 
+						<input type="radio" name="userGender" id="userGender" value="man">남 <input type="radio" name="userGender" id="userGender" value="woman">여
+
+					</div>
+
+					<div class="from-group">
+						<input type="text" class="form-control" placeholder="번호를 입력하세요" name="userPhoneNumber" id="userPhoneNumber">
+					</div>
+					<!--input2탭의 input-addon을 가져온다 
                         <div class="form-group">
                             <label for="hp">휴대폰번호</label>
                             <div class="input-group">
@@ -83,15 +111,14 @@
                                 </div>
                             </div>
                         </div>-->
-					<input type="hidden" class="ma" name="ma" id="id" value="숨길 내용">
-					<input type="hidden" class="la" name="la" id="id" value="숨길 내용">
+					<input type="hidden" class="ma" name="ma" id="id" value="숨길 내용"> <input type="hidden" class="la" name="la" id="id" value="숨길 내용">
 					<!--button탭에 들어가서 버튼종류를 확인한다-->
 					<div class="form-group">
 						<button type="button" class="btn btn-lg btn-success btn-block" id="joinBtn">회원가입</button>
 					</div>
-					
+
 					<div class="form-group">
-						<button type="button" class="btn btn-lg btn-info btn-block" onclick="location.href='userLogin' " >로그인</button>
+						<button type="button" class="btn btn-lg btn-info btn-block" onclick="location.href='userLogin' ">로그인</button>
 					</div>
 
 				</form>
@@ -99,8 +126,9 @@
 		</div>
 	</div>
 </section>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9cdd93761c8771defa3902f488e93711&libraries=services"></script><!-- 추가구문 -->
-	<script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9cdd93761c8771defa3902f488e93711&libraries=services"></script>
+<!-- 추가구문 -->
+<script>
 		
 	
 		//아이디 중복체크
@@ -205,9 +233,9 @@
 		})
 	
 	</script>
-	
 
-	<script>
+
+<script>
 		//주소 팝업
 		function goPopup() {
 			var pop = window.open("${pageContext.request.contextPath}/resources/pop/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
@@ -228,8 +256,8 @@
 
 
 
-	
-    <script>
+
+<script>
         /*아이디 형식 검사 스크립트*/
         var id = document.getElementById("user_ID");
         id.onkeyup = function() {

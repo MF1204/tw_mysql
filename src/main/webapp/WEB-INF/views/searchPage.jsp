@@ -8,6 +8,7 @@
                     <div class="title-content">
                         <h1 class="title-head-content">${bigTitle}</h1>
                         <div class="title-content1">
+                        
                             <!-- big카테고리에 속하는 middle카테고리 리스트 -->
                             <c:forEach var="vo" items="${middleList}">
                         	<div class="content-list">
@@ -153,15 +154,15 @@
                             </div> -->
                             <!-- 검색 -->
                             <span class="btn_img" style="width: 140px;">
-                                <input type="text" class="inner-search" id="inner-search" name="searchName" value="">
+                                <input type="text" class="inner-search" id="inner-search" name="searchName" value="${cri.searchName}">
                                 <button type="submit" class="btn-search"><span class="glyphicon glyphicon-search"></span></button>
                             </span>
                             <span class="btn_img search-select">
                                 <select name="searchType2">
-                                    <option value="title_content">제목+내용</option>
-                                    <option value="title">제목</option>
-                                    <option value="content`">내용</option>
-                                    <option value="user_id">작성자</option>
+                                    <option value="title_content" ${cri.searchType2 eq 'title_content' ? 'selected' : ''}>제목+내용</option>
+                                    <option value="title" ${cri.searchType2 eq 'title' ? 'selected' : ''}>제목</option>
+                                    <option value="content" ${cri.searchType2 eq 'content' ? 'selected' : ''}>내용</option>
+                                    <option value="user_id" ${cri.searchType2 eq 'user_id' ? 'selected' : ''}>작성자</option>
                                 </select>
                             </span>
                             <input type="hidden" name="pageNum" value="1">
@@ -189,12 +190,12 @@
 	                                        <a href="${pageContext.request.contextPath}/detailBoard/detailPage?bno=${thumbnail.bno}" class="css-1mr8hr4 ezeyqpv17">
 	                                            
                                                 <div class="css-1ohlt9r">
-                                                    <c:if test="${thumbnail.img ne null}">
+                                                    
                                                     <img title="${thumbnail.title}"
                                                         alt="${thumbnail.title}"
-                                                        src="resources/img/userIMG/${thumbnail.img}.jpg" loading="lazy"
+                                                        src="${pageContext.request.contextPath }/resources/img/detailPageImg/${thumbnail.bno}/${thumbnail.img}" loading="lazy"
                                                         class="css-d1mg3o ejobblq0">
-                                                    </c:if>
+                                                    
                                                 </div>
 	                                            
 	                                            <div class="css-gxq4i8 ezeyqpv13">

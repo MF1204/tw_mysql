@@ -22,7 +22,9 @@
 
 
 					<div class="form-group">
-						<label>카테고리2</label> <select name="middleCategory" id="middleCategory">
+						<label>카테고리2</label> 
+						<select name="middleCategory" id="middleCategory">
+						<option value="----------" selected="selected"></option>
 							<!-- 여기 -->
 						</select>
 					</div>
@@ -30,6 +32,7 @@
 
 					<div class="form-group">
 						<label>카테고리3</label> <select name="smallCategory" id="smallCategory">
+						<option value="----------" selected="selected"></option>
 						</select>
 					</div>
 
@@ -69,7 +72,7 @@
 						<label>간략 소개</label> <input class="form-control" name='text' value="간략 소개" required>
 					</div>
 					<div class="form-group">
-						<label>대표 금액</label> <input class="form-control" id='money' name='money' value="1000" type="text" required>
+						<label>대표 금액</label> <input class="form-control" id='money' name='money' value="1000" type="number" required >
 					</div>
 
 					<hr />
@@ -289,11 +292,11 @@
 		strAdd += '</div>'
 
 		strAdd += '<div class="form-group">'
-		strAdd += '<input type="text" class="form-control" name="list[' + i + '].addrBasic" id="addrBasic" placeholder="기본주소">'
+		strAdd += '<input type="text" class="form-control" name="list[' + i + '].addrBasic" id="addrBasic" placeholder="기본주소" readonly="readonly">'
 		strAdd += '</div>'
 
 		strAdd += '<div class="form-group">'
-		strAdd += '<input type="text" class="form-control" name="list[' + i + '].addrDetail" id="addrDetail" placeholder="상세주소">'
+		strAdd += '<input type="text" class="form-control" name="list[' + i + '].addrDetail" id="addrDetail" placeholder="상세주소" readonly="readonly">'
 		strAdd += '</div>'
 
 		strAdd += '<div class="form-group">'
@@ -311,7 +314,7 @@
 </script>
 
 <script>
-	$("#bigCategory").change(function() {
+	$("#bigCategory").click(function() {
 		var bigCategory = $("#bigCategory").val();
 		console.log(bigCategory);
 		middleAdd = "";
@@ -336,7 +339,7 @@
 	});
 </script>
 <script>
-	$("#middleCategory").change(function() {
+	$("#middleCategory").click(function() {
 		var middleCategory = $("#middleCategory").val();
 		console.log(middleCategory);
 		smallAdd = "";

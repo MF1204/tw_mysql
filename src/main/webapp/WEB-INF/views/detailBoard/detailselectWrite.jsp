@@ -9,16 +9,16 @@
                             <p style="font-size: xx-large; margin:100px;">당신은 멘토입니까 멘티입니까</p>
 
                             <div >
-                                <div style="float: left; ; width: 500px; height: 500px; margin:0 auto;"  >
-                                    <img src="../resources/img/detailPageImg/util/1.jpg" style="width: 100%; height:90%;">
+                                <div style="float: left; ; width: 500px; height: 500px; margin:0 auto; border: 1px black solid; padding: 20px;">
+                                    <img src="../resources/img/detailPageImg/util/1.png" style="width: 100%; height:100%;">
                                     <button type="button" class="btn btn-dark" onclick="location.href = 'detailWrite'"  style="float: none; font-size: xx-large; margin: 30px;">멘토입니다.</button>
                                 </div>
                             </div>
                             
 
                             <div >
-                                <div style="float: right; width: 500px; height: 500px;  margin:0 auto;"  >
-                                    <img src="../resources/img/detailPageImg/util/2.jpg" style="width:100%; height:80%; margin-top: 10%;" >
+                                <div style="float: right; width: 500px; height: 500px;  margin:0 auto; border: 1px black solid; padding: 20px;"  >
+                                    <img src="../resources/img/detailPageImg/util/2.png" style="width:100%; height:100%;" >
                                     <button type="button" class="btn btn-dark" onclick="location.href = 'detailWriteMentee'" style="float: none; font-size: xx-large; margin: 30px;">멘티입니다.</button>
                                 </div>
                             </div>

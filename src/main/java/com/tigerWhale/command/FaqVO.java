@@ -19,6 +19,7 @@ public class FaqVO {
 	private Date updatedate;
 	private String timetotext;
 	private String timetotext2;
+	private String timetotext3;
 	private String reply;
 	private Date replydate;
 	

@@ -30,8 +30,7 @@ public class ReplyController {
 	
 	
 	@PostMapping(value = "/replyRegist", produces = "application/json" ) //컨패스/reply/replyRegist
-	public int replyRegist(@RequestBody ReplyBoardVO vo) {
-		System.out.println("12321312");
+	public int replyRegist(@RequestBody ReplyBoardVO vo) {;
 		System.out.println(vo);
 		int result = replyService.regist(vo);
 		System.out.println("성공실패:" + result);

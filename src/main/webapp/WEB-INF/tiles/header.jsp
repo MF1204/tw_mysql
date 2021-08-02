@@ -9,18 +9,33 @@
 				style="float: none; margin: 0 auto; padding: 0; background-color: aquamarine;">
 				<div class="header">
 					<div class="header-div">
-						<a href="${pageContext.request.contextPath}">
+						<a href="${pageContext.request.contextPath}/">
 							<img src="${pageContext.request.contextPath}/resources/img/mainPageImg/icon_profile.png">
 						</a>
 					</div>
 					<div class="search-tag header-div">
 						<form
-							action="${pageContext.request.contextPath}/searchPage/keyword"
+							action="searchPage"
 							method="get">
-							<input type="text" name="keyword">
-							<button type="submit" class="">
-								<i class="fas fa-search fa-2x"></i>
-							</button>
+							
+							
+							<span class="btn_img"">
+                                <input type="text" class="inner-search" id="inner-search" name="searchName" value="${cri.searchName}">
+                                <button type="submit" class="btn-search"><span class="glyphicon glyphicon-search"></span></button>
+                            </span>
+                            <span class="btn_img search-select">
+                                <select name="searchType2">
+                                    <option value="title_content" ${cri.searchType2 eq 'title_content' ? 'selected' : ''}>제목+내용</option>
+                                    <option value="title" ${cri.searchType2 eq 'title' ? 'selected' : ''}>제목</option>
+                                    <option value="content" ${cri.searchType2 eq 'content' ? 'selected' : ''}>내용</option>
+                                    <option value="user_id" ${cri.searchType2 eq 'user_id' ? 'selected' : ''}>작성자</option>
+                                </select>
+                            </span>
+                            <input type="hidden" name="pageNum" value="1">
+	            			<input type="hidden" name="amount" value="12">
+	            			<input type="hidden" name="searchType" value="head">
+	            			<input type="hidden" name="typeValue" value="1">
+							
 						</form>
 					</div>
 					
@@ -37,7 +52,7 @@
                                 </a>
                             </span>
                             <span>
-                                <a href="#">
+                                <a href="#" onclick="location.href = '${pageContext.request.contextPath}/users/userLogout'">
                                     <i class="fas fa-shopping-basket fa-3x"></i>
                                 </a>
                             </span>

@@ -59,13 +59,14 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-xs-12 col-sm-9" style="padding: 0;"></div>
+				<div class="col-xs-12 col-sm-9" style="padding: 0;">
+				
+				</div>
 			</div>
 		</div>
 	</section>
 
-	
-	
+<section>
 	<div class="container main2 recentDiv">
 
 		
