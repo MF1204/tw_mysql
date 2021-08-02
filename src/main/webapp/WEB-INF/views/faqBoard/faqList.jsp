@@ -1,6 +1,3 @@
-<!-- 어드민 아닌 일반유저의 경우
-전체문의내역 탭 보여야할지? 안보여야할지? 정책필요 -->
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
