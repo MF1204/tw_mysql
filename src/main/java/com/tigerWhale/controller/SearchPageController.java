@@ -36,7 +36,6 @@ public class SearchPageController {
 			thumbnailList = searchPageService.keywordSearch(cri);			
 		}
 		model.addAttribute("thumbnailList", thumbnailList);
-		System.out.println("백만스물하나");
 		return "searchPage";
 	}
 	
@@ -44,9 +43,6 @@ public class SearchPageController {
 	public String bigSearch(@RequestParam("searchType") String searchType, //카테고리 분류
 							@RequestParam("typeValue") String typeValue, // 카테고리 이름
 							Model model, SearchPageCriteria cri) {
-		
-		System.out.println(searchType.toString());
-		System.out.println(typeValue.toString());
 		
 		//화면에 넘어갈 타이틀
 		String bigTitle = "";
@@ -84,7 +80,6 @@ public class SearchPageController {
 			
 		}
 		cri.setSearchType(criType);
-		System.out.println(cri.toString());
 		total = searchPageService.getTotal(cri);
 		middleList = searchPageService.getMiddleList(bigTitle);
 		smallList = searchPageService.getSmallList(bigTitle);

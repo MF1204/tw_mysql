@@ -37,8 +37,6 @@
 					success : function(res) {
 						var id = res.id;
 						console.log(id);
-						alert("로그인 성공");
-
 						var hidden = document.getElementById("kakao_ID");
 						hidden.value = id;
 						document.getElementById("kakao_submit").submit();

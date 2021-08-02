@@ -30,7 +30,7 @@
 		select * 
 			from (select @rownum := @rownum + 1 rn,
 					 	c.* 
-			  			from ( select * from( select a.bno, a.user_id, a.boardtype, a.title, a.text, a.price, a.m_registdate, a.m_updatedate, b.c_code from (
+			  			from ( select * from( select a.bno, a.user_id, a.boardtype, a.title, a.text, a.price, a.img, a.m_registdate, a.m_updatedate, b.c_code from (
                             				select b.bno, b.user_id, b.c_code, b.boardtype, b.title, b.text, b.price, b.m_registdate, b.m_updatedate, a.img 
                             				from IMGBOARD a right outer join MAINBOARD b on a.bno = b.bno group by b.bno, b.user_id, b.c_code, b.boardtype, b.title, b.text, b.price, b.m_registdate, b.m_updatedate, a.bno, a.img
                             				) a 
@@ -62,7 +62,7 @@
 		select * 
 			from (select @rownum := @rownum + 1 rn,
 					 	c.* 
-			  			from ( select * from( select a.bno, a.user_id, a.boardtype, a.title, a.text, a.price, a.m_registdate, a.m_updatedate, b.c_code from (
+			  			from ( select * from( select a.bno, a.user_id, a.boardtype, a.title, a.text, a.price, a.img, a.m_registdate, a.m_updatedate, b.c_code from (
                             				select b.bno, b.user_id, b.c_code, b.boardtype, b.title, b.text, b.price, b.m_registdate, b.m_updatedate, a.img 
                             				from IMGBOARD a right outer join MAINBOARD b on a.bno = b.bno group by b.bno, b.user_id, b.c_code, b.boardtype, b.title, b.text, b.price, b.m_registdate, b.m_updatedate, a.bno, a.img
                             				) a 

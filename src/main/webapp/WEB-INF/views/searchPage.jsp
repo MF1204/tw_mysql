@@ -189,12 +189,12 @@
 	                                        <a href="${pageContext.request.contextPath}/detailBoard/detailPage?bno=${thumbnail.bno}" class="css-1mr8hr4 ezeyqpv17">
 	                                            
                                                 <div class="css-1ohlt9r">
-                                                    <c:if test="${thumbnail.img ne null}">
+                                                    
                                                     <img title="${thumbnail.title}"
                                                         alt="${thumbnail.title}"
-                                                        src="resources/img/userIMG/${thumbnail.img}.jpg" loading="lazy"
+                                                        src="${pageContext.request.contextPath }/resources/img/detailPageImg/${thumbnail.bno}/${thumbnail.img}" loading="lazy"
                                                         class="css-d1mg3o ejobblq0">
-                                                    </c:if>
+                                                    
                                                 </div>
 	                                            
 	                                            <div class="css-gxq4i8 ezeyqpv13">
