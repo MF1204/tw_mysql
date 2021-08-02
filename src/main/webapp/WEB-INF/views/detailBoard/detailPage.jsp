@@ -136,7 +136,7 @@
 												<span class="package-price">${mainBoardVO.text} 공통 안내 정보</span>
 											</div>
 										</div>
-
+										<c:if test="${m_boardVO[0].money == null}">
 										<c:forEach var="vo" items="${m_boardVO}" varStatus="status">
 											<form action="detailBuy" method="post" class="tab-pane fade" id="menu${status.count}">
 												<input type="hidden" name="bno" value="${m_boardVO.get(0).bno}"> <input type="hidden" name="rno" value="${vo.rno}">
@@ -196,6 +196,7 @@
 												</div>
 											</form>
 										</c:forEach>
+										</c:if>
 									</div>
 									<!-- //////////////////////////////////////////////////////// -->
 
@@ -207,7 +208,7 @@
 						<ul class="hostInfo">
 							<li class="host_name">
 								<div class="host_img_wrap">
-									<img src="../resources/img/userIMG/${userIMGBoardVO.img}.jpg">
+									<img src="../resources/img/userIMG/${usersVO.user_IMG}.jpg">
 								</div>
 								<div class="host_name_wrap">${usersVO.user_ID}</div>
 							</li>
@@ -224,12 +225,12 @@
 							<c:choose>
 
 								<c:when test="${userVO.user_ID == mainBoardVO.user_ID}">
-							<div style="margin: 30px;">
-								<button type="button" class="btn btn-primary btn2" onclick="../detailBoard/detailDelete?bno=${mainBoardVO.bno}">글삭제하기</button>
-							</div>
+									<div style="margin: 30px;">
+										<button type="button" class="btn btn-primary btn2" onclick="location.href='../detailBoard/detailDelete?bno=${mainBoardVO.bno}'">글삭제하기</button>
+									</div>
 								</c:when>
 								<c:otherwise>
-								
+
 								</c:otherwise>
 
 							</c:choose>
@@ -246,7 +247,7 @@
 
 				<form class="reply-wrap">
 					<div class="reply-image">
-						<img src="../resources/img/profile.png">
+						<img src="../resources/img/userIMG/${userVO.user_IMG}.jpg">
 					</div>
 					<!--form-control은 부트스트랩의 클래스입니다 (name기술)-->
 					<div class="reply-content">
@@ -414,7 +415,6 @@
 					strAdd = "";
 					page = 1;
 				}
-				
 
 				//누적할 문자열을 만들고 innerHTML형식으로 replyList아래에 삽입
 				
@@ -422,7 +422,7 @@
                 	
     				strAdd += "<div class='reply-wrap'>";
     				strAdd += "<div class='reply-image'>";
-                    strAdd += "<img src='../resources/img/profile.png'>";
+                    strAdd += "<img src='../resources/img/userIMG/"+ data[i].user_ID +".jpg'>";
                     strAdd += "</div>";
                     strAdd += "<div class='reply-content'>";
                     strAdd += "<div class='reply-group'>";

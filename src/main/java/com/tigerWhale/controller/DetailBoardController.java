@@ -109,14 +109,13 @@ public class DetailBoardController {
 	
 	@RequestMapping("/detailDelete")
 	public String detailDelete(@RequestParam(value="bno") int bno ) {
+		System.out.println("카무이!!!!!!!!!!!!!!!!!!!!!");
 		int delte = detailBoardService.mainBoarddelete(bno);
 
-		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 		return "redirect:/"; //홈
 		
 		
 	}
-	
 	
 	
 	@RequestMapping("/detailPage")
