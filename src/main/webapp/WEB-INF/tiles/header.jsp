@@ -37,7 +37,7 @@
                                 </a>
                             </span>
                             <span>
-                                <a href="#">
+                                <a href="#" onclick="location.href = '${pageContext.request.contextPath}/users/userLogout'">
                                     <i class="fas fa-shopping-basket fa-3x"></i>
                                 </a>
                             </span>

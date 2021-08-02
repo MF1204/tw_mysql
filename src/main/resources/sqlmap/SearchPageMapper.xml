@@ -40,7 +40,7 @@
 			  		where
 		]]>
 					<if test="searchName == null or searchName == ''">1 = 1</if>
-					<if test="searchName != null ">text like '%' || #{searchName} || '%' or title like '%'||#{searchName}|| '%' or user_ID like '%'||#{searchName}||'%'</if>
+					<if test="searchName != null ">text like Concat('%', #{searchName} ,'%') or title like Concat('%', #{searchName} ,'%') or user_ID like Concat('%', #{searchName} ,'%')</if>
 		<![CDATA[
 			  		order by bno desc) c ) z, (select @rownum := 0) q
 		where rn > (#{pageNum} - 1) * #{amount} and rn <= #{pageNum} * #{amount}
@@ -52,7 +52,7 @@
 		select count(*) as total from MAINBOARD a inner join CATEGORYBOARD b on a.c_code = b.c_code where
 		]]>
 		<if test="searchName == null or searchName == ''">1 = 1</if>
-		<if test="searchName != null ">text like '%'||#{searchName}||'%' or title like '%'||#{searchName}||'%' or user_ID like '%'||#{searchName}||'%'</if>
+		<if test="searchName != null ">text like Concat('%', #{searchName} ,'%') or title like Concat('%', #{searchName} ,'%') or user_ID like Concat('%', #{searchName} ,'%')</if>
 	</select>
 	
 <!-- 게시판에서 검색 -->
@@ -77,10 +77,10 @@
 			  		where
 		]]>
 					<if test="searchType2 == null or searchType2 == ''">1 = 1</if>
-					<if test="searchType2 == 'title_content' ">text like '%' || #{searchName} || '%' or title like '%'||#{searchName}||'%'</if>
-                    <if test="searchType2 == 'title' ">title like '%'||#{searchName}||'%'</if>
-                    <if test="searchType2 == 'content' ">text like '%'||#{searchName}||'%'</if>
-                    <if test="searchType2 == 'user_id' ">user_ID like '%'||#{searchName}||'%'</if>
+					<if test="searchType2 == 'title_content' ">text like Concat('%', #{searchName} ,'%') or title like Concat('%', #{searchName} ,'%')</if>
+                    <if test="searchType2 == 'title' ">title like Concat('%', #{searchName} ,'%')</if>
+                    <if test="searchType2 == 'content' ">text like Concat('%', #{searchName} ,'%')</if>
+                    <if test="searchType2 == 'user_id' ">user_ID like Concat('%', #{searchName} ,'%')</if>
 		<![CDATA[
 			  		order by bno desc) c ) Z, (select @rownum := 0) q
 		where rn > (#{pageNum} - 1) * #{amount} and rn <= #{pageNum} * #{amount}
