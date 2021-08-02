@@ -86,7 +86,7 @@
 			<select class = "hidden nearSmallCategory">
 			</select>
 			<span class = categoryBtnText></span>
-			<button class = "writeBtn categoryBtn">검색</button>
+			<button class = "categoryBtn">검색</button>
 		</div>
 		
 		<ul class="row recommand-list">
@@ -106,6 +106,10 @@
 				<!-- 스크립트 -->
 			</div>
 			<div class="nearDiv" style="display: flex">
+			</div>
+			<div class="btnGroup">
+				<button class="nearBtn boardBtn">이전</button>
+				<button class="nearBtn boardBtn">다음</button>
 			</div>
 		</ul>
 
@@ -145,7 +149,7 @@
 	
 	
 	
-	<div class="container main2">
+	<div class="container main2 hidden">
 		<div class="main2-title">
 			<hr />
 			<span class="title-para">인기멘토의 게시글</span>
@@ -209,8 +213,8 @@
 		        level: 3 // 지도의 확대 레벨
 		    };
 
-		// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-		var map = new kakao.maps.Map(mapContainer, mapOption);
+			// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+			var map = new kakao.maps.Map(mapContainer, mapOption);
 </script>
 
 
@@ -228,7 +232,8 @@
 		var categoryBtn = document.querySelector(".categoryBtn");
 		var categoryBtnText = document.querySelector(".categoryBtnText");
 		
-
+		var markers = new Array();
+		var infowindosws = new Array();
 		
 		$(document).ready(function() {
 			
@@ -255,10 +260,6 @@
 					{
 						smallCategory.classList.toggle('hidden');
 						smallCategory.value = "";
-					}
-					else
-					{
-						categoryBtn.classList.toggle('hidden');
 					}
 				}
 				
@@ -288,6 +289,10 @@
 			
 			smallCategory.onchange = function()
 			{
+				if(!(bigCategory.value=="대분류 선택" || middleCategory.value =="중분류 선택" || smallCategory.value =="소분류 선택"))
+    			{
+    				categoryBtnText.innerHTML = "";
+    			}
 				nearCategory();
 			}
 			
@@ -399,7 +404,7 @@
 					{
 						if(e.target.innerHTML == "다음"){
 							recentIndex += 8;
-							if( recentIndex > sessionStorage.getItem("recentData")) recentIndex = (sessionStorage.getItem("recentData")-7);
+							if( recentIndex > sessionStorage.getItem("recentData")) recentIndex = (sessionStorage.getItem("recentData"));
 							sessionStorage.setItem("recentIndex",recentIndex);
 							getRecentBoard();
 						}
@@ -414,7 +419,7 @@
 					{
 						if(e.target.innerHTML == "다음"){
 							bestIndex += 2;
-							if( bestIndex > sessionStorage.getItem("bestData")) bestIndex = (sessionStorage.getItem("bestData")-7);
+							if( bestIndex > sessionStorage.getItem("bestData")) bestIndex = (sessionStorage.getItem("bestData")-1);
 							sessionStorage.setItem("bestIndex",bestIndex);
 							getBestBoard();
 						}
@@ -427,17 +432,28 @@
 					}
 					else if(e.target.classList.contains("nearBtn") )
 					{
+						console.log("나눌려!!");
 						if(e.target.innerHTML == "다음"){
-							bestIndex += 8;
-							if( bestIndex > sessionStorage.getItem("nearData")) bestIndex = (sessionStorage.getItem("nearData")-7);
+							nearIndex += 8;
+							console.log("!@#!@#!@1");
+							console.log(sessionStorage.getItem("nearData"));
+							console.log("!@#!@#!@1");
+							if( nearIndex > sessionStorage.getItem("nearData")) nearIndex = (sessionStorage.getItem("nearData"));
+							console.log("!@#!@#!@2");
+							console.log(nearIndex);
+							console.log("!@#!@#!@2");
 							sessionStorage.setItem("nearIndex",nearIndex);
-							getBestBoard();
+							getNearBoard();
 						}
 						else if (bestIndex != 8){
-							bestIndex -= 8;
-							if(bestIndex < 8) bestIndex = 8;
+							console.log("나눌려!!");
+							nearIndex -= 8;
+							console.log("!@#!@#!@1");
+							console.log(sessionStorage.getItem("nearData"));
+							console.log("!@#!@#!@1");
+							if(nearIndex < 8) nearIndex = 8;
 							sessionStorage.setItem("nearIndex",nearIndex);
-							getBestBoard();
+							getNearBoard();
 						}
 					}
 				 }
@@ -454,6 +470,10 @@
 					data : JSON.stringify({"la":la , "ma":ma , "c_code":categoryCode}),
 					success : function(data)
 					{
+						
+						console.log("근처게시물");
+						console.log(data);
+						console.log("근처게시물");
 						
 						var nearIndex = sessionStorage.getItem("nearIndex");
 						sessionStorage.setItem("nearData" , data.length);	
@@ -481,20 +501,23 @@
 				                    position: markerPosition
 				                });
 				                
+				                markers[i] = marker;
+				                
 				                var iwContent = '<div style="padding:5px;"> 게시글명 : '+data[i].title+' <br> <a href="https://map.kakao.com/link/to/Hello World!,'+parseFloat(data[i].ma)+','+parseFloat(data[i].la)+'" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 				                iwPosition = new kakao.maps.LatLng(parseFloat(data[i].ma), parseFloat(data[i].la)); //인포윈도우 표시 위치입니다
-	
+								
 					            var infowindow = new kakao.maps.InfoWindow({
 					                position: iwPosition,
 					                content: iwContent
 					            });
+				                
+					            infowindosws[i] = infowindow;
 				                
 				                marker.setMap(map);
 				                infowindow.open(map, marker); 
 							}
 			            }else
 			            {
-			            	var nearDiv ="";
 			            	var nearLocalAdd ="";
 				            for(var i = nearIndex-8; i < nearIndex; i++) 
 				            {
@@ -515,6 +538,8 @@
 				                    position: markerPosition
 				                });
 				                
+				                markers[i] = marker;
+				                
 				                var iwContent = '<div style="padding:5px;"> 게시글명 : '+data[i].title+' <br> <a href="https://map.kakao.com/link/to/Hello World!,'+parseFloat(data[i].ma)+','+parseFloat(data[i].la)+'" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 				                iwPosition = new kakao.maps.LatLng(parseFloat(data[i].ma), parseFloat(data[i].la)); //인포윈도우 표시 위치입니다
 
@@ -523,14 +548,13 @@
 					                content: iwContent
 					            });
 				                
+					            infowindosws[i] = infowindow;
+				                
 				                marker.setMap(map);
 				                infowindow.open(map, marker);
 			            	}
 			            }
 			            $(".nearLocalAdd").html(nearLocalAdd);
-						nearDiv += '<button class="nearBtn boardBtn">다음</button>'
-						nearDiv += '<button class="nearBtn boardBtn">이전</button>'
-						$(".nearDiv").html(nearDiv);
 					},
 					error : function(status,error)
 					{
@@ -593,6 +617,11 @@
 					contentType : "application/json; charset=UTF-8",
 					data : JSON.stringify({"bno":"1"}),
 					success: function(data){
+						
+
+	        			console.log("최신");
+	        			console.log(data);
+	        			console.log("최신");
 							
 						var recentIndex = sessionStorage.getItem("recentIndex");
 						sessionStorage.setItem("recentData" , data.length);	
@@ -602,6 +631,8 @@
 						
 						if(data.length < 8)
 						{
+							console.log(data.length);
+							console.log("첫번쨰꺼");
 							var newAdd ="";
 			                for(var i = 0; i < data.length; i++) 
 			                {
@@ -619,6 +650,9 @@
 			                $(".newAdd").html(newAdd)
 						}else
 						{
+							console.log(data.length);
+							console.log(recentIndex);
+							console.log("두번쨰꺼");
 							var newAdd ="";
 			                for(var i = recentIndex-8; i < recentIndex; i++) 
 			                {
@@ -655,7 +689,9 @@
 	        		contentType: "application/json; charset=UTF-8",
 	        		success: function(data){
 	        			
-	        			
+	        			console.log("베스트");
+	        			console.log(data);
+	        			console.log("베스트");
 	        			var bestIndex = sessionStorage.getItem("bestIndex");
 						sessionStorage.setItem("bestData" , data.length);	
 	        			
@@ -701,7 +737,7 @@
 										bestAdd += '<div class="plus-list">'
 										bestAdd += '<img class="plus-img" alt="추가이미지" width="167" height="167" src="${pageContext.request.contextPath }/resources/img/detailPageImg/'+data[i].bno+'/'+data[i].imgBoardList[j].img+'" >'
 										bestAdd += '</div>'
-										if(data[i].imgBoardList.length-1 == j) break;
+										if(data[i].imgBoardList.length-1 == j)	break;
 									}
 								}
 								
@@ -754,7 +790,7 @@
 											bestAdd += '<div class="plus-list">'
 											bestAdd += '<img class="plus-img" alt="추가이미지" width="167" height="167" src="${pageContext.request.contextPath }/resources/img/detailPageImg/'+data[i].bno+'/'+data[i].imgBoardList[j].img+'" class ="detailBtn">'
 											bestAdd += '</div>'
-											if(data[i].imgBoardList.length-1 == j) break;
+											if(data[i].imgBoardList.length-1 == j)		break;
 										}
 									}
 									
@@ -784,12 +820,14 @@
     			}else
     			{
     				categoryBtnText.innerHTML = "";
-    				console.log(bigCategory.value);
-    				console.log(middleCategory.value);
-    				console.log(smallCategory.value);
-    				console.log(categoryCode);
-    				console.log(la);
-    				console.log(ma);
+    				
+    				for(var i=0; i<markers.length; i++)
+    				{
+    					console.log(markers[i]);
+    					markers[i].setMap(null);
+    					infowindosws[i].close();
+    				}
+    				
     				getNearBoard();
     			}
     			

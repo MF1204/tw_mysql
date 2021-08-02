@@ -34,6 +34,9 @@ public class MainBoardServiceImp implements MainBoardService {
 
 	@Override
 	public ArrayList<MainBoardVO> getNearBoard(UsersVO vo) {
+		System.out.println("asdasdas");
+		System.out.println(vo);
+		System.out.println("ASDASD");
 		return mainBoardMapper.getNearBoard(vo);
 	}
 
