@@ -157,7 +157,9 @@
 	
 	
 	
-	
+		<select id="getMainUser_ID" resultType="MainBoardVO" parameterType="map">
+		select * from MAINBOARD where user_ID = #{user_ID}
+	</select>
 	
 	
 </mapper>

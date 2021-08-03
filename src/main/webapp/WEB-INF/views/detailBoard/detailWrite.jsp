@@ -95,7 +95,7 @@
 						<textarea class="form-control" rows="10" name='text3' required>설명3</textarea>
 					</div>
 					<br />
-					<button type="button" class="btn btn-dark" onclick="location.href = 'freeList'">목록</button>
+					<button type="button" class="btn btn-dark" onclick="location.href='${pageContext.request.contextPath}/'">목록</button>
 					<div id="submitHere">
 						<button type="button" class="btn btn-dark" id="okBtn">확인</button>
 					</div>

@@ -61,5 +61,9 @@ public interface DetailBoardService {
 	public int updateViewNum(int bno , int viewNum); //수정
 	
 	public V_R_BoardVO getViewNum(int bno );
+
+	public ArrayList<MainBoardVO> getMainUser_ID(String user_ID);
+	
+	
 }
 

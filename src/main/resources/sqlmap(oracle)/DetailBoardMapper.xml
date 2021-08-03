@@ -41,7 +41,9 @@
 	</select>
 
 
-
+	<select id="getMainUser_ID" resultType="MainBoardVO">
+		select * from mainboard where user_ID = #{user_ID}
+	</select>
 
 
 
