@@ -16,7 +16,6 @@
 			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 
 			<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
-			<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/category.css"> -->
 			<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage.css">
 			<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
 

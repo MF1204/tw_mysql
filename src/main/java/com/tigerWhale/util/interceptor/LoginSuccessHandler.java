@@ -30,7 +30,7 @@ public class LoginSuccessHandler extends HandlerInterceptorAdapter {
 			session.setAttribute("usersMa", usersVO.getMa());
 			System.out.println("home");
 			
-			response.sendRedirect(request.getContextPath()); //홈화면으로
+			response.sendRedirect(request.getContextPath() + '/'); //홈화면으로
 			System.out.println("home2");
 		}
 		modelAndView.setViewName("users/login");
