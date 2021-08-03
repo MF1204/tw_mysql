@@ -23,18 +23,9 @@
 	</select>
 	
 	<select id="getInfo" resultType="UsersVO">
-		select user_id,
-			user_ID,
-    		user_PW,
-   			userAdress,
-    		userPhoneNumber,
-    		userEmail1,
-    		userEmail2,
-    		userGender,
-    		buyScore_AVG,
-    		user_IMG
-    	from userBoard u
-    	where u.user_id = #{user_ID}
+		select *
+    	from USERBOARD
+    	where user_id = #{user_ID}
 	</select>
 	
 	<delete id="usersDelete">
