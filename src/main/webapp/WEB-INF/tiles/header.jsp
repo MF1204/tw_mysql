@@ -10,27 +10,26 @@
 				<div class="header">
 					<div class="header-div">
 						<a href="${pageContext.request.contextPath}/">
-							<img src="${pageContext.request.contextPath}/resources/img/mainPageImg/icon_profile.png">
+							<img class="header-logo" src="${pageContext.request.contextPath}/resources/img/mainPageImg/icon_profile.png">
 						</a>
 					</div>
 					<div class="search-tag header-div">
-						<form
-							action="searchPage"
-							method="get">
+						<form action="http://localhost:8181/project/searchPage" method="get">
 							
-							
-							<span class="btn_img"">
-                                <input type="text" class="inner-search" id="inner-search" name="searchName" value="${cri.searchName}">
-                                <button type="submit" class="btn-search"><span class="glyphicon glyphicon-search"></span></button>
-                            </span>
-                            <span class="btn_img search-select">
-                                <select name="searchType2">
-                                    <option value="title_content" ${cri.searchType2 eq 'title_content' ? 'selected' : ''}>제목+내용</option>
+                            <span class="head-select">
+                                <select name="searchType2" class="select-head">
                                     <option value="title" ${cri.searchType2 eq 'title' ? 'selected' : ''}>제목</option>
+                                    <option value="title_content" ${cri.searchType2 eq 'title_content' ? 'selected' : ''}>제목+내용</option>
                                     <option value="content" ${cri.searchType2 eq 'content' ? 'selected' : ''}>내용</option>
                                     <option value="user_id" ${cri.searchType2 eq 'user_id' ? 'selected' : ''}>작성자</option>
                                 </select>
+                                <img src="${pageContext.request.contextPath}/resources/img/mainPageImg/image__header-select.png" style="width: 15px;">
                             </span>
+                            <input type="text" class="head-search" id="inner-search" name="searchName" value="${cri.searchName}">
+                            <button type="submit" class="head-btn-search">
+                                <img src="${pageContext.request.contextPath}/resources/img/mainPageImg/image__header-search.png">
+                            </button>
+                            
                             <input type="hidden" name="pageNum" value="1">
 	            			<input type="hidden" name="amount" value="12">
 	            			<input type="hidden" name="searchType" value="head">
@@ -214,8 +213,6 @@
                 });
             }
            
-
-
 
 
         </script>

@@ -1,18 +1,18 @@
 /* <style> */
 *{margin: 0; padding: 0;}
 li,ul{list-style: none;}
-
+section {
+   margin: 0 auto;
+}
 .header-wh {
-   min-width: 500px;
    max-width: 1170px;
 }
 .header{
    width: 100%;
-   height: 113px;
    background-color: rgb(255, 255, 255);
    position: relative;
 }
-/* .header div{ display: inline-block; } */
+
 .header-div {
    display: inline-block;
 }
@@ -20,13 +20,66 @@ li,ul{list-style: none;}
 	position: relative;
 }
 
-.header img{height: 113px; width: 240px; padding-right: 20px;}
+.search-tag {
+   width: 533px;
+   height: 44px;
+   border-radius: 20px;
+   border: 2px solid rgb(43, 130, 245);
+   padding-left: 22px;
+   position: relative;
+   margin-bottom: -15px;
+}
+
+.head-select {
+   position: absolute;
+   top: 10px;
+   left: 20px;
+}
+.select-head {
+   border: none;
+   font-size: 14px;
+   appearance: none;
+   margin-right: 10px;
+}
+.head-search {
+   position: absolute;
+   top: 5px;
+   left: 110px;
+   display: block;
+   width: 68%;
+   height: 29px;
+   padding: 0;
+   border: 0;
+   font-size: 16px;
+   color: #222;
+   letter-spacing: -0.5px;
+   line-height: 29px;
+   background-color: transparent;
+   border-radius: 24px;
+   text-indent: 16px;
+   outline: 0;
+}
+.head-btn-search {
+   position: absolute;
+   right: 17px;
+   top: 5px;
+   width: 32px;
+   height: 32px;
+   padding: 5px;
+   border: 0;
+   background-color: white;
+}
+.head-btn-search img {
+   width: 22px;
+   height: 22px;
+   margin-top: -2px;
+}
+
+.header-logo {height: 113px; width: 240px; padding-right: 20px;}
 .header :nth-child(3){float: right; }
-.header input{width: 533px; height: 44px; border-radius: 20px; border: 2px solid rgb(43, 130, 245); padding-left: 22px; }
 .header input:focus{outline: none;}
 .header form i { position: absolute; right: 16px; top: 8px; color: rgb(43, 130, 245);}
 .header span i {color: rgb(43, 130, 245); padding: 14px; margin-top: 16px; margin-right: 10px;}
-.search-tag{position: relative;}
 
 .regist {
    position: absolute;
@@ -35,41 +88,7 @@ li,ul{list-style: none;}
    padding: 12px;
 }
 .regist a {text-decoration:none; color: rgb(0, 0, 0);}
-/* </style>
 
-<style> */
-@media screen and (max-width:1200px)
-{
-   .header img{height: 113px; width: 170px; padding-right: 20px;}
-   .header input{width: 333px; height: 30px; border-radius: 20px; border: 2px solid rgb(43, 130, 245); padding-left: 22px; }
-   .header span i {color: rgb(43, 130, 245); padding: 14px; margin-top: 16px; margin-right: 10px; font-size: 30px;}
-   .icon-set{padding-top: 10px;}
-   .search-tag i{ font-size: 15px;}
-   .category span{font-size: 13px;  vertical-align: middle;}
-
-
-
-}
-
-/* </style>
-
-<style> */
-@media screen and (max-width: 769px)
-{ 
-   .icon-set i{ display: none;}
-   .regist{ margin-right: 150px;}
-}
-/* </style>
-
-<style> */
-@media screen and (max-width: 506px)
-{ 
-   .icon-set i{ display: none;}
-   .header input{width: 200px; height: 24px; border-radius: 20px; border: 2px solid rgb(43, 130, 245); padding-left: 22px; }
-   .search-tag i{ font-size: 10px;}
-
-
-}
 .login-btn {
    position: absolute;
    top: 40px;
@@ -97,9 +116,6 @@ li,ul{list-style: none;}
    display: inline-block;
 }
 
-.visible {
-   margin-bottom: 10px;
-}
 .open-btn {
    width: 202.5px;
    height: 40px;
