@@ -19,5 +19,7 @@ public interface UsersMapper {
 
 	public int passwordUpdate(UsersVO vo);
 
-	public UsersVO usersDelete(UsersVO vo);
+	public int usersDelete(UsersVO vo);
+	
+	public String profileUpdate(UsersVO vo);
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <section>
 	<div class="container">
 		<div class="row">
@@ -20,9 +21,6 @@
 						</div>
 						<input type="hidden" name="user_ID" value="${usersVO.user_ID }">
 					</form>
-					<c:if"${msg==false }">
-						잘못된 정보입니다.
-					</c:if>
 				</section>
 			</div>
 		</div>

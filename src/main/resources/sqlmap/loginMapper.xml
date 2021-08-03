@@ -23,21 +23,24 @@
 	</select>
 	
 	<select id="getInfo" resultType="UsersVO">
-		select user_ID,
+		select user_id,
+			user_ID,
     		user_PW,
    			userAdress,
     		userPhoneNumber,
     		userEmail1,
     		userEmail2,
     		userGender,
-    		buyScore_AVG
-    	from USERBOARD u
-    	where u.user_ID = #{user_ID}
+    		buyScore_AVG,
+    		user_IMG
+    	from userBoard u
+    	where u.user_id = #{user_ID}
 	</select>
 	
 	<delete id="usersDelete">
 		delete from USERBOARD
 		where user_PW =  #{user_PW}
+		and user_ID = #{user_ID}
 	</delete>
 	
 	<update id="emailUpdate">
@@ -56,6 +59,12 @@
 	<update id="phoneUpdate">
 		update USERBOARD set
 		userPhoneNumber = #{userPhoneNumber}
+		where user_ID = #{user_ID}
+	</update>
+	
+	<update id="profileUpdate">
+		update USERBOARD set
+		user_IMG = #{user_IMG}
 		where user_ID = #{user_ID}
 	</update>
 	

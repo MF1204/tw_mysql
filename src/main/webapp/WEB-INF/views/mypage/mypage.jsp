@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <section class="mypage">
         <div class="container">
             <div class="row">
@@ -12,7 +13,18 @@
                                 <a href="${pageContext.request.contextPath}/mypage/mypageModify" class="profile-container underline">
                                     <div class="thumb">
                                         <div class="thumb-image">
-                                            <img src="${pageContext.request.contextPath}/resources/img/image/default-profile.svg" class="user-picture" alt="기본이미지">
+                                            <c:choose>
+								<c:when test="${usersVO.user_IMG eq null }">
+									<img
+										id = "fileImg" src="${pageContext.request.contextPath}/resources/img/image/default-profile.svg"
+										class="user-picture" alt="기본이미지">
+								</c:when>
+								<c:otherwise>
+									<img
+										id = "fileImg" src="${pageContext.request.contextPath}/resources/img/userIMG/${usersVO.user_IMG}.jpg"
+										class="user-picture" alt="기본이미지">
+								</c:otherwise>
+							</c:choose>
                                         </div>
                                     </div>
                                     <div class="user-info">
@@ -20,7 +32,7 @@
                                             <span class="name">${usersVO.user_ID }</span>  고객님 
                                         </div>
                                         <div class="user-email">
-                                            <span class="glyphicon glyphicon-envelope"> ${usersVO.userEmail1}@${usersVO.userEmail2}<!--이메일 호출--></span>
+                                            <span class="glyphicon glyphicon-envelope"> ${usersVO.userEmail1}${usersVO.userEmail2}<!--이메일 호출--></span>
                                         </div>
                                     </div>
                                     <div class="arrow">
@@ -37,14 +49,6 @@
                                     </li>
                                     <li class="item-container">
                                         <div class="item">
-                                            <div class="item-title">관심사</div>
-                                            <div class="item-info">음악</div>
-                                        </div>
-                                        <div class="glyphicon glyphicon-chevron-right">
-                                        </div>
-                                    </li>
-                                    <li class="item-container">
-                                        <div class="item">
                                             <div class="item-title">구매자 평점</div>
                                             <div class="item-info">${usersVO.buyScore_AVG }</div>
                                         </div>                                    
@@ -56,22 +60,6 @@
                                         </div>                                     
                                     </li>
                 
-                                </ul>
-                                <ul class="account-info">
-                                    <li class="item-container">
-                                        <div class="item">
-                                            <div class="item-info">수강 내역</div>
-                                        </div>
-                                        <div class="glyphicon glyphicon-chevron-right">
-                                        </div>
-                                    </li>
-                                    <li class="item-container">
-                                        <div class="item">
-                                            <div class="item-info">강의 내역</div>
-                                        </div>
-                                        <div class="glyphicon glyphicon-chevron-right">
-                                        </div>
-                                    </li>
                                 </ul>
                                 <ul class="account-info">
                                     <li class="item-container" onclick="location.href = '${pageContext.request.contextPath}/users/userLogout'">

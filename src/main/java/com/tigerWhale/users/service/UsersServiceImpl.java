@@ -63,10 +63,16 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 	@Override
-	public UsersVO usersDelete(UsersVO vo) {
+	public int usersDelete(UsersVO vo) {
 		System.out.println("유저삭제");
 		return usersMapper.usersDelete(vo);
 		
+	}
+
+	@Override
+	public String profileUpdate(UsersVO vo) {
+		System.out.println("프로필서비스");
+		return usersMapper.profileUpdate(vo);
 	}
 
 	
