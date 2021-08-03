@@ -432,25 +432,14 @@
 					}
 					else if(e.target.classList.contains("nearBtn") )
 					{
-						console.log("나눌려!!");
 						if(e.target.innerHTML == "다음"){
 							nearIndex += 8;
-							console.log("!@#!@#!@1");
-							console.log(sessionStorage.getItem("nearData"));
-							console.log("!@#!@#!@1");
 							if( nearIndex > sessionStorage.getItem("nearData")) nearIndex = (sessionStorage.getItem("nearData"));
-							console.log("!@#!@#!@2");
-							console.log(nearIndex);
-							console.log("!@#!@#!@2");
 							sessionStorage.setItem("nearIndex",nearIndex);
 							getNearBoard();
 						}
 						else if (bestIndex != 8){
-							console.log("나눌려!!");
 							nearIndex -= 8;
-							console.log("!@#!@#!@1");
-							console.log(sessionStorage.getItem("nearData"));
-							console.log("!@#!@#!@1");
 							if(nearIndex < 8) nearIndex = 8;
 							sessionStorage.setItem("nearIndex",nearIndex);
 							getNearBoard();
@@ -471,9 +460,6 @@
 					success : function(data)
 					{
 						
-						console.log("근처게시물");
-						console.log(data);
-						console.log("근처게시물");
 						
 						var nearIndex = sessionStorage.getItem("nearIndex");
 						sessionStorage.setItem("nearData" , data.length);	
@@ -619,9 +605,6 @@
 					success: function(data){
 						
 
-	        			console.log("최신");
-	        			console.log(data);
-	        			console.log("최신");
 							
 						var recentIndex = sessionStorage.getItem("recentIndex");
 						sessionStorage.setItem("recentData" , data.length);	
@@ -631,8 +614,6 @@
 						
 						if(data.length < 8)
 						{
-							console.log(data.length);
-							console.log("첫번쨰꺼");
 							var newAdd ="";
 			                for(var i = 0; i < data.length; i++) 
 			                {
@@ -650,9 +631,6 @@
 			                $(".newAdd").html(newAdd)
 						}else
 						{
-							console.log(data.length);
-							console.log(recentIndex);
-							console.log("두번쨰꺼");
 							var newAdd ="";
 			                for(var i = recentIndex-8; i < recentIndex; i++) 
 			                {
@@ -689,9 +667,6 @@
 	        		contentType: "application/json; charset=UTF-8",
 	        		success: function(data){
 	        			
-	        			console.log("베스트");
-	        			console.log(data);
-	        			console.log("베스트");
 	        			var bestIndex = sessionStorage.getItem("bestIndex");
 						sessionStorage.setItem("bestData" , data.length);	
 	        			
@@ -836,7 +811,7 @@
            	//게시글 업로드
             getBestBoard();
             getRecentBoard();
-            //getPopularPage();
+            //getPopularPage();.
             getNearBoard();
             
             //카테고리 업로드

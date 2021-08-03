@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.tigerWhale.users.mapper.UsersMapper">
+	
+	<select id="idCheck" resultType="int">
+	</select>
+	
+	<select id="join">
+		insert into USERBOARD(user_ID, user_PW, userAdress, userPhoneNumber, userEmail1, userEmail2, userGender)
+		values(#{user_ID}, #{user_PW}, #{userAdress}, #{userPhoneNumber}, #{userEmail1}, #{userEmail2}, #{userGender})
+	</select>
+	
+	<select id="login" resultType="UsersVO">
+		select *
+		from USERBOARD where user_ID = #{user_ID} and user_PW = #{user_PW}
+	</select>
+	
+	<select id="kakaoLogin" resultType="UsersVO">
+		select * from USERBOARD where user_ID = #{user_ID}
+	</select>
+	
+	<select id="getInfo" resultType="UsersVO">
+		select user_id,
+			user_ID,
+    		user_PW,
+   			userAdress,
+    		userPhoneNumber,
+    		userEmail1,
+    		userEmail2,
+    		userGender,
+    		buyScore_AVG
+    	from userBoard u
+    	where u.user_id = #{user_ID}
+	</select>
+	
+	<delete id="usersDelete">
+		delete from USERBOARD
+		where user_PW =  #{user_PW}
+	</delete>
+	
+	<update id="emailUpdate">
+		update USERBOARD set
+		userEmail1 = #{userEmail1},
+		userEmail2 = #{userEmail2}
+		where user_ID = #{user_ID}
+	</update>
+	
+	<update id="passwordUpdate">
+		update USERBOARD set
+		user_PW = #{user_PW}
+		where user_ID = #{user_ID}
+	</update>
+	
+	<update id="phoneUpdate">
+		update USERBOARD set
+		userPhoneNumber = #{userPhoneNumber}
+		where user_ID = #{user_ID}
+	</update>
+	
+	<resultMap type="UsersVO" id="usersInfo">
+		
+		<result property="user_ID" column="USER_ID" />
+		<result property="user_PW" column="USER_PW" />
+		<result property="userAdress" column="USERADRESS" />
+		<result property="userPhoneNumber" column="USERPHONENUMBER" />
+		<result property="userEmail1" column="USEREMAIL1" />
+		<result property="userEmail2" column="USEREMAIL2" />
+		<result property="userGENDER" column="USERGENDER" />
+		<result property="buyScore_AVG" column="BUYSCORE_AVG" />
+		
+	</resultMap>
+	
+
+</mapper>
