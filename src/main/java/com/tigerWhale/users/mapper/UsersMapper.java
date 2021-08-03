@@ -21,5 +21,5 @@ public interface UsersMapper {
 
 	public int usersDelete(UsersVO vo);
 	
-	public String profileUpdate(UsersVO vo);
+	public int profileUpdate(UsersVO vo);
 }

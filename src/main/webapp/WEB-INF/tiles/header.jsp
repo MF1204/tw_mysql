@@ -42,7 +42,7 @@
 							</a>
 							</span> <span> <a href="${pageContext.request.contextPath}/detailBoard/detailWhatIBuy"> <i class="fas fa-shopping-basket fa-3x"></i>
 							</a>
-							</span> <span> <a href="${pageContext.request.contextPath}/users/userLogout"> <i class="far fa-clone fa-3x"></i>
+							</span> <span> <a href="${pageContext.request.contextPath}/users/userLogout"> <i class="glyphicon glyphicon-off fa-3x"></i>
 							</a>
 							</span>
 
@@ -60,8 +60,8 @@
 				<div class="category-page">
 					<div class="visible">
 						<button type="button" class="open-btn" style="border-radius: 0; border: 1px solid rgb(135, 177, 232);">
-							<span class="btn-icon glyphicon glyphicon-tower"></span> <span class="btn-icon"> <i class="fas fa-bars"></i>
-							</span> <span class="btn-title">전체카테고리</span>
+							<span class="btn-icon"> <i class="fas fa-bars"></i></span>
+                            <span class="btn-title">전체카테고리</span>
 						</button>
 					</div>
 					<div class="click-visible">

@@ -19,7 +19,7 @@
 
 						<div class="item active">
 							<a href="detailBoard/detailPage?bno=28"><img src=" ${pageContext.request.contextPath }/resources/img/detailPageImg/28/6a6641fd47124a808f3fd59382816faa.jpg" alt="CSS"
-								style="height: 450px;"></a>
+								style="width: 735px; height: 485px;"></a>
 							<div class="carousel-caption">
 								<h3></h3>
 								<p></p>
@@ -28,7 +28,7 @@
 
 						<div class="item">
 							<a href="detailBoard/detailPage?bno=24"><img src="${pageContext.request.contextPath }/resources/img/detailPageImg/24/a8142871a5434305959b449f12036334.jpg" alt="HTML"
-								style="height: 450px;"></a>
+								style="width: 735px; height: 485px;"></a>
 							<div class="carousel-caption">
 								<h3></h3>
 								<p></p>
@@ -37,7 +37,7 @@
 
 						<div class="item">
 							<a href="detailBoard/detailPage?bno=28"><img src="${pageContext.request.contextPath }/resources/img/detailPageImg/27/50db70f7d80047e09b629c9e36cb7e0a.jpg"
-								alt="jquery" style="height: 450px;"></a>	
+								alt="jquery" style="width: 735px; height: 485px;"></a>	
 							<div class="carousel-caption">
 								<h3></h3>
 								<p></p>

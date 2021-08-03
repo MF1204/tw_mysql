@@ -28,6 +28,7 @@ section {
    padding-left: 22px;
    position: relative;
    margin-bottom: -15px;
+   margin-left: 50px;
 }
 
 .head-select {
@@ -118,20 +119,22 @@ section {
 
 .open-btn {
    width: 202.5px;
-   height: 40px;
-   background-color: #fff;
+   height: 45px;
+   background-color: rgb(43, 130, 245);;
+   font-size: 18px;
+   font-weight: bold;
 }
 .btn-icon {
    margin-right: 10px;
-   color: rgb(135, 177, 232);
+   color: white;
 }
 .btn-title {
    font-weight: 700;
-   color: rgb(85, 115, 154);
+   color: white;
 }
 .click-visible {
    position: absolute;
-   top: 40px;
+   top: 45px;
    left: 15px;
    display: none;
    width: 606px;

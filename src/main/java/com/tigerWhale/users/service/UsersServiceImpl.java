@@ -70,7 +70,7 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 	@Override
-	public String profileUpdate(UsersVO vo) {
+	public int profileUpdate(UsersVO vo) {
 		System.out.println("프로필서비스");
 		return usersMapper.profileUpdate(vo);
 	}

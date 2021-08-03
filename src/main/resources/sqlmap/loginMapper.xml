@@ -55,7 +55,7 @@
 	
 	<update id="profileUpdate">
 		update USERBOARD set
-		user_IMG = #{user_IMG}
+		user_IMG = #{user_ID}
 		where user_ID = #{user_ID}
 	</update>
 	

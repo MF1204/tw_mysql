@@ -71,7 +71,9 @@
 </section>
 <script>
 		$(document).ready(function () {
+			
 			$("#camera-icon").click(function () {
+				
 				var writer = '${sessionScope.usersVO.user_ID}';
 				var file = $("#file").val();
 				file = file.slice(file.lastIndexOf(".", file.length), file.length);

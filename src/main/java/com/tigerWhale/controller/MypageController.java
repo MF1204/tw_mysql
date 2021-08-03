@@ -161,9 +161,9 @@ public class MypageController {
 			System.out.println("2");
 
 			System.out.println("3");
-			String result = usersService.profileUpdate(usersVO);
+			int result = usersService.profileUpdate(usersVO);
 			System.out.println(result);
-			if (result != null) {
+			if (result != 0) {
 				return "success";
 
 			} else {
