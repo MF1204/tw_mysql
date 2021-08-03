@@ -29,7 +29,7 @@
 		    from V_R_BOARD vr
 		    inner join MAINBOARD ma
 		    on vr.bno = ma.bno
-		    order by viewNum desc ,recomendNum desc
+		    order by recomendNum desc ,viewNum desc 
 		)a
 		INNER JOIN IMGBOARD b
 		ON a.bno = b.bno
