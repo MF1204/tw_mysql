@@ -100,8 +100,9 @@ public class DetailBoardController {
 		System.out.println(vo.getUser_ID());
 		System.out.println(customerBoardVO);
 		System.out.println("**************************************");
+		ArrayList<MainBoardVO> mainBoardVOs = detailBoardService.getMainUser_ID(vo.getUser_ID());
 		model.addAttribute("customerBoardVO", customerBoardVO);
-
+		model.addAttribute("mainBoardVOs", mainBoardVOs);
 		return "detailBoard/detailWhatIBuy";
 		
 		

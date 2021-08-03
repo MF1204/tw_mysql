@@ -171,5 +171,11 @@ public class DetailBoardServiceImpl implements DetailBoardService {
 		return detailBoardMapper.getViewNum(bno);
 	}
 
+	@Override
+	public ArrayList<MainBoardVO> getMainUser_ID(String user_ID) {
+		// TODO Auto-generated method stub
+		return detailBoardMapper.getMainUser_ID(user_ID);
+	}
+
 
 }

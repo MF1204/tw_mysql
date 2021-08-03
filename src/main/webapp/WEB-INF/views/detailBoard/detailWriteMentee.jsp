@@ -140,7 +140,7 @@
 						<textarea class="form-control" rows="10" name='text3' required>설명3</textarea>
 					</div>
 					<br />
-					<button type="button" class="btn btn-dark" onclick="location.href = 'freeList'">목록</button>
+						<button type="button" class="btn btn-dark" onclick="location.href =${pageContext.request.contextPath}/ 'freeList'">목록</button>
 					<div id="submitHere">
 						<button type="button" class="btn btn-dark" id="okBtn">확인</button>
 					</div>
@@ -212,63 +212,53 @@
 </script>
 
 <script>
-	$("#bigCategory")
-			.change(
-					function() {
-						var bigCategory = $("#bigCategory").val();
-						console.log(bigCategory);
-						middleAdd = "";
-						$
-								.ajax({
-									type : "post",
-									url : "../detailBoard/detailWriteUpdate",
-									contentType : "application/json; charset=UTF-8",
-									data : JSON.stringify({
-										"bigCategory" : bigCategory
-									}),
-									success : function(data) {
-										for (var i = 0; i < data.length; i++) {
-											middleAdd += '<option value="' + data[i].middleCategory + '">'
-													+ data[i].middleCategory
-													+ '</option>'
-										}
-										$("#middleCategory").html(middleAdd); //추가
-									},
-									error : function(status, error) {
-										console.log(error);
-									}
-								})
+	$("#bigCategory").click(function() {
+		var bigCategory = $("#bigCategory").val();
+		console.log(bigCategory);
+		middleAdd = "";
+		$.ajax({
+			type : "post",
+			url : "../detailBoard/detailWriteUpdate",
+			contentType : "application/json; charset=UTF-8",
+			data : JSON.stringify({
+				"bigCategory" : bigCategory
+			}),
+			success : function(data) {
+				for (var i = 0; i < data.length; i++) {
+					middleAdd += '<option value="' + data[i].middleCategory + '">' + data[i].middleCategory + '</option>'
+				}
+				$("#middleCategory").html(middleAdd); //추가
+			},
+			error : function(status, error) {
+				console.log(error);
+			}
+		})
 
-					});
+	});
 </script>
 <script>
-	$("#middleCategory")
-			.change(
-					function() {
-						var middleCategory = $("#middleCategory").val();
-						console.log(middleCategory);
-						smallAdd = "";
-						$
-								.ajax({
-									type : "post",
-									url : "../detailBoard/detailWriteUpdate",
-									contentType : "application/json; charset=UTF-8",
-									data : JSON.stringify({
-										"middleCategory" : middleCategory
-									}),
-									success : function(data) {
-										for (var i = 0; i < data.length; i++) {
-											smallAdd += '<option id="smallCategoryON" value="' + data[i].smallCategory + '">'
-													+ data[i].smallCategory
-													+ '</option>'
-										}
-										$("#smallCategory").html(smallAdd); //추가
-									},
-									error : function(status, error) {
-										console.log(error);
-										alert("수정에 실패했습니다. 관리자에게 문의하세요");
-									}
-								})
+	$("#middleCategory").click(function() {
+		var middleCategory = $("#middleCategory").val();
+		console.log(middleCategory);
+		smallAdd = "";
+		$.ajax({
+			type : "post",
+			url : "../detailBoard/detailWriteUpdate",
+			contentType : "application/json; charset=UTF-8",
+			data : JSON.stringify({
+				"middleCategory" : middleCategory
+			}),
+			success : function(data) {
+				for (var i = 0; i < data.length; i++) {
+					smallAdd += '<option id="smallCategoryON" value="' + data[i].smallCategory + '">' + data[i].smallCategory + '</option>'
+				}
+				$("#smallCategory").html(smallAdd); //추가
+			},
+			error : function(status, error) {
+				console.log(error);
+				alert("수정에 실패했습니다. 관리자에게 문의하세요");
+			}
+		})
 
-					});
+	});
 </script>

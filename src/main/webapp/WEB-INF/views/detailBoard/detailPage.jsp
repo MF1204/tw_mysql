@@ -13,7 +13,7 @@
 							<!-- 카테고라ㅣ-->
 							<a class="vgig-site-map">${categoryBoardVO.bigCategory}</a><span>></span> <a class="vgig-site-map">${categoryBoardVO.middleCategory}</a><span>></span> <a class="vgig-site-map">${categoryBoardVO.smallCategory}</a>
 						</div>
-					<p>${viewNum} 조회수</p>
+						<p>${viewNum}조회수</p>
 						<div class="GigMainGallery">
 							<div class="LazyLoad">
 
@@ -75,7 +75,7 @@
 								</div>
 								<br /> <br />
 								<div class="intro2" style="word-wrap: break-word;">
-									<div class="GigLeftTitle B" >
+									<div class="GigLeftTitle B">
 										<h3>설명2</h3>
 									</div>
 									${textBoardVO.text2}
@@ -123,9 +123,7 @@
 									<ul class="nav nav-tabs" id="tabs">
 										<li class="active"><a href="#home"> 공통 정보 </a></li>
 										<c:forEach var="vo" items="${m_boardVO}" varStatus="status">
-											<li>	
-											<a href="#menu${status.count}" id="menu" onclick="getMapsXY(${vo.entX},${vo.entY})"> ${status.count}옵션 </a>	
-											</li>
+											<li><a href="#menu${status.count}" id="menu" onclick="getMapsXY(${vo.entX},${vo.entY})"> ${status.count}옵션 </a></li>
 										</c:forEach>
 									</ul>
 									<div class="tab-content">
@@ -136,65 +134,71 @@
 											</div>
 										</div>
 										<c:if test="${m_boardVO[0].money != null}">
-										<c:forEach var="vo" items="${m_boardVO}" varStatus="status">
-											<form action="detailBuy" method="post" class="tab-pane fade" id="menu${status.count}">
-												<input type="hidden" name="bno" value="${m_boardVO.get(0).bno}"> <input type="hidden" name="rno" value="${vo.rno}">
-												<div>
-													<div class="package-header">
-														<span class="package-price">${vo.money}원</span> <span class="package-type">Standard</span>
-													</div>
-													<div class="package-header">
-														<h3>${vo.day1}~${vo.day2}</h3>
-													</div>
-													<div class="package-header">
-														<h3>${vo.exText}</h3>
-													</div>
-													<div class="package-body">
-														<div class="GigPackageOption">
-															<h2>시간 : ${vo.m_time1}시 ~ ${vo.m_time2}시 까지</h2>
-															요일 :
-															<c:forEach var="bo" items="${d_T_boardVO}" varStatus="option">
+											<c:forEach var="vo" items="${m_boardVO}" varStatus="status">
+												<form action="detailBuy" method="post" class="tab-pane fade" id="menu${status.count}">
+													<input type="hidden" name="bno" value="${m_boardVO.get(0).bno}"> <input type="hidden" name="rno" value="${vo.rno}">
+													<div>
 
-																<c:if test="${vo.rno == bo.rno}">
+														<div class="package-header">
+															<h3>${vo.exText}</h3>
+														</div>
+
+														<div class="package-body" style="border: 2px solid black; padding: 10px; margin: 10px;">
+															<div class="package-header">
+																옵션 금액 :<span class="package-price">${vo.money}원</span> <span class="package-type">Standard</span>
+															</div>
+															<div class="package-header">
+																기간 :
+																<h3>${vo.day1}~${vo.day2}</h3>
+															</div>
+
+															<div class="GigPackageOption" style="padding: 30px">
+																시간 :
+																<h2>${vo.m_time1}시~ ${vo.m_time2}시 까지</h2>
+
+																요일 :
+																<c:forEach var="bo" items="${d_T_boardVO}" varStatus="option">
+
+																	<c:if test="${vo.rno == bo.rno}">
 																	${bo.m_day} /
 																</c:if>
-															</c:forEach>
-														</div>
+																</c:forEach>
+															</div>
 
-														<div class="map">
-															<div class="address">
-																<span> - 만남장소</span>
-																<p>${vo.addrBasic}</p>
+															<div class="map">
+																<div class="address">
+																	<span> - 만남장소</span>
+																	<p>${vo.addrBasic}</p>
+																</div>
+															</div>
+															<div class="package-direct-order">
+																<c:choose>
+
+																	<c:when test="${userVO == null}">
+																		<button type="button" class="btn" style="margin-bottom: 30px;">
+																			<span>로그인 후 이용해주세요</span>
+																		</button>
+
+																	</c:when>
+																	<c:when test="${customerBoardVO != null}">
+																		<button type="button" class="btn">
+																			<span>이미 구매한 상품입니다.</span>
+																		</button>
+																	</c:when>
+
+																	<c:otherwise>
+																		<button type="submit" class="btn">
+																			<span>구매하기</span>
+																		</button>
+																	</c:otherwise>
+
+																</c:choose>
+
 															</div>
 														</div>
-														<div class="package-direct-order">
-															<c:choose>
-
-																<c:when test="${userVO == null}">
-																	<button type="button" class="btn">
-																		<span >로그인 후 이용해주세요</span>
-																	</button>
-
-																</c:when>
-																<c:when test="${customerBoardVO != null}">
-																	<button type="button" class="btn">
-																		<span>이미 구매한 상품입니다.</span>
-																	</button>
-																</c:when>
-
-																<c:otherwise>
-																	<button type="submit" class="btn">
-																		<span>구매하기</span>
-																	</button>
-																</c:otherwise>
-
-															</c:choose>
-
-														</div>
 													</div>
-												</div>
-											</form>
-										</c:forEach>
+												</form>
+											</c:forEach>
 										</c:if>
 									</div>
 									<!-- //////////////////////////////////////////////////////// -->
