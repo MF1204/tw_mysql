@@ -135,7 +135,7 @@ public class MypageController {
 			System.out.println(file);
 
 			String fileLoca = "userIMG";
-			File folder = new File(APP_CONSTANT.UPLOAD_PATH + "\\" + fileLoca);
+			File folder = new File(APP_CONSTANT.UPLOAD_PATH + "/" + fileLoca);
 			if (!folder.exists()) {
 				folder.mkdir();
 			}
@@ -154,7 +154,7 @@ public class MypageController {
 			System.out.println("업로드경로" + uploadPath);
 			System.out.println("업로드파일명" + fileName + fileExtention);
 
-			File saveFile = new File(uploadPath + "\\" + fileName);
+			File saveFile = new File(uploadPath + "/" + fileName);
 			System.out.println(saveFile);
 			file.transferTo(saveFile);
 			; // 파일 쓰기
@@ -183,7 +183,7 @@ public class MypageController {
 						@PathVariable("fileName") String fileName) throws Exception {
 		//파일데이터 바이트 데이터로 변환해서 반환
 		
-			InputStream imageStream = new FileInputStream(APP_CONSTANT.UPLOAD_PATH + "\\" + fileLoca + "\\" + fileName);
+			InputStream imageStream = new FileInputStream(APP_CONSTANT.UPLOAD_PATH + "/" + fileLoca + "/" + fileName);
 			byte[] imageByteArray = IOUtils.toByteArray(imageStream);
 			imageStream.close();
 			return new ResponseEntity<byte[]>(imageByteArray, HttpStatus.OK);

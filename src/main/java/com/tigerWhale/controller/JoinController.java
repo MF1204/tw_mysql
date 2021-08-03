@@ -100,7 +100,7 @@ public class JoinController {
     public String logout(HttpSession session)
     {
         session.invalidate();
-        return "redirect:/";
+        return "redirect://";
     }
 
 }

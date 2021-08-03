@@ -393,7 +393,7 @@ public class DetailBoardController {
 				System.out.println("fileRealName "+fileRealName);
 				
 				
-				File folder = new File(APP_CONSTANT.UPLOAD_PATH  + "\\detailPageImg"+"\\" + bno); //폴더를 만들위치
+				File folder = new File(APP_CONSTANT.UPLOAD_PATH  + "/detailPageImg"+"/" + bno); //폴더를 만들위치
 				
 				if(!folder.exists()) {
 					folder.mkdir(); //폴더생성
@@ -412,7 +412,7 @@ public class DetailBoardController {
 				//저장된 전체경로
 				String uploadPath = folder.getPath(); //폴더명을 포함한 경로
 				System.out.println(uploadPath);
-				File saveFile = new File(uploadPath  + "\\"+ fileName); //업로드 경로
+				File saveFile = new File(uploadPath  + "/"+ fileName); //업로드 경로
 				System.out.println("saveFile "+saveFile);
 				
 				
