@@ -59,9 +59,9 @@
 						<input type="text" class="form-control" placeholder="이름을 입력하세요" name="userName" id="userName">
 					</div>
 
-					<div class="form-group email-form">
-						<label for="email">이메일</label><br> <input type="text" class="form-control" id="userEmail1" name="userEmail1" placeholder="이메일"> @
-						<select class="form-control" id="userEmail2" name="userEmail2">
+					<div class="form-group email-form" >
+						<label for="email">이메일</label><br> <input type="text" class="form-control" id="userEmail1" name="userEmail1" placeholder="이메일" style="width: 40%; display: inline-block;"> @
+						<select class="form-control" id="userEmail2" name="userEmail2" style="width: 40%; display: inline-block;">
 							<option>naver.com</option>
 							<option>daum.net</option>
 							<option>gmail.com</option>
@@ -72,8 +72,8 @@
 					<!--readonly 속성 추가시 자동으로 블락-->
 					<div class="form-group">
 						<div class="input-group btn-rs">
-							<input type="text" class="form-control" name="addrZipNum" id="addrZipNum" placeholder="우편번호" readonly>
-
+							<input type="text" class="form-control" name="addrZipNum" id="addrZipNum" placeholder="우편번호" readonly style="width: 100%">
+							<hr/>
 							<button type="button" class="btn btn-primary" onclick="goPopup()">주소찾기</button>
 
 						</div>
