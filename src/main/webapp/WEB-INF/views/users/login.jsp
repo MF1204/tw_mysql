@@ -14,7 +14,7 @@
 				</form>
 
 				<div class="links">
-					<a href="#">회원가입</a> <a href="#">비밀번호를 잊어버리셨나요?</a>
+					<a href="join">회원가입</a> <a href="#">비밀번호를 잊어버리셨나요?</a>
 				</div>
 			</div>
 		</div>

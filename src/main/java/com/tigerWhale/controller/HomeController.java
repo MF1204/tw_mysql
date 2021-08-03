@@ -66,9 +66,6 @@ public class HomeController {
 	@PostMapping(value = "/getNearBoard", produces = "application/json", consumes = "application/json")
 	public ArrayList<MainBoardVO> getNearBoard(@RequestBody UsersVO vo)
 	{
-		System.out.println("!@#!@#!@#!@#!");
-		System.out.println(vo.getC_code());
-		System.out.println("!@#!@#!@#!@#!");
 		ArrayList<MainBoardVO> vo2 = mainBoardService.getNearBoard(vo);
 		return vo2;
 	}
@@ -78,7 +75,6 @@ public class HomeController {
 	public ArrayList<CategoryBoardVO> nearCategory(@RequestBody  CategoryBoardVO vo)
 	{
 		
-
 		if( (vo.getBigCategory() != "" && vo.getSmallCategory() != "" ) && vo.getMiddleCategory() != "")
 		{
 			return mainBoardService.getCategoryCode(vo);

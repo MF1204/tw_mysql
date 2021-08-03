@@ -9,6 +9,7 @@ import com.tigerWhale.command.D_T_boardVO;
 import com.tigerWhale.command.IMGBoardVO;
 import com.tigerWhale.command.MainBoardVO;
 import com.tigerWhale.command.UsersVO;
+import com.tigerWhale.command.V_R_BoardVO;
 import com.tigerWhale.command.Y_M_boardVO;
 import com.tigerWhale.command.CategoryBoardVO;
 import com.tigerWhale.command.CustomerBoardVO;
@@ -137,13 +138,37 @@ public class DetailBoardServiceImpl implements DetailBoardService {
 	}
 
 	@Override
-	public CustomerBoardVO getCustomerBoard(String user_ID) {
-		return detailBoardMapper.getCustomerBoard(user_ID);
+	public CustomerBoardVO getCustomerBoard(String user_ID , int bno) {
+		return detailBoardMapper.getCustomerBoard(user_ID , bno);
 	}
 
 	@Override
 	public int mainBoarddelete(int bno) {
 		return detailBoardMapper.mainBoarddelete(bno);
+	}
+
+	@Override
+	public ArrayList<CustomerBoardVO> getMyCustomer(String user_ID) {
+		// TODO Auto-generated method stub
+		return detailBoardMapper.getMyCustomer(user_ID);
+	}
+
+	@Override
+	public int updateRecomendNum(int bno , int recomendNum) {
+		// TODO Auto-generated method stub
+		return detailBoardMapper.updateViewNum(bno , recomendNum);
+	}
+
+	@Override
+	public int updateViewNum(int bno , int viewNum) {
+		// TODO Auto-generated method stub
+		return detailBoardMapper.updateViewNum(bno , viewNum);
+	}
+
+	@Override
+	public V_R_BoardVO getViewNum(int bno) {
+		// TODO Auto-generated method stub
+		return detailBoardMapper.getViewNum(bno);
 	}
 
 

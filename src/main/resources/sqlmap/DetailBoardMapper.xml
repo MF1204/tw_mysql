@@ -53,9 +53,9 @@
 
 	<insert id="insertMainBoardVO" parameterType="map">
 		insert into MAINBOARD (
-		 bno , user_ID , c_code , boardType , title , text ,price)
+		bno , user_ID , c_code , boardType , title , text ,price)
 		values
-		(#{bno} ,  #{user_ID}, #{c_code} , #{boardType} , #{title} , #{text} , #{price} )
+		(#{bno} , #{user_ID}, #{c_code} , #{boardType} , #{title} , #{text} , #{price} )
 	</insert>
 
 	<select id="findBno" resultType="int">
@@ -75,7 +75,7 @@
 	<insert id="insertY_M_boardVO" parameterType="map">
 		insert into Y_M_BOARD(
 		bno, rno, day1 , day2 , exText, M_time1,M_time2,
-		Money ,  addrBasic,addrDetail, entX , entY)
+		Money , addrBasic,addrDetail, entX , entY)
 		values(
 		#{bno} ,#{rno} , #{day1} , #{day2} , #{exText} , #{M_time1} , #{M_time2} ,
 		#{Money} , #{addrBasic} , #{addrDetail} , #{entX} , #{entY} )
@@ -86,9 +86,11 @@
    		<![CDATA[ select distinct  ]]>
 		<choose>
 			<when test="middleCategory != null "> smallCategory from
-			 CATEGORYBOARD where middleCategory like #{middleCategory}</when>
+				CATEGORYBOARD where middleCategory like #{middleCategory}
+			</when>
 			<when test="bigCategory != null "> middleCategory from
-			 CATEGORYBOARD where bigCategory like #{bigCategory}</when>
+				CATEGORYBOARD where bigCategory like #{bigCategory}
+			</when>
 			<otherwise>1 = 1</otherwise>
 		</choose>
 	</select>
@@ -110,25 +112,52 @@
 		insert into D_T_BOARD (bno, rno , M_day)
 		values(#{bno},#{rno},#{ M_day})
 	</insert>
-	
-	
+
+
 	<select id="findRno" resultType="int">
 		select get_seq('rno');
 	</select>
-	
-	
+
+
 	<select id="findC_code" resultType="int" parameterType="map">
-			select c_code from CATEGORYBOARD where 
-			smallCategory Like #{smallCategory} and  
-			middleCategory Like #{middleCategory} and
-			bigCategory Like #{bigCategory}
+		select c_code from CATEGORYBOARD where
+		smallCategory Like #{smallCategory} and
+		middleCategory Like #{middleCategory} and
+		bigCategory Like #{bigCategory}
+	</select>
+
+	<select id="getCustomerBoard" resultType="CustomerBoardVO" parameterType="map">
+		select * from CUSTOMERBOARD where user_ID = #{user_ID} and bno = #{bno}
+	</select>
+
+	<select id="getMyCustomer" resultType="CustomerBoardVO" parameterType="map">
+		select * from CUSTOMERBOARD where user_ID = #{user_ID}
+	</select>
+
+	<delete id="mainBoarddelete">
+		delete from MAINBOARD where bno = #{bno}
+	</delete>
+
+	<update id="updateRecomendNum" parameterType="map">
+		update V_R_BOARD
+		set recomendNum = #{recomendNum}
+		where bno = #{bno}
+	</update>
+
+	<update id="updateViewNum" parameterType="map">
+		update V_R_BOARD
+		set viewNum = #{viewNum}
+		where bno = #{bno}
+	</update>
+	
+		<select id="getViewNum" resultType="V_R_BoardVO" parameterType="map">
+		select * from V_R_BOARD where bno = #{bno}
 	</select>
 	
-	<select id="getCustomerBoard" resultType="int" parameterType="map">
-			select * from CUSTOMERBOARD where user_ID = #{user_ID}  
-	</select>
 	
-	  <delete id="mainBoarddelete">
-        delete from MAINBOARD where bno = #{bno}
-    </delete>
+	
+	
+	
+	
+	
 </mapper>

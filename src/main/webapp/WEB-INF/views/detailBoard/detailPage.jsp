@@ -13,7 +13,7 @@
 							<!-- 카테고라ㅣ-->
 							<a class="vgig-site-map">${categoryBoardVO.bigCategory}</a><span>></span> <a class="vgig-site-map">${categoryBoardVO.middleCategory}</a><span>></span> <a class="vgig-site-map">${categoryBoardVO.smallCategory}</a>
 						</div>
-
+					<p>${viewNum} 조회수</p>
 						<div class="GigMainGallery">
 							<div class="LazyLoad">
 
@@ -65,7 +65,7 @@
 						<div class="GigDescription">
 							<div class="description-box">
 
-								<div class="intro1">
+								<div class="intro1" style="word-wrap: break-word;">
 
 									<div class="GigLeftTitle A">
 										<h3>설명1</h3>
@@ -74,14 +74,14 @@
 
 								</div>
 								<br /> <br />
-								<div class="intro2">
-									<div class="GigLeftTitle B">
+								<div class="intro2" style="word-wrap: break-word;">
+									<div class="GigLeftTitle B" >
 										<h3>설명2</h3>
 									</div>
 									${textBoardVO.text2}
 								</div>
 								<br /> <br />
-								<div class="intro3">
+								<div class="intro3" style="word-wrap: break-word;">
 									<div class="GigLeftTitle C">
 										<h3>설명3</h3>
 									</div>
@@ -112,9 +112,7 @@
 							<div class="GigTitle">
 								<h1>${mainBoardVO.title}</h1>
 								<div class="gig-detail-price">
-									<h3>
-										"${mainBoardVO.price}원" <span>~</span>
-									</h3>
+									<h3>"${mainBoardVO.price}원"</h3>
 									<h5 class="margin-none1">(VAT 포함가)</h5>
 								</div>
 							</div>
@@ -124,9 +122,10 @@
 									<!-- //////////////////////////////////////////////////////// -->
 									<ul class="nav nav-tabs" id="tabs">
 										<li class="active"><a href="#home"> 공통 정보 </a></li>
-
 										<c:forEach var="vo" items="${m_boardVO}" varStatus="status">
-											<li><a href="#menu${status.count}" id="menu" onclick="getMapsXY(${vo.entX},${vo.entY})"> ${status.count}옵션 </a></li>
+											<li>	
+											<a href="#menu${status.count}" id="menu" onclick="getMapsXY(${vo.entX},${vo.entY})"> ${status.count}옵션 </a>	
+											</li>
 										</c:forEach>
 									</ul>
 									<div class="tab-content">
@@ -136,7 +135,7 @@
 												<span class="package-price">${mainBoardVO.text} 공통 안내 정보</span>
 											</div>
 										</div>
-
+										<c:if test="${m_boardVO[0].money != null}">
 										<c:forEach var="vo" items="${m_boardVO}" varStatus="status">
 											<form action="detailBuy" method="post" class="tab-pane fade" id="menu${status.count}">
 												<input type="hidden" name="bno" value="${m_boardVO.get(0).bno}"> <input type="hidden" name="rno" value="${vo.rno}">
@@ -171,9 +170,9 @@
 														<div class="package-direct-order">
 															<c:choose>
 
-																<c:when test="${usersVO == null}">
+																<c:when test="${userVO == null}">
 																	<button type="button" class="btn">
-																		<span>로그인 후 이용해주세요</span>
+																		<span >로그인 후 이용해주세요</span>
 																	</button>
 
 																</c:when>
@@ -196,6 +195,7 @@
 												</div>
 											</form>
 										</c:forEach>
+										</c:if>
 									</div>
 									<!-- //////////////////////////////////////////////////////// -->
 
@@ -207,7 +207,7 @@
 						<ul class="hostInfo">
 							<li class="host_name">
 								<div class="host_img_wrap">
-									<img src="../resources/img/userIMG/${userIMGBoardVO.img}.jpg">
+									<img src="../resources/img/userIMG/${usersVO.user_IMG}.jpg">
 								</div>
 								<div class="host_name_wrap">${usersVO.user_ID}</div>
 							</li>
@@ -223,13 +223,13 @@
 
 							<c:choose>
 
-								<c:when test="${usersVO.user_ID == mainBoardVO.user_ID}">
-							<div style="margin: 30px">
-								<button type="button" class="btn btn-primary btn2" onclick="../detailBoard/detailDelete?bno=${mainBoardVO.bno}">글삭제하기</button>
-							</div>
+								<c:when test="${userVO.user_ID == mainBoardVO.user_ID}">
+									<div style="margin: 30px;">
+										<button type="button" class="btn btn-primary btn2" onclick="location.href='../detailBoard/detailDelete?bno=${mainBoardVO.bno}'">글삭제하기</button>
+									</div>
 								</c:when>
 								<c:otherwise>
-								
+
 								</c:otherwise>
 
 							</c:choose>
@@ -246,7 +246,7 @@
 
 				<form class="reply-wrap">
 					<div class="reply-image">
-						<img src="../resources/img/profile.png">
+						<img src="../resources/img/userIMG/${userVO.user_IMG}.jpg">
 					</div>
 					<!--form-control은 부트스트랩의 클래스입니다 (name기술)-->
 					<div class="reply-content">
@@ -414,7 +414,6 @@
 					strAdd = "";
 					page = 1;
 				}
-				
 
 				//누적할 문자열을 만들고 innerHTML형식으로 replyList아래에 삽입
 				
@@ -422,7 +421,7 @@
                 	
     				strAdd += "<div class='reply-wrap'>";
     				strAdd += "<div class='reply-image'>";
-                    strAdd += "<img src='../resources/img/profile.png'>";
+                    strAdd += "<img src='../resources/img/userIMG/"+ data[i].user_ID +".jpg'>";
                     strAdd += "</div>";
                     strAdd += "<div class='reply-content'>";
                     strAdd += "<div class='reply-group'>";

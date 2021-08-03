@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <section>
 	<div class="container CCC">
 		<!--container => 중앙위치 /      container-fluid -->
@@ -15,12 +16,6 @@
 
 								<h1>${mainBoardVO.title}</h1>
 
-								<div class="gig-detail-price">
-									<h3>
-										"${mainBoardVO.price}" <span>~</span>
-									</h3>
-									<h5 class="margin-none1">(VAT 포함가)</h5>
-								</div>
 							</div>
 
 							<!------------------------------------->
@@ -33,44 +28,85 @@
 
 									<div class="tab-content">
 										<div id="home" class="tab-pane fade in active">
-											<div class="package-header">
-												<span class="package-price">${ymBoardVO.money}원</span> <span class="package-type">Standard</span>
-											</div>
 											<div class="package-body">
 												<div class="GigPackageOption"></div>
-												<div class="map">
-													<div class="mapbox">
 
-														<div id="map" style="width: 500px; height: 400px; border: 10px solid black"></div>
 
-													</div>
-													<div class="address">
-														<span> - 만남장소</span>
-														<h1>${ymBoardVO.addrBasic}</h1>
-														<h1>${ymBoardVO.addrDetail}</h1>
-														<input type="hidden" name="entX" value="${ymBoardVO.entX}"> <input type="hidden" name="entY" value="${ymBoardVO.entY}">
 
-													</div>
-												</div>
+
+
+
+
+												<c:choose>
+
+													<c:when test="${ymBoardVO.entX !='' }">
+														<div class="map">
+															<div class="mapbox">
+
+																<div id="map" style="width: 500px; height: 400px; border: 10px solid black"></div>
+
+															</div>
+															<div class="address">
+																<span> - 만남장소</span>
+																<h1>${ymBoardVO.addrBasic}</h1>
+																<h1>${ymBoardVO.addrDetail}</h1>
+																<input type="hidden" name="entX" value="${ymBoardVO.entX}"> <input type="hidden" name="entY" value="${ymBoardVO.entY}">
+															</div>
+														</div>
+														
+													</c:when>
+
+													<c:otherwise>
+														<div style="margin: 50px; padding: 50px;">
+															<h1>등록된 장소가 없습니다.</h1>
+														</div>
+														
+													</c:otherwise>
+
+												</c:choose>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 												<div class="user_info">
-
 													<div class="form-group">
 														<label>이름</label> <input class="form-control" name='bno' value="${usersVO.user_ID}" readonly="readonly">
 													</div>
 
 													<div class="form-group">
-														<label>금액</label> <input class="form-control" name='bno' value="${vo.bno}" readonly>
+														<label>금액</label> <input class="form-control" name='bno' value="${ymBoardVO.money}" readonly="readonly">
 													</div>
 													<div class="form-group" style="width: 40%; float: right;">
-														<label>전화번호</label> <input class="form-control" name='PhoneNumber' id="PhoneNumber"  value="${usersVO.userPhoneNumber}">
+														<label>전화번호</label> <input class="form-control" name='PhoneNumber' id="PhoneNumber" value="${usersVO.userPhoneNumber}">
 													</div>
 
-														<label>이메일</label> 
+													<label>이메일</label>
 													<div class="form-group" style="width: 40%;">
 														<input class="form-control" id='email1' value="${usersVO.userEmail1}" style="width: 40%; float: left">
-														<p style=" float: left">&nbsp;@ &nbsp;</p>
-														<input class="form-control" id='email2' value="${usersVO.userEmail2}" style="width: 40%; ">
-										
+														<p style="float: left">&nbsp;@ &nbsp;</p>
+														<input class="form-control" id='email2' value="${usersVO.userEmail2}" style="width: 40%;">
+
 													</div>
 
 													<div class="form-group">
@@ -92,7 +128,7 @@
 
 												</div>
 												<div class="package-direct-order">
-													<button type="button" class="btn123"  onclick="requestPay()">
+													<button type="button" class="btn123" onclick="requestPay()">
 														<span>결제하기</span>
 													</button>
 												</div>
@@ -176,9 +212,9 @@
 					type : "post",
 					contentType : "application/json; charset=UTF-8",
 					data : JSON.stringify( {
-						"bno" : "${ymBoardVO.rno}",
-						"rno" : "${mainBoardVO.bno}",
-						"user_ID" : "${usersVO.userAdress}",
+						"bno" : "${mainBoardVO.bno}",
+						"rno" : "${ymBoardVO.rno}",
+						"user_ID" : "${usersVO.user_ID}",
 						"money" : rsp.paid_amount
 					}),
 					success : function(data) {
@@ -203,17 +239,6 @@
 
 	}
 </script>
-
-
-
-<script>
-	
-</script>
-
-
-
-
-
 
 
 

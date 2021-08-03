@@ -56,7 +56,7 @@ public class MypageController {
 		System.out.println(vo.toString());
 		usersService.emailUpdate(vo);
 
-		return "redirect:/";
+		return "redirect://";
 	}
 
 	@RequestMapping("/mypage-password")

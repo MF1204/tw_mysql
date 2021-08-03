@@ -359,12 +359,6 @@ body .all-category, .main-fluid {
     
 }
 
-.quick-area {
-    position: fixed;
-    top: 500px;
-    right: 0;
-    width: 100px;
-}
 
 .quick-area ul li {
     text-align: center;
@@ -431,7 +425,7 @@ body .all-category, .main-fluid {
 	text-align : center;
 }
 
-.writeBtn{
+.writeBtn,.categoryBtn{
 	
 	
 	float:right;
@@ -450,12 +444,12 @@ body .all-category, .main-fluid {
 	height : 30px;
 }
 
-.writeBtn:hover{
+.writeBtn:hover, .categoryBtn:hover{
   background:#fff;
   color:#1AAB8A;
 }
 
-.writeBtn:before,.writeBtn:after{
+.writeBtn:before,.writeBtn:after, .categoryBtn:before, .categoryBtn:after{
   content:'';
   position:absolute;
   top:0;
@@ -466,14 +460,14 @@ body .all-category, .main-fluid {
   transition:400ms ease all;
 }
 
-.writeBtn:after{
+.writeBtn:after, .categoryBtn:after{
   right:inherit;
   top:inherit;
   left:0;
   bottom:0;
 }
 
-.writeBtn:hover:before,.writeBtn:hover:after{
+.writeBtn:hover:before,.writeBtn:hover:after, .categoryBtn:hover:before,..categoryBtn:hover:after{
   width:100%;
   transition:800ms ease all;
 }
@@ -487,4 +481,11 @@ body .all-category, .main-fluid {
 {
 	color: red;
 	padding-left: 50px;
+}
+.nearLocalAdd{
+	width:100%;
+}
+.map
+{
+	width:700px;
 }

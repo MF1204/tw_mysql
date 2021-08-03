@@ -22,10 +22,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
-<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/category.css"> -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/faq.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/faq2.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
-
 <!-- 
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">

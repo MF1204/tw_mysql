@@ -29,7 +29,7 @@
 		    from V_R_BOARD vr
 		    inner join MAINBOARD ma
 		    on vr.bno = ma.bno
-		    order by viewNum desc ,recomendNum desc
+		    order by recomendNum desc ,viewNum desc 
 		)a
 		INNER JOIN IMGBOARD b
 		ON a.bno = b.bno
@@ -104,7 +104,7 @@
 	</select>
 	
 	<select id="getCategoryCode" resultType="CategoryBoardVO">
-		select distinct smallCategory,c_code from CATEGORYBOARD where SMALLCATEGORYBOARD = #{smallCategory}
+		select distinct smallCategory,c_code from CATEGORYBOARD where SMALLCATEGORY = #{smallCategory}
 	</select>
 	
 	
@@ -116,37 +116,7 @@
 			<when test="c_code != 0">
 			
 				
-				SELECT ma.*
-				FROM
-				(
-					SELECT *,
-						(6371
-							*acos(
-									cos(radians(#{la}))
-									*cos(radians(ma))
-									*cos(radians(la)-radians(#{ma}))
-									+
-									sin(radians(#{la}))
-									*sin(radians(ma))
-									)
-						)
-						AS distance
-					FROM USERBOARD<![CDATA[
-					HAVING distance <= 300 and distance != 0]]>
-					ORDER BY distance asc
-				) DATA
-				INNER JOIN MAINBOARD ma
-				ON DATA.user_ID = ma.user_ID
-			    INNER JOIN IMGBOARD im
-			    ON ma.bno = im.bno
-			    where c_code = #{c_code}
-			
-			</when>
-			
-			<when test ="c_code == 0">
-				
-			
-				SELECT ma.*
+				SELECT ma.*,im.*,DATA.la,DATA.ma
 				FROM
 				(
 					SELECT *,
@@ -161,8 +131,38 @@
 									)
 						)
 						AS distance
-					FROM USERBOARD<![CDATA[
-					HAVING distance <= 300 and distance != 0]]>
+					FROM USERBOARD AS us<![CDATA[
+					HAVING distance < 50 and distance != 0]]>
+					ORDER BY distance asc
+				) DATA
+				INNER JOIN MAINBOARD ma
+				ON DATA.user_ID = ma.user_ID
+			    INNER JOIN IMGBOARD im
+			    ON ma.bno = im.bno
+			    where c_code = #{c_code}
+			
+			</when>
+			
+			<when test ="c_code == 0">
+				
+			
+				SELECT ma.*,im.*,DATA.la,DATA.ma
+				FROM
+				(
+					SELECT *,
+						(6371
+							*acos(
+									cos(radians(#{ma}))
+									*cos(radians(ma))
+									*cos(radians(la)-radians(#{la}))
+									+
+									sin(radians(#{ma}))
+									*sin(radians(ma))
+									)
+						)
+						AS distance
+					FROM USERBOARD AS us<![CDATA[
+					HAVING distance < 50 and distance != 0]]>
 					ORDER BY distance asc
 				) DATA
 				INNER JOIN MAINBOARD ma
