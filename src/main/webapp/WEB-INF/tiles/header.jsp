@@ -1,12 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <section>
 
 	<div class="container header-wh">
 		<div class="row">
-			<div class="col-sm-12"
-				style="float: none; margin: 0 auto; padding: 0; background-color: aquamarine;">
+			<div class="col-sm-12" style="float: none; margin: 0 auto; padding: 0; background-color: aquamarine;">
 				<div class="header">
 					<div class="header-div">
 						<a href="${pageContext.request.contextPath}/">
@@ -34,56 +32,42 @@
 	            			<input type="hidden" name="amount" value="12">
 	            			<input type="hidden" name="searchType" value="head">
 	            			<input type="hidden" name="typeValue" value="1">
-							
+
 						</form>
 					</div>
-					
-                    <c:if test="${sessionScope.usersVO != null}">
-                        <div class="icon-set header-div">
-                            <span>
-                                <a href="${pageContext.request.contextPath}/mypage/mypage">
-                                    <i class="far fa-user fa-3x"></i>
-                                </a>
-                            </span>
-                            <span>
-                                <a href="${pageContext.request.contextPath}/detailBoard/detailWhatIBuy">
-                                    <i class="far fa-clone fa-3x"></i>
-                                </a>
-                            </span>
-                            <span>
-                                <a href="#" onclick="location.href = '${pageContext.request.contextPath}/users/userLogout'">
-                                    <i class="fas fa-shopping-basket fa-3x"></i>
-                                </a>
-                            </span>
-                        </div>
-                    </c:if>
-                    <c:if test="${sessionScope.usersVO == null}">
-                        <div class="login-btn">
-                            <button type="button" class="btn btn-default btn1" onclick="location.href='${pageContext.request.contextPath }/users/userLogin'">
-                                로그인
-                            </button>
-                            <button type="button" class="btn btn-primary btn2" onclick="location.href='${pageContext.request.contextPath}/users/join'">
-                                회원가입
-                            </button>
-                        </div>
-                    </c:if>
+
+					<c:if test="${sessionScope.usersVO != null}">
+						<div class="icon-set header-div">
+							<span> <a href="${pageContext.request.contextPath}/mypage/mypage"> <i class="far fa-user fa-3x"></i>
+							</a>
+							</span> <span> <a href="${pageContext.request.contextPath}/detailBoard/detailWhatIBuy"> <i class="fas fa-shopping-basket fa-3x"></i>
+							</a>
+							</span> <span> <a href="${pageContext.request.contextPath}/users/userLogout"> <i class="far fa-clone fa-3x"></i>
+							</a>
+							</span>
+
+						</div>
+					</c:if>
+					<c:if test="${sessionScope.usersVO == null}">
+						<div class="login-btn">
+							<button type="button" class="btn btn-default btn1" onclick="location.href='${pageContext.request.contextPath }/users/userLogin'">로그인</button>
+							<button type="button" class="btn btn-primary btn2" onclick="location.href='${pageContext.request.contextPath}/users/join'">회원가입</button>
+						</div>
+					</c:if>
 				</div>
 			</div>
 			<div class="col-sm-12 header2">
 				<div class="category-page">
 					<div class="visible">
 						<button type="button" class="open-btn" style="border-radius: 0; border: 1px solid rgb(135, 177, 232);">
-							<span class="btn-icon glyphicon glyphicon-tower"></span>
-							<span class="btn-icon">
-								<i class="fas fa-bars"></i>
-							</span>
-							<span class="btn-title">전체카테고리</span>
+							<span class="btn-icon glyphicon glyphicon-tower"></span> <span class="btn-icon"> <i class="fas fa-bars"></i>
+							</span> <span class="btn-title">전체카테고리</span>
 						</button>
 					</div>
 					<div class="click-visible">
 						<div class="category-block">
 							<ul class="category-list" id="cate-con">
-								
+
 							</ul>
 						</div>
 					</div>
@@ -93,7 +77,6 @@
 	</div>
 
 	<script>
-
             $(document).ready(function () {
 
 
@@ -216,4 +199,5 @@
 
 
         </script>
+
 </section>

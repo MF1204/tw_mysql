@@ -19,7 +19,7 @@
 		<typeAlias type="com.tigerWhale.command.PopularBoardVO" alias="PopularBoardVO" />
 		<typeAlias type="com.tigerWhale.command.ThumbnailBoardVO" alias="ThumbnailBoardVO" />
 		<typeAlias type="com.tigerWhale.command.CustomerBoardVO" alias="CustomerBoardVO" />
-		
+		<typeAlias type="com.tigerWhale.command.V_R_BoardVO" alias="V_R_BoardVO" />
 		
 	</typeAliases>
 	

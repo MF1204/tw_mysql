@@ -26,6 +26,7 @@ import com.tigerWhale.command.MultipulD_TVO;
 import com.tigerWhale.command.MultipulY_MVO;
 //import com.tigerWhale.command.UserIMGBoardVO;
 import com.tigerWhale.command.UsersVO;
+import com.tigerWhale.command.V_R_BoardVO;
 import com.tigerWhale.command.Y_M_boardVO;
 import com.tigerWhale.command.APP_CONSTANT;
 import com.tigerWhale.command.CategoryBoardVO;
@@ -145,13 +146,18 @@ public class DetailBoardController {
 
 		System.out.println(bno);
 		//===============================================
-		
+		V_R_BoardVO voBoardVOVO = detailBoardService.getViewNum(bno);
+		System.out.println(voBoardVOVO);
+		int viewNum = voBoardVOVO.getViewNum()+1;
+		System.out.println(viewNum);
+		int voBoardVO = detailBoardService.updateViewNum(bno, viewNum);
 		//
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		HttpSession session = request.getSession();
 		UsersVO userVO =  (UsersVO)session.getAttribute("usersVO");
 		System.out.println("userVO  " + userVO);
 		model.addAttribute("userVO", userVO);
+		model.addAttribute("voBoardVO", viewNum);
 		//===============================================
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		
@@ -207,7 +213,6 @@ public class DetailBoardController {
 		
 		CustomerBoardVO customerBoardVO = detailBoardService.getCustomerBoard(user_ID , bno);
 		
-
 		
 		model.addAttribute("customerBoardVO", customerBoardVO);
 		model.addAttribute("m_boardVOFirst", m_boardVOFirst);

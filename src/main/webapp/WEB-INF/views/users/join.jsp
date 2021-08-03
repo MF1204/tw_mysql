@@ -60,12 +60,13 @@
 					</div>
 
 					<div class="form-group email-form">
-						<label for="email">이메일</label><br> <input type="text" class="form-control" id="userEmail1" name="userEmail1" placeholder="이메일"> <select class="form-control" id="userEmail2" name="userEmail2">
-							<option>@naver.com</option>
-							<option>@daum.net</option>
-							<option>@gmail.com</option>
-							<option>@hanmail.com</option>
-							<option>@yahoo.co.kr</option>
+						<label for="email">이메일</label><br> <input type="text" class="form-control" id="userEmail1" name="userEmail1" placeholder="이메일"> @
+						<select class="form-control" id="userEmail2" name="userEmail2">
+							<option>naver.com</option>
+							<option>daum.net</option>
+							<option>gmail.com</option>
+							<option>hanmail.com</option>
+							<option>yahoo.co.kr</option>
 						</select>
 					</div>
 					<!--readonly 속성 추가시 자동으로 블락-->

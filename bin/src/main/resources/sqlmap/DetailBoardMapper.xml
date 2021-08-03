@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tigerWhale.detailBoard.mapper.DetailBoardMapper">
+
+	<select id="getCategory" resultType="CategoryBoardVO">
+		select * from CATEGORYBOARD where c_code = #{bno}
+	</select>
+	<select id="getD_T_board" resultType="D_T_boardVO">
+		select * from D_T_BOARD where bno = #{bno}
+	</select>
+	<select id="getBoardDetail" resultType="DetailBoardVO">
+		select * from DETAILBOARD where bno = #{bno}
+	</select>
+	<select id="getMainDetail" resultType="MainBoardVO">
+		select * from MAINBOARD where bno = #{bno}
+	</select>
+	<select id="getReplyBoard" resultType="ReplyBoardVO">
+		select * from REPLYBOARD where bno = #{bno}
+	</select>
+	<select id="getUserDetail" resultType="UsersVO">
+		select * from USERBOARD where user_id like #{user_ID}
+	</select>
+	<select id="getY_M_board" resultType="Y_M_boardVO">
+		select * from Y_M_BOARD where bno = #{bno}
+	</select>
+
+	<select id="getIMGBoard" resultType="IMGBoardVO">
+		select * from IMGBOARD where bno = #{bno}
+	</select>
+
+	<select id="getTextBoard" resultType="TextBoardVO">
+		select * from TEXTBOARD where bno = #{bno}
+	</select>
+
+	<select id="getY_M_boardFisrt" resultType="Y_M_boardVO">
+		select DISTINCT
+		day1, day2 from Y_M_BOARD where bno = #{bno}
+	</select>
+
+
+
+
+
+
+	<select id="getY_M_One" resultType="Y_M_boardVO">
+		select * from Y_M_BOARD where
+		rno = #{rno}
+	</select>
+
+
+	<insert id="insertMainBoardVO" parameterType="map">
+		insert into MAINBOARD (
+		 bno , user_ID , c_code , boardType , title , text ,price)
+		values
+		(#{bno} ,  #{user_ID}, #{c_code} , #{boardType} , #{title} , #{text} , #{price} )
+	</insert>
+
+	<select id="findBno" resultType="int">
+		select get_seq('bno');
+	</select>
+
+	<insert id="insertText" parameterType="map">
+		insert into TEXTBOARD ( bno , text1, text2, text3)
+		values(#{bno},#{text1},#{text2},#{text3})
+	</insert>
+
+	<select id="getCataGoryALL" resultType="CategoryBoardVO">
+		select distinct bigCategory from CATEGORYBOARD
+	</select>
+
+
+	<insert id="insertY_M_boardVO" parameterType="map">
+		insert into Y_M_BOARD(
+		bno, rno, day1 , day2 , exText, M_time1,M_time2,
+		Money ,  addrBasic,addrDetail, entX , entY)
+		values(
+		#{bno} ,#{rno} , #{day1} , #{day2} , #{exText} , #{M_time1} , #{M_time2} ,
+		#{Money} , #{addrBasic} , #{addrDetail} , #{entX} , #{entY} )
+	</insert>
+
+
+	<select id="getMiddleCataGory" resultType="categoryBoardVO">
+   		<![CDATA[ select distinct  ]]>
+		<choose>
+			<when test="middleCategory != null "> smallCategory from
+			 CATEGORYBOARD where middleCategory like #{middleCategory}</when>
+			<when test="bigCategory != null "> middleCategory from
+			 CATEGORYBOARD where bigCategory like #{bigCategory}</when>
+			<otherwise>1 = 1</otherwise>
+		</choose>
+	</select>
+
+
+
+
+	<insert id="insertIMGBoardVO" parameterType="map">
+		insert into IMGBOARD( bno , img)
+		values(#{bno},#{img})
+	</insert>
+
+
+
+
+
+
+	<insert id="insertD_T_boardVO" parameterType="map">
+		insert into D_T_BOARD (bno, rno , M_day)
+		values(#{bno},#{rno},#{ M_day})
+	</insert>
+	
+	
+	<select id="findRno" resultType="int">
+		select get_seq('rno');
+	</select>
+	
+	
+	<select id="findC_code" resultType="int" parameterType="map">
+			select c_code from CATEGORYBOARD where 
+			smallCategory Like #{smallCategory} and  
+			middleCategory Like #{middleCategory} and
+			bigCategory Like #{bigCategory}
+	</select>
+	
+	<select id="getCustomerBoard" resultType="CustomerBoardVO" parameterType="map">
+			select * from CUSTOMERBOARD where user_ID = #{user_ID}  and  bno = #{bno}
+	</select>
+	
+		<select id="getMyCustomer" resultType="CustomerBoardVO" parameterType="map">
+			select * from CUSTOMERBOARD where user_ID = #{user_ID}  
+	</select>
+	
+	  <delete id="mainBoarddelete">
+        delete from MAINBOARD where bno = #{bno}
+    </delete>
+</mapper>

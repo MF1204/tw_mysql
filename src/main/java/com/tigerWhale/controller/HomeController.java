@@ -66,10 +66,6 @@ public class HomeController {
 	@PostMapping(value = "/getNearBoard", produces = "application/json", consumes = "application/json")
 	public ArrayList<MainBoardVO> getNearBoard(@RequestBody UsersVO vo)
 	{
-		System.out.println("!@#!@#!@#!@#!");
-		System.out.println(vo.getC_code());
-		System.out.println(vo);
-		System.out.println("!@#!@#!@#!@#!");
 		ArrayList<MainBoardVO> vo2 = mainBoardService.getNearBoard(vo);
 		return vo2;
 	}
