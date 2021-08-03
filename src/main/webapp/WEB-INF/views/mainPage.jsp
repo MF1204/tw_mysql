@@ -14,7 +14,7 @@
 						<li data-target="#myCarousel" data-slide-to="2"></li>
 					</ul>
 
-					<!-- Wrapper for slides -->
+					<!-- Wrapper for slides. -->
 					<div class="carousel-inner">
 
 						<div class="item active">
