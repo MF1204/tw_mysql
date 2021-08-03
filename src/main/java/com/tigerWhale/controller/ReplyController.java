@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tigerWhale.command.CustomerBoardVO;
 import com.tigerWhale.command.ReplyBoardVO;
-
+import com.tigerWhale.command.V_R_BoardVO;
 import com.tigerWhale.reply.service.ReplyService;
 import com.tigerWhale.util.ReplyCriteria;
 
@@ -108,7 +108,7 @@ public class ReplyController {
 	//삭제요청 delete
     @PostMapping(value = "charge", produces = "application/json")
     public int charge(@RequestBody CustomerBoardVO vo) {
-    	System.out.println(vo);
+		
     	int customer =  replyService.customer(vo);
         if(customer  == 1) {
         	return 1;
