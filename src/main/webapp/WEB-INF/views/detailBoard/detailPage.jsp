@@ -13,7 +13,7 @@
 							<!-- 카테고라ㅣ-->
 							<a class="vgig-site-map">${categoryBoardVO.bigCategory}</a><span>></span> <a class="vgig-site-map">${categoryBoardVO.middleCategory}</a><span>></span> <a class="vgig-site-map">${categoryBoardVO.smallCategory}</a>
 						</div>
-					<p>${voBoardVO}	조회수</p>
+					<p>${viewNum} 조회수</p>
 						<div class="GigMainGallery">
 							<div class="LazyLoad">
 

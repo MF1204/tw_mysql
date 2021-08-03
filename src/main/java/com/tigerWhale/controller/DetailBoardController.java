@@ -149,15 +149,13 @@ public class DetailBoardController {
 		V_R_BoardVO voBoardVOVO = detailBoardService.getViewNum(bno);
 		System.out.println(voBoardVOVO);
 		int viewNum = voBoardVOVO.getViewNum()+1;
-		System.out.println(viewNum);
 		int voBoardVO = detailBoardService.updateViewNum(bno, viewNum);
-		//
+		model.addAttribute("viewNum", viewNum);
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		HttpSession session = request.getSession();
 		UsersVO userVO =  (UsersVO)session.getAttribute("usersVO");
 		System.out.println("userVO  " + userVO);
 		model.addAttribute("userVO", userVO);
-		model.addAttribute("voBoardVO", viewNum);
 		//===============================================
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		
@@ -214,6 +212,7 @@ public class DetailBoardController {
 		CustomerBoardVO customerBoardVO = detailBoardService.getCustomerBoard(user_ID , bno);
 		
 		
+		model.addAttribute("voBoardVO", voBoardVO);
 		model.addAttribute("customerBoardVO", customerBoardVO);
 		model.addAttribute("m_boardVOFirst", m_boardVOFirst);
 		model.addAttribute("detaiBoardVO", detaiBoardVO);
