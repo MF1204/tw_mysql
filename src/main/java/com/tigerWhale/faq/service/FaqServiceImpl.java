@@ -67,31 +67,27 @@ public class FaqServiceImpl implements FaqService {
 					vo.setTimetotext2(handate.format(vo.getUpdatedate() ).toString() );
 				}
 				
-				long calDate3 = now.getTime() - vo.getReplydate().getTime();
-				long min3 = calDate3 / 60000;
-				
-				if(min3 <= 60) { 
-					vo.setTimetotext3(String.valueOf(min3 + "분 전")); 
-				} 
-				else if(min3 < 1440){ 
-					vo.setTimetotext3(String.valueOf((min3 / 60) + "시간 전쯤")); 
-				}
-				else { 
-					SimpleDateFormat handate = new SimpleDateFormat("yyyy.MM.dd");
-					handate.format(vo.getReplydate());
-					vo.setTimetotext3(handate.format(vo.getReplydate() ).toString() ); 
-				}
-				
 				/*
-				 * if(vo.getReplydate() != null) { long calDate3 = now.getTime() -
-				 * vo.getReplydate().getTime(); long min3 = calDate3 / 60000;
+				 * long calDate3 = now.getTime() - vo.getReplydate().getTime(); long min3 =
+				 * calDate3 / 60000;
 				 * 
 				 * if(min3 <= 60) { vo.setTimetotext3(String.valueOf(min3 + "분 전")); } else
 				 * if(min3 < 1440){ vo.setTimetotext3(String.valueOf((min3 / 60) + "시간 전쯤")); }
 				 * else { SimpleDateFormat handate = new SimpleDateFormat("yyyy.MM.dd");
 				 * handate.format(vo.getReplydate());
-				 * vo.setTimetotext3(handate.format(vo.getReplydate() ).toString() ); } }
-				 */				
+				 * vo.setTimetotext3(handate.format(vo.getReplydate() ).toString() ); }
+				 */
+				
+				
+				  if(vo.getReplydate() != null) { long calDate3 = now.getTime() -
+				  vo.getReplydate().getTime(); long min3 = calDate3 / 60000;
+				  
+				  if(min3 <= 60) { vo.setTimetotext3(String.valueOf(min3 + "분 전")); } else
+				  if(min3 < 1440){ vo.setTimetotext3(String.valueOf((min3 / 60) + "시간 전쯤")); }
+				  else { SimpleDateFormat handate = new SimpleDateFormat("yyyy.MM.dd");
+				  handate.format(vo.getReplydate());
+				  vo.setTimetotext3(handate.format(vo.getReplydate() ).toString() ); } }
+				 				
 					
 					
 				
