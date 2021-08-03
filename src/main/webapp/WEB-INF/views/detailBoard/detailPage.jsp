@@ -65,7 +65,7 @@
 						<div class="GigDescription">
 							<div class="description-box">
 
-								<div class="intro1">
+								<div class="intro1" style="word-wrap: break-word;">
 
 									<div class="GigLeftTitle A">
 										<h3>설명1</h3>
@@ -74,14 +74,14 @@
 
 								</div>
 								<br /> <br />
-								<div class="intro2">
-									<div class="GigLeftTitle B">
+								<div class="intro2" style="word-wrap: break-word;">
+									<div class="GigLeftTitle B" >
 										<h3>설명2</h3>
 									</div>
 									${textBoardVO.text2}
 								</div>
 								<br /> <br />
-								<div class="intro3">
+								<div class="intro3" style="word-wrap: break-word;">
 									<div class="GigLeftTitle C">
 										<h3>설명3</h3>
 									</div>
@@ -112,9 +112,7 @@
 							<div class="GigTitle">
 								<h1>${mainBoardVO.title}</h1>
 								<div class="gig-detail-price">
-									<h3>
-										"${mainBoardVO.price}원" <span>~</span>
-									</h3>
+									<h3>"${mainBoardVO.price}원"</h3>
 									<h5 class="margin-none1">(VAT 포함가)</h5>
 								</div>
 							</div>
@@ -125,7 +123,9 @@
 									<ul class="nav nav-tabs" id="tabs">
 										<li class="active"><a href="#home"> 공통 정보 </a></li>
 										<c:forEach var="vo" items="${m_boardVO}" varStatus="status">
-											<li><a href="#menu${status.count}" id="menu" onclick="getMapsXY(${vo.entX},${vo.entY})"> ${status.count}옵션 </a></li>
+											<li>	
+											<a href="#menu${status.count}" id="menu" onclick="getMapsXY(${vo.entX},${vo.entY})"> ${status.count}옵션 </a>	
+											</li>
 										</c:forEach>
 									</ul>
 									<div class="tab-content">
@@ -172,7 +172,7 @@
 
 																<c:when test="${userVO == null}">
 																	<button type="button" class="btn">
-																		<span>로그인 후 이용해주세요</span>
+																		<span >로그인 후 이용해주세요</span>
 																	</button>
 
 																</c:when>
